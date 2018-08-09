@@ -1,0 +1,23 @@
+html{
+    width:100%;
+    background-color: #f4f4f4;
+}
+
+.container-y{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    box-sizing:border-box;
+    overflow-x: hidden;
+}
+
+.app-content-padding{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+/*避免被标题栏遮住*/
+.index{
+    margin-top: 40px;
+}
