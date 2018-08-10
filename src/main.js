@@ -8,6 +8,10 @@ import '$src/assets/css/common.css'
 import axios from 'axios'
 import global from '$src/global'
 import util from '$src/utils/util'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
 
 
 Vue.prototype.request = axios.create({

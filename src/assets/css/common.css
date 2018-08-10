@@ -11,6 +11,10 @@ html{
     overflow-x: hidden;
 }
 
+.container-x{
+    display:flex;
+}
+
 .app-content-padding{
     padding-top: 10px;
     padding-bottom: 10px;
