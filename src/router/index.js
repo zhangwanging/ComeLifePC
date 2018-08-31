@@ -8,30 +8,35 @@ import WriteEssay from '$src/components/page/writeessay/WriteEssay.vue'
 import WsButton from '$src/components/common/button/button.vue'
 import Alert from '$src/components/common/alert/alert.vue'
 import Carousel from '$src/components/common/carousel/carousel.vue'
+import ErrorMsg from '$src/components/common/errormsg/ErrorMsg.vue'
 
 Vue.use(Router)
 
 export default new Router({
     routes: [
+        //测试
         {
             name: 'test',
             path: '/test',
             components:{
-                test:Carousel
+                test:ErrorMsg
             }
         },
+        //重定向
         {
             path: '/',
             redirect: {
-                name:'test'
+                name:'home'
             }
         },
+        //默认排版
         {
             name: 'index',
             path: '/index',
             components: {
                 index: Index
             },
+            //在默认排版的main中
             children: [
                 {
                     name: 'home',
@@ -57,10 +62,10 @@ export default new Router({
 
             ]
         },
-        //essay
+        //文章编辑排版
         {
             name: 'writeessay',
-            path: 'writeessay',
+            path: '/writeessay',
             components: {
                 'writeessay': WriteEssay
             }

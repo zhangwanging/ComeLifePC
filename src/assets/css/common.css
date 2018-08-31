@@ -1,6 +1,5 @@
 html{
-    width:100%;
-    background-color: #f4f4f4;
+    background-color: white;
 }
 
 .container-y{
@@ -15,13 +14,14 @@ html{
     display:flex;
 }
 
-.app-content-padding{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 12px;
-    padding-right: 12px;
+body{
+    margin:0;
 }
-/*避免被标题栏遮住*/
-.index{
-    margin-top: 40px;
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration:none;
 }

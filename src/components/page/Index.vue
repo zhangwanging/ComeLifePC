@@ -1,8 +1,16 @@
 <template>
-    <div class="container-y container-index" style="height:100%;">
-        <Header></Header>
-        <router-view class="app-common main" name="main"></router-view>
-    </div>
+    <el-container>
+        <el-header>
+            <Header></Header>
+        </el-header>
+        <el-main>
+            <el-row type="flex" justify="center">
+                <el-col :span="14">
+                    <router-view name="main"></router-view>
+                </el-col>
+            </el-row>
+        </el-main>
+    </el-container>
 </template>
 
 <script>
@@ -16,18 +24,17 @@
 </script>
 
 <style scoped>
-
-    .container-index{
-        align-items: center;
-        height:100%;
+    .el-header{
+        width:100%;
+        position: fixed;
+        top:0;
+        left:0;
+        border-bottom: 1px solid gray;
+        z-index:1;
+        background-color: white;
     }
 
-    .app-common{
-        margin-top:40px;
-    }
-
-    .main{
-        width:960px;
-        height:calc(100% - 40px)
+    .el-main{
+        margin-top:60px;
     }
 </style>

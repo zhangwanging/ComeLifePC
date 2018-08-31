@@ -10,16 +10,12 @@ import global from '$src/global'
 import util from '$src/utils/util'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import request from '$src/init/request'
 
 Vue.use(ElementUI);
 
 
-Vue.prototype.request = axios.create({
-    baseURL: 'https://www.zhangw.xyz',
-    //baseURL:'http://192.168.1.101:3000',
-    timeout: 5000,
-    headers: {}
-});
+Vue.prototype.request=request
 Vue.prototype.global=global
 Vue.prototype.util=util
 
