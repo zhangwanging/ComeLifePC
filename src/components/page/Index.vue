@@ -7,6 +7,8 @@
             <el-row type="flex" justify="center">
                 <el-col :span="14">
                     <router-view name="main"></router-view>
+                    <router-view name="homepage"></router-view>
+                    <router-view name="setting"></router-view>
                 </el-col>
             </el-row>
         </el-main>
@@ -36,5 +38,6 @@
 
     .el-main{
         margin-top:60px;
+        z-index:0;
     }
 </style>

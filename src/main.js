@@ -11,6 +11,7 @@ import util from '$src/utils/util'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import request from '$src/init/request'
+import Mock from '$src/mock/mock'
 
 Vue.use(ElementUI);
 

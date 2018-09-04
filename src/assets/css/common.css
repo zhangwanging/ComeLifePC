@@ -1,5 +1,14 @@
-html{
+body,html{
     background-color: white;
+    height:100%;
+}
+
+body{
+    margin:0;
+}
+
+#app{
+    height:100%;
 }
 
 .container-y{
@@ -14,14 +23,21 @@ html{
     display:flex;
 }
 
-body{
-    margin:0;
-}
-
 ul{
     list-style-type: none;
+    padding-left:0;
+}
+
+li{
+    display: block;
 }
 
 a{
     text-decoration:none;
+}
+
+
+/*文本颜色*/
+.font-color-note{
+    color:lightgray;
 }
