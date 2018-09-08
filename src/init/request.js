@@ -1,9 +1,11 @@
 import Vue from 'vue/dist/vue'
 import axios from 'axios'
 
+const host='http://localhost:3000'
+
 const $ajax = axios.create({
     //baseURL: 'https://www.zhangw.xyz',
-    baseURL: 'http://localhost:3000',
+    baseURL: host,
     timeout: 5000,
     headers: {}
 });
@@ -25,7 +27,9 @@ const url={
     addColdJoke:'/addColdJoke',
     getColdJoke:'/getColdJoke',
     delColdJoke:'/delColdJoke',
-    editColdJoke:'/editColdJoke'
+    editColdJoke:'/editColdJoke',
+    getCarousel:'/getCarousel',
+    getPartAdviceUser:'/getAdviceUser/part'
 }
 /*
 * 冷笑话
@@ -82,11 +86,49 @@ const editColdJoke=function (data,fun) {
     })
 }
 
+/**
+ * 获取轮播图
+ */
+
+const getCarousel=function (data,fun) {
+    myAxios({
+        url:url.getCarousel,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 获取推荐作者
+ */
+
+const getPartAdviceUser=function (data,fun) {
+    myAxios({
+        url:url.getPartAdviceUser,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
 export default {
+    host,
+    url,
     addColdJoke,
     getColdJoke,
     delColdJoke,
-    editColdJoke
+    editColdJoke,
+    getCarousel,
+    getPartAdviceUser
 }
 
 

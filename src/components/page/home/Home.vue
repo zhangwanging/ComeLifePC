@@ -3,9 +3,11 @@
         <el-col :span="16">
             <el-row>
                 <el-col class="container-carousel">
-                    <el-carousel height="200px" trigger="click">
+                    <el-carousel height="210px" trigger="click">
                         <el-carousel-item v-for="item in carousels" :key="item.src">
-                            <img :src="item.src" alt="" width="100%" height="100%">
+                            <a :href="item.url" target="_blank">
+                                <img :src="item.src" alt="" width="100%" height="100%">
+                            </a>
                         </el-carousel-item>
                     </el-carousel>
                 </el-col>
@@ -31,7 +33,7 @@
                                     :imgUrl="item.imgUrl"
                                     :likeNum="item.likeNum"></EssayList>
                         </el-row>
-                        <el-button class="btn-leanmore" size="mini" type="info" round>阅读更多</el-button>
+                        <el-button @click="getMoreEssays" class="btn-leanmore" size="mini" type="info" round>阅读更多</el-button>
                     </ErrMsg>
                 </el-col>
                 <el-col>
@@ -68,29 +70,33 @@
                 <el-row class="font-color-minor" type="flex" justify="space-between">
                     <span>推荐作者</span>
                     <el-row>
-                        <i class="el-icon-refresh"></i>
-                        <span>换一批</span>
+                        <el-button
+                                :loading="false"
+                                class="refresh-author "
+                                type="text">
+                            <span class="font-color-minor font-size-content">换一批</span>
+                        </el-button>
                     </el-row>
                 </el-row>
                 <el-row class="container-list-author">
-                    <el-row v-for="n in 5" class="container-item-author" type="flex" align="middle">
-                        <img class="author-img" src="./star.jpg" alt="" width="40" height="40">
+                    <el-row v-for="user in users" class="container-item-author" type="flex" align="middle">
+                        <img class="author-img" :src="user.avatar" alt="" width="40" height="40">
                         <el-col>
                             <el-row type="flex" justify="space-between">
-                                <span class="font-color-main">lostdays</span>
+                                <span class="font-color-main">{{user.name}}</span>
                                 <el-row class="font-color-success">
                                     <i class="el-icon-plus"></i>
                                     <span>关注</span>
                                 </el-row>
                             </el-row>
                             <el-row class="font-color-minor">
-                                写了 <span>111</span>字 <span>10</span>喜欢
+                                写了 <span>{{user.wordNum}}</span>字 <span>{{user.likeNum}}</span>喜欢
                             </el-row>
                         </el-col>
                     </el-row>
                 </el-row>
                 <el-row>
-                    <el-button  size="mini" class="author-btn" type="info">查看全部</el-button>
+                    <el-button size="mini" class="author-btn" type="info">查看全部</el-button>
                 </el-row>
             </el-col>
         </el-col>
@@ -112,19 +118,19 @@
                 errType: 0,
                 items: [],
                 carousels: [{
+                    url:'#',
                     src: require('$src/assets/img/error.png')
-                }, {
-                    src: require('$src/assets/logo.png')
-                }, {
-                    src: require('$src/assets/logo.png')
-                }]
+                }],
+                users:[]
             }
         },
         created() {
-            this.getColdJoke()
+            this.getEssays()
+            this.getCarousel()
+            this.getPartAdviceUser()
         },
         methods: {
-            getColdJoke() {
+            getEssays() {
                 let that = this
                 this.request.getColdJoke(undefined, function (err, res) {
                     if (err) {
@@ -133,7 +139,7 @@
                     }
                     if (res.code === 0) {
                         if (res.data.length !== 0) {
-                            that.items = res.data
+                            that.items=that.items.concat(res.data)
                             that.errType = 0
                         } else {
                             that.errType = 2;
@@ -142,6 +148,25 @@
                         that.errType = 1
                     }
                 })
+            },
+            getCarousel() {
+                let that = this
+                this.request.getCarousel(undefined, function (err, res) {
+                    if (res.code === 0 && res.data.length !== 0) {
+                        that.carousels = res.data
+                    }
+                })
+            },
+            getPartAdviceUser(){
+                let that = this
+                this.request.getPartAdviceUser(undefined, function (err, res) {
+                    if (res.code === 0 && res.data.length !== 0) {
+                        that.users = res.data
+                    }
+                })
+            },
+            getMoreEssays(){
+                this.getEssays()
             }
         }
     }
@@ -153,7 +178,7 @@
 
     .container-carousel {
         margin-bottom: 20px;
-        border-radius: 15px;
+        border-radius: 5px;
         overflow: hidden;
     }
 
@@ -220,6 +245,10 @@
 
     /*推荐作者*/
 
+    .refresh-author{
+        padding: 0;
+    }
+
     .container-list-author {
         margin-top: 12px;
     }
@@ -232,8 +261,8 @@
         margin-right: 5px;
     }
 
-    .author-btn{
-        width:100%;
+    .author-btn {
+        width: 100%;
     }
 
     /*end推荐作者*/

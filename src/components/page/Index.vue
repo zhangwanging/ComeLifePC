@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-header>
+        <el-header class="border-color-first">
             <Header class="rs-container-header"></Header>
         </el-header>
         <el-main>
@@ -35,7 +35,8 @@
         position: fixed;
         top:0;
         left:0;
-        border-bottom: 1px solid gray;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
         z-index:1;
         background-color: white;
     }
