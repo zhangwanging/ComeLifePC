@@ -12,8 +12,14 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import request from '$src/init/request'
 import Mock from '$src/mock/mock'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+import '$src/assets/css/icon.css'
+import '$src/assets/css/response.css'
+import 'element-ui/lib/theme-chalk/display.css'
 
 Vue.use(ElementUI);
+Vue.use(mavonEditor)
 
 
 Vue.prototype.request=request

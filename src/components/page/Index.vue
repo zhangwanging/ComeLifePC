@@ -1,14 +1,18 @@
 <template>
     <el-container>
         <el-header>
-            <Header></Header>
+            <Header class="rs-container-header"></Header>
         </el-header>
         <el-main>
             <el-row type="flex" justify="center">
-                <el-col :span="14">
+                <el-col :xs="24"  :sm="20" :md="18" :lg="14" xl="12" class=" rs-container-main container-main">
                     <router-view name="main"></router-view>
                     <router-view name="homepage"></router-view>
                     <router-view name="setting"></router-view>
+                    <router-view name="message"></router-view>
+                    <router-view name="care"></router-view>
+                    <router-view name="feedback"></router-view>
+                    <router-view name="essay"></router-view>
                 </el-col>
             </el-row>
         </el-main>
@@ -40,4 +44,12 @@
         margin-top:60px;
         z-index:0;
     }
+
+    .container-main{
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
 </style>

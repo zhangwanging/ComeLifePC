@@ -1,6 +1,6 @@
 <template>
     <el-row>
-        <el-row :gutter="40">
+        <el-row :gutter="20">
             <el-col :span="16">
                 <el-row :gutter="20" type="flex" align="middle">
                     <el-col :span="4">
@@ -44,8 +44,8 @@
                         <el-tab-pane label="动态" name="dynamic">
                             <router-view name="dynamic"></router-view>
                         </el-tab-pane>
-                        <el-tab-pane label="最新评论" name="comment">
-                            <router-view name="comment"></router-view>
+                        <el-tab-pane label="最新评论" name="new-comment">
+                            <router-view name="new-comment"></router-view>
                         </el-tab-pane>
                         <el-tab-pane label="热门" name="hot">
                             <router-view name="hot"></router-view>

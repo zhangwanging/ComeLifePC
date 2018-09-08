@@ -1,0 +1,16 @@
+
+@media (max-width: 768px) {
+
+    /*Index*/
+    .rs-container-main{
+        min-width:600px;
+        max-width: 600px;
+    }
+
+    .rs-container-header{
+        min-width: 768px;
+        max-width:768px;
+    }
+    /*end Index*/
+}
+

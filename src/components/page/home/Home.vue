@@ -1,57 +1,97 @@
 <template>
-    <el-row :gutter="40">
+    <el-row :gutter="20">
         <el-col :span="16">
-            <el-row >
-                <el-col>
-                    <el-carousel height="270px" trigger="click">
+            <el-row>
+                <el-col class="container-carousel">
+                    <el-carousel height="200px" trigger="click">
                         <el-carousel-item v-for="item in carousels" :key="item.src">
                             <img :src="item.src" alt="" width="100%" height="100%">
                         </el-carousel-item>
                     </el-carousel>
                 </el-col>
-                <el-col class="app-gutter">
-                    <el-button class="hot" size="mini" type="primary">故事</el-button>
-                    <el-button class="hot" size="mini" type="primary">摄影</el-button>
-                    <el-button class="hot" size="mini" type="primary">手绘</el-button>
-                    <el-button class="hot" size="mini" type="primary">读书</el-button>
-                    <el-button class="hot" size="mini" type="primary">自然科普</el-button>
-                    <el-button class="hot" size="mini" type="primary">IT.互联网</el-button>
-                    <el-button class="hot" size="mini" type="primary">简单书影</el-button>
+                <el-col class="container-hot">
+                    <el-button class="btn-hot" size="mini" type="info" round plain>故事</el-button>
+                    <el-button class="btn-hot" size="mini" type="info" round plain>摄影</el-button>
+                    <el-button class="btn-hot" size="mini" type="info" round plain>手绘</el-button>
+                    <el-button class="btn-hot" size="mini" type="info" round plain>读书</el-button>
+                    <el-button class="btn-hot" size="mini" type="info" round plain>自然科普</el-button>
+                    <el-button class="btn-hot" size="mini" type="info" round plain>IT.互联网</el-button>
+                    <el-button class="btn-hot" size="mini" type="info" round plain>简单书影</el-button>
+                    <el-row class="hot-more"><span class="font-color-minor">更多热门专题</span><i
+                            class="el-icon-arrow-right"></i></el-row>
                 </el-col>
                 <el-col>
                     <ErrMsg :type="errType">
-                        <el-card class="item" v-for="item in items" v-bind:key="item._id">
-                            <p class="content">{{item.content}}</p>
-                            <p class="time">{{new Date(item.time).toLocaleString()}}</p>
-                        </el-card>
-                        <el-button size="small" class="right-button" type="primary">阅读更多</el-button>
+                        <el-row class="container-essay-item" v-for="item in items" v-bind:key="item._id">
+                            <EssayList
+                                    :title="item.title"
+                                    :content="item.content"
+                                    :author="item.author"
+                                    :commentNum="item.commentNum"
+                                    :imgUrl="item.imgUrl"
+                                    :likeNum="item.likeNum"></EssayList>
+                        </el-row>
+                        <el-button class="btn-leanmore" size="mini" type="info" round>阅读更多</el-button>
                     </ErrMsg>
                 </el-col>
                 <el-col>
-                    <div>附加说明</div>
+                    <div class="font-color-minor">Copyright © 2018 Star-Inc.All Rights Reserved</div>
                 </el-col>
             </el-row>
         </el-col>
         <el-col :span="8">
             <el-col>
-                <el-button size="small" class="right-button"  type="primary">7日热门</el-button>
-                <el-button size="small" class="right-button"  type="primary">30日热门</el-button>
-                <el-button size="small" class="right-button"  type="primary">优选连载</el-button>
-                <el-button size="small" class="right-button"  type="primary">简书版权</el-button>
-                <el-button size="small" class="right-button"  type="primary">简书大学堂</el-button>
-                <p>二维码</p>
+                <el-button size="small" class="menu-btn" type="info" plain>7日热门<i class="el-icon-arrow-right"></i>
+                </el-button>
+                <el-button size="small" class="menu-btn" type="info" plain>30日热门<i class="el-icon-arrow-right"></i>
+                </el-button>
+                <el-button size="small" class="menu-btn" type="info" plain>优选连载<i class="el-icon-arrow-right"></i>
+                </el-button>
+                <el-button size="small" class="menu-btn" type="info" plain>简书版权<i class="el-icon-arrow-right"></i>
+                </el-button>
+                <el-button size="small" class="menu-btn" type="info" plain>简书大学堂<i class="el-icon-arrow-right"></i>
+                </el-button>
             </el-col>
             <el-col>
-                <p>推荐作者</p>
-                <div>小万PPT</div>
-                <div>小万PPT</div>
-                <div>小万PPT</div>
-                <div>小万PPT</div>
-                <div>小万PPT</div>
-                <div>小万PPT</div>
+                <el-popover
+                        placement="top"
+                        trigger="hover">
+                    <img src="./star.jpg" alt="" width="150" height="150">
+                    <el-col slot="reference" class="container-qrcode border-color-first">
+                        <img src="./star.jpg" alt="" width="80" height="80">
+                        <p class="font-color-minor">随时随地发现更多创作内容</p>
+                    </el-col>
+                </el-popover>
+
             </el-col>
             <el-col>
-                <el-button size="small" class="right-button" type="primary">查看全部</el-button>
+                <el-row class="font-color-minor" type="flex" justify="space-between">
+                    <span>推荐作者</span>
+                    <el-row>
+                        <i class="el-icon-refresh"></i>
+                        <span>换一批</span>
+                    </el-row>
+                </el-row>
+                <el-row class="container-list-author">
+                    <el-row v-for="n in 5" class="container-item-author" type="flex" align="middle">
+                        <img class="author-img" src="./star.jpg" alt="" width="40" height="40">
+                        <el-col>
+                            <el-row type="flex" justify="space-between">
+                                <span class="font-color-main">lostdays</span>
+                                <el-row class="font-color-success">
+                                    <i class="el-icon-plus"></i>
+                                    <span>关注</span>
+                                </el-row>
+                            </el-row>
+                            <el-row class="font-color-minor">
+                                写了 <span>111</span>字 <span>10</span>喜欢
+                            </el-row>
+                        </el-col>
+                    </el-row>
+                </el-row>
+                <el-row>
+                    <el-button  size="mini" class="author-btn" type="info">查看全部</el-button>
+                </el-row>
             </el-col>
         </el-col>
     </el-row>
@@ -59,21 +99,24 @@
 
 <script>
     import ErrMsg from '$src/components/common/errormsg/ErrorMsg.vue'
+    import EssayList from '$src/components/business-common/EssayList.vue'
+
     export default {
         name: "Home",
         components: {
-            ErrMsg
+            ErrMsg,
+            EssayList
         },
         data() {
             return {
                 errType: 0,
                 items: [],
-                carousels:[{
-                    src:require('$src/assets/img/error.png')
-                },{
-                    src:require('$src/assets/logo.png')
-                },{
-                    src:require('$src/assets/logo.png')
+                carousels: [{
+                    src: require('$src/assets/img/error.png')
+                }, {
+                    src: require('$src/assets/logo.png')
+                }, {
+                    src: require('$src/assets/logo.png')
                 }]
             }
         },
@@ -106,41 +149,92 @@
 
 <style scoped>
 
+    /*轮播图*/
 
-    .el-button+.el-button{
-        margin-left:0;
-    }
-
-    .hot {
-        margin-right: 10px;
-        margin-bottom: 5px;
-    }
-
-    .item {
-        position: relative;
-        min-height: 100px;
-        margin-bottom: 10px;
-    }
-
-    .content {
-
-    }
-
-    .time {
-        position: absolute;
-        right: 0px;
-        bottom: 0px;
-    }
-
-    /*微调*/
-    .app-gutter {
-        margin-top:20px;
+    .container-carousel {
         margin-bottom: 20px;
+        border-radius: 15px;
+        overflow: hidden;
     }
 
-    .right-button{
-        width:100%;
+    /*end 轮播图*/
+
+    /*更多热门专题*/
+
+    .container-hot {
+        margin-bottom: 30px;
+    }
+
+    .el-button + .el-button {
+        margin-left: 0;
+    }
+
+    .btn-hot {
+        margin: 10px 10px 0 0;
+    }
+
+    .hot-more {
+        display: inline-block;
+    }
+
+    /*end 更多热门专题*/
+
+    /*文章列表*/
+    .container-essay-item {
+        position: relative;
+    }
+
+    .btn-leanmore {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+
+    /*end 文章列表*/
+
+    /*右上菜单栏*/
+
+    .menu-btn {
+        width: 100%;
         margin-bottom: 10px;
+        text-align: left;
     }
 
+    /*end 右上菜单栏*/
+
+    /*二维码*/
+
+    .container-qrcode {
+        padding: 5px 10px;
+        margin-bottom: 20px;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 5px;
+    }
+
+    .container-qrcode p {
+        margin: 0;
+    }
+
+    /*end二维码*/
+
+    /*推荐作者*/
+
+    .container-list-author {
+        margin-top: 12px;
+    }
+
+    .container-item-author {
+        margin-bottom: 12px;
+    }
+
+    .author-img {
+        margin-right: 5px;
+    }
+
+    .author-btn{
+        width:100%;
+    }
+
+    /*end推荐作者*/
 </style>

@@ -11,8 +11,7 @@ import Carousel from '$src/components/common/carousel/carousel.vue'
 import ErrorMsg from '$src/components/common/errormsg/ErrorMsg.vue'
 import Session from '$src/components/page/session/Session.vue'
 import HomePage from '$src/components/page/homepage/HomePage.vue'
-import EssayList from '$src/components/page/homepage/EssayList.vue'
-import Comment from '$src/components/page/homepage/Comment.vue'
+import NewComment from '$src/components/page/homepage/NewComment.vue'
 import Dynamic from '$src/components/page/homepage/Dynamic.vue'
 import Hot from '$src/components/page/homepage/Hot.vue'
 import Setting from '$src/components/page/setting/Setting.vue'
@@ -22,6 +21,19 @@ import Blacklist from '$src/components/page/setting/Blacklist.vue'
 import AppreciationSetting from '$src/components/page/setting/AppreciationSetting.vue'
 import AccountManagement from '$src/components/page/setting/AccountManagement.vue'
 import PersonalData from '$src/components/page/setting/PersonalData.vue'
+//消息
+import Message from '$src/components/page/message/Message.vue'
+import Comment from '$src/components/page/message/Comment.vue'
+import Contribution from '$src/components/page/message/Contribution.vue'
+import Information from '$src/components/page/message/Information.vue'
+import LoveAndFavour from '$src/components/page/message/LoveAndFavour.vue'
+import Warn from '$src/components/page/message/Warn.vue'
+import Attention from '$src/components/page/message/Attention.vue'
+import Admire from '$src/components/page/message/Admire.vue'
+import Care from '$src/components/page/care/Care.vue'
+import Feedback from '$src/components/page/feedback/Feedback.vue'
+import Essay from '$src/components/page/writeessay/Essay.vue'
+import EssayList from '$src/components/business-common/EssayList.vue'
 
 Vue.use(Router)
 
@@ -32,14 +44,14 @@ export default new Router({
             name: 'test',
             path: '/test',
             components:{
-                test:HomePage
+                test:EssayList
             }
         },
         //重定向
         {
             path: '/',
             redirect: {
-                name:'index'
+                name:'home'
             }
         },
         //默认排版
@@ -88,14 +100,15 @@ export default new Router({
                             }
                         },
                         {
-                            name:'comment',
-                            path:'comment',
+                            name:'new-comment',
+                            path:'new-comment',
                             components:{
-                                'comment':EssayList
+                                'new-comment':EssayList
                             }
                         }
                     ]
                 },
+                //设置
                 {
                     name:'setting',
                     path:'setting',
@@ -146,6 +159,88 @@ export default new Router({
                             }
                         }
                     ]
+                },
+                //消息
+                {
+                    name:'message',
+                    path:'message',
+                    components:{
+                        'message':Message
+                    },
+                    children:[
+                        {
+                            name:'admire',
+                            path:'admire',
+                            components:{
+                                'message':Admire
+                            }
+                        },
+                        {
+                            name:'attention',
+                            path:'attention',
+                            components:{
+                                'message':Attention
+                            }
+                        },
+                        {
+                            name:'comment',
+                            path:'comment',
+                            components:{
+                                'message':Comment
+                            }
+                        },
+                        {
+                            name:'contribution',
+                            path:'contribution',
+                            components:{
+                                'message':Contribution
+                            }
+                        },
+                        {
+                            name:'information',
+                            path:'information',
+                            components:{
+                                'message':Information
+                            }
+                        },
+                        {
+                            name:'love-and-favour',
+                            path:'love-and-favour',
+                            components:{
+                                'message':LoveAndFavour
+                            }
+                        },
+                        {
+                            name:'warn',
+                            path:'warn',
+                            components:{
+                                'message':Warn
+                            }
+                        }
+                    ]
+                },
+                {
+                    name:'care',
+                    path:'care',
+                    components:{
+                        'care':Care
+                    }
+                },
+                //帮助与反馈
+                {
+                    name:'feedback',
+                    path:'feedback',
+                    components:{
+                        'feedback':Feedback
+                    }
+                },
+                //文章详情
+                {
+                    name:'essay',
+                    path:'essay',
+                    components:{
+                        'essay':Essay
+                    }
                 }
             ]
         },
