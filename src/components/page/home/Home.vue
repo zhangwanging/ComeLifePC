@@ -1,6 +1,6 @@
 <template>
-    <el-row :gutter="20">
-        <el-col :span="16">
+    <ws-mainlayout>
+        <template slot="left">
             <el-row>
                 <el-col class="container-carousel">
                     <el-carousel height="210px" trigger="click">
@@ -19,29 +19,24 @@
                     <el-button class="btn-hot" size="mini" type="info" round plain>自然科普</el-button>
                     <el-button class="btn-hot" size="mini" type="info" round plain>IT.互联网</el-button>
                     <el-button class="btn-hot" size="mini" type="info" round plain>简单书影</el-button>
-                    <el-row class="hot-more"><span class="font-color-minor">更多热门专题</span><i
-                            class="el-icon-arrow-right"></i></el-row>
+
+                    <ws-button type="text">
+                        <span>更多热门专题</span>
+                        <i class="el-icon-arrow-right"></i>
+                    </ws-button>
                 </el-col>
                 <el-col>
-                    <ErrMsg :type="errType">
-                        <el-row class="container-essay-item" v-for="item in items" v-bind:key="item._id">
-                            <EssayList
-                                    :title="item.title"
-                                    :content="item.content"
-                                    :author="item.author"
-                                    :commentNum="item.commentNum"
-                                    :imgUrl="item.imgUrl"
-                                    :likeNum="item.likeNum"></EssayList>
-                        </el-row>
-                        <el-button @click="getMoreEssays" class="btn-leanmore" size="mini" type="info" round>阅读更多</el-button>
-                    </ErrMsg>
+                    <ws-essaylist :list="essays"></ws-essaylist>
+                    <el-button @click="getMoreEssays" class="btn-leanmore" size="mini" type="info" round>阅读更多
+                    </el-button>
                 </el-col>
                 <el-col>
                     <div class="font-color-minor">Copyright © 2018 Star-Inc.All Rights Reserved</div>
                 </el-col>
             </el-row>
-        </el-col>
-        <el-col :span="8">
+        </template>
+
+        <template slot="right">
             <el-col>
                 <el-button size="small" class="menu-btn" type="info" plain>7日热门<i class="el-icon-arrow-right"></i>
                 </el-button>
@@ -70,17 +65,17 @@
                 <el-row class="font-color-minor" type="flex" justify="space-between">
                     <span>推荐作者</span>
                     <el-row>
-                        <el-button
-                                :loading="false"
-                                class="refresh-author "
+                        <ws-button
+                                @click="getPartAdviceUser"
+                                :loading="adviceUser.isLoading"
                                 type="text">
-                            <span class="font-color-minor font-size-content">换一批</span>
-                        </el-button>
+                            <span>换一批</span>
+                        </ws-button>
                     </el-row>
                 </el-row>
                 <el-row class="container-list-author">
                     <el-row v-for="user in users" class="container-item-author" type="flex" align="middle">
-                        <img class="author-img" :src="user.avatar" alt="" width="40" height="40">
+                        <img class="author-img" :src="user.avatar" alt="">
                         <el-col>
                             <el-row type="flex" justify="space-between">
                                 <span class="font-color-main">{{user.name}}</span>
@@ -99,29 +94,32 @@
                     <el-button size="mini" class="author-btn" type="info">查看全部</el-button>
                 </el-row>
             </el-col>
-        </el-col>
-    </el-row>
+        </template>
+    </ws-mainlayout>
 </template>
 
 <script>
-    import ErrMsg from '$src/components/common/errormsg/ErrorMsg.vue'
-    import EssayList from '$src/components/business-common/EssayList.vue'
+    import WsButton from '$src/components/common/button/ws-button.vue'
+    import WsMainlayout from '$src/components/business-common/ws-mainlayout.vue'
+    import WsEssayitem from "$src/components/business-common/ws-essayitem.vue";
+    import WsEssaylist from "$src/components/business-common/ws-essaylist.vue";
 
     export default {
         name: "Home",
         components: {
-            ErrMsg,
-            EssayList
+            WsEssayitem,
+            WsButton,
+            WsMainlayout,
+            WsEssaylist
         },
         data() {
             return {
-                errType: 0,
-                items: [],
-                carousels: [{
-                    url:'#',
-                    src: require('$src/assets/img/error.png')
-                }],
-                users:[]
+                essays: [],
+                carousels: [],
+                users: [],
+                adviceUser: {
+                    isLoading: false
+                }
             }
         },
         created() {
@@ -134,18 +132,12 @@
                 let that = this
                 this.request.getColdJoke(undefined, function (err, res) {
                     if (err) {
-                        that.errType = 1
                         return
                     }
                     if (res.code === 0) {
                         if (res.data.length !== 0) {
-                            that.items=that.items.concat(res.data)
-                            that.errType = 0
-                        } else {
-                            that.errType = 2;
+                            that.essays = that.essays.concat(res.data)
                         }
-                    } else {
-                        that.errType = 1
                     }
                 })
             },
@@ -157,15 +149,17 @@
                     }
                 })
             },
-            getPartAdviceUser(){
+            getPartAdviceUser() {
                 let that = this
+                this.adviceUser.isLoading = true
                 this.request.getPartAdviceUser(undefined, function (err, res) {
+                    that.adviceUser.isLoading = false
                     if (res.code === 0 && res.data.length !== 0) {
                         that.users = res.data
                     }
                 })
             },
-            getMoreEssays(){
+            getMoreEssays() {
                 this.getEssays()
             }
         }
@@ -237,6 +231,10 @@
         border-radius: 5px;
     }
 
+    .container-qrcode:hover {
+        cursor: pointer;
+    }
+
     .container-qrcode p {
         margin: 0;
     }
@@ -244,10 +242,6 @@
     /*end二维码*/
 
     /*推荐作者*/
-
-    .refresh-author{
-        padding: 0;
-    }
 
     .container-list-author {
         margin-top: 12px;
@@ -258,6 +252,9 @@
     }
 
     .author-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
         margin-right: 5px;
     }
 

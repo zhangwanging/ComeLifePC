@@ -1,12 +1,14 @@
 <template>
     <el-menu
+            id="container"
             active-text-color="#409EFF"
             default-active="0"
             :mode="menu.mode"
             :router="true"
             @select="handleSelect">
         <template v-for="(menuitem,menuIndex) in menu.menuItems">
-            <el-submenu v-if="menuitem.menuItems&&menuitem.menuItems.length>0"
+            <el-submenu id="container-submenu"
+                        v-if="menuitem.menuItems&&menuitem.menuItems.length>0"
                         :index="menuitem.routerObj">
                 <template slot="title">
                     <!--待解决：将router-link去掉或...-->

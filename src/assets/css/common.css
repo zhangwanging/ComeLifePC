@@ -52,6 +52,22 @@ a{
     text-decoration:none;
 }
 
+a:link{
+    color:#606266;
+}
+
+a:visited{
+    color:#606266;
+}
+
+a:hover{
+    color:#409EFF;
+}
+
+a:active{
+
+}
+
 /*end 部分标签初始化*/
 
 
@@ -137,3 +153,4 @@ a{
 .border-color-first{
     border-color:#DCDFE6
 }
+

@@ -29,7 +29,10 @@ const url={
     delColdJoke:'/delColdJoke',
     editColdJoke:'/editColdJoke',
     getCarousel:'/getCarousel',
-    getPartAdviceUser:'/getAdviceUser/part'
+    getPartAdviceUser:'/getAdviceUser/part',
+    getEssaysByUserId:'/getEssaysByUserId',
+    getDynamicsByUserId:'/getDynamicsByUserId',
+    getUserAttention:'/getUserAttention'
 }
 /*
 * 冷笑话
@@ -120,6 +123,58 @@ const getPartAdviceUser=function (data,fun) {
     })
 }
 
+/**
+ * 获取文章列表
+ */
+
+const getEssaysByUserId=function (data,fun) {
+    myAxios({
+        url:url.getEssaysByUserId,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/*
+获取用户动态数据
+ */
+
+const getDynamicsByUserId=function (data,fun) {
+    myAxios({
+        url:url.getDynamicsByUserId,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/*
+获取用户关注列表
+ */
+
+const getUserAttention=function (data,fun) {
+    myAxios({
+        url:url.getUserAttention,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+
 export default {
     host,
     url,
@@ -128,7 +183,10 @@ export default {
     delColdJoke,
     editColdJoke,
     getCarousel,
-    getPartAdviceUser
+    getPartAdviceUser,
+    getEssaysByUserId,
+    getDynamicsByUserId,
+    getUserAttention
 }
 
 

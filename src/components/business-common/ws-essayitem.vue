@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-row
-                class="container-item border-color-first"
+                class="border-color-first"
                 type="flex"
                 justify="space-between"
                 align="middle">
@@ -10,15 +10,16 @@
                 <p class="item-content font-color-minor">
                     {{content}}
                 </p>
-                <el-row class="item-container-footer font-color-minor">
+                <el-row class="item-container-footer font-color-minor" type="flex" align="middle">
                     <span>{{author}}</span>
+                    <template v-if="isLook">
+                        <i class="icon iconfont icon-kanguo"></i><span>{{lookNum}}</span>
+                    </template>
                     <template v-if="isComment">
-                        <i class="icon iconfont icon-liaotiancopy"></i>
-                        <span>{{commentNum}}</span>
+                        <i class="icon iconfont icon-31wangwangxuanzhong"></i><span>{{commentNum}}</span>
                     </template>
                     <template v-if="isLike">
-                        <i class="icon iconfont icon-icon-test"></i>
-                        <span>{{likeNum}}</span>
+                        <i class="icon iconfont icon-31guanzhu1xuanzhong"></i><span>{{likeNum}}</span>
                     </template>
                 </el-row>
             </el-col>
@@ -28,11 +29,8 @@
 </template>
 
 <script>
-    /**
-     * 注意：只是个Item,对于list，定义Item组件更合适
-     */
     export default {
-        name: "EssayList",
+        name: "ws-essayitem",
         props: {
             title: {
                 type: String,
@@ -50,6 +48,10 @@
                 type: String,
                 default: require('./logo.png')
             },
+            isLook:{
+              type:Boolean,
+              default:true
+            },
             isComment: {
                 type: Boolean,
                 default: true
@@ -57,6 +59,10 @@
             isLike: {
                 type: Boolean,
                 default: true
+            },
+            lookNum:{
+              type:Number,
+              default:0
             },
             commentNum: {
                 type: Number,
@@ -71,11 +77,6 @@
 </script>
 
 <style scoped>
-    .container-item {
-        padding: 10px 0;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-    }
 
     .item-title {
         margin: 0;
@@ -95,7 +96,24 @@
         margin-left: 15px;
     }
 
+    /*底部*/
+
     .icon {
-        margin-left: 5px;
+        margin-left: 7px;
+        margin-right:2px;
     }
+
+    .icon-kanguo{
+        font-size:17px;
+    }
+
+    .icon-31wangwangxuanzhong{
+        font-size:13px;
+    }
+
+    .icon-31guanzhu1xuanzhong{
+        font-size:14px;
+    }
+
+    /*end 底部*/
 </style>

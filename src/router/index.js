@@ -33,7 +33,9 @@ import Admire from '$src/components/page/message/Admire.vue'
 import Care from '$src/components/page/care/Care.vue'
 import Feedback from '$src/components/page/feedback/Feedback.vue'
 import Essay from '$src/components/page/writeessay/Essay.vue'
-import EssayList from '$src/components/business-common/EssayList.vue'
+import WsEssayitem from '$src/components/business-common/ws-essayitem.vue'
+import EssayTabs from '$src/components/page/homepage/EssayTabs.vue'
+import FansTabs from '$src/components/page/homepage/ws-fanstabs.vue'
 
 Vue.use(Router)
 
@@ -44,7 +46,7 @@ export default new Router({
             name: 'test',
             path: '/test',
             components:{
-                test:EssayList
+                test:WsEssayitem
             }
         },
         //重定向
@@ -79,31 +81,17 @@ export default new Router({
                     },
                     children:[
                         {
-                            name:'essaylist',
-                            path:'essaylist',
+                            name:'essaytabs',
+                            path:'essaytabs',
                             components:{
-                                'essaylist':EssayList
+                                'usertabs':EssayTabs
                             }
                         },
                         {
-                            name:'dynamic',
-                            path:'dynamic',
+                            name:'fanstabs',
+                            path:'fanstabs',
                             components:{
-                                'dynamic':Dynamic
-                            }
-                        },
-                        {
-                            name:'hot',
-                            path:'hot',
-                            components:{
-                                'hot':EssayList
-                            }
-                        },
-                        {
-                            name:'new-comment',
-                            path:'new-comment',
-                            components:{
-                                'new-comment':EssayList
+                                'usertabs':FansTabs
                             }
                         }
                     ]

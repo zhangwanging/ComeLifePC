@@ -137,7 +137,7 @@
                             menuItems: [
                                 {
                                     routerObj: {
-                                        name: 'homepage'
+                                        name: 'essaytabs'
                                     },
                                     label: '我的主页',
                                     labelIconClass: ''
