@@ -6,13 +6,7 @@
         <el-main>
             <el-row type="flex" justify="center">
                 <el-col :xs="24"  :sm="20" :md="18" :lg="14" :xl="12" class=" rs-container-main container-main">
-                    <router-view name="main"></router-view>
-                    <router-view name="homepage"></router-view>
-                    <router-view name="setting"></router-view>
-                    <router-view name="message"></router-view>
-                    <router-view name="care"></router-view>
-                    <router-view name="feedback"></router-view>
-                    <router-view name="essay"></router-view>
+                    <router-view/>
                 </el-col>
             </el-row>
         </el-main>

@@ -3,7 +3,7 @@
         <!--首页的不同排版，index是默认排版-->
         <router-view name="index"/>
         <router-view name="writeessay"/>
-        <router-view name="test"/>
+        <router-view name="session"/>
     </div>
 </template>
 

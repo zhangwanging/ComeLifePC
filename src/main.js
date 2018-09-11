@@ -8,7 +8,7 @@ import '$src/assets/css/common.css'
 import util from '$src/utils/util'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import request from '$src/init/request'
+import request from '$src/api/request'
 import '$src/mock/mock'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'

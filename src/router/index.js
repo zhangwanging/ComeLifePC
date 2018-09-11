@@ -1,57 +1,43 @@
 import Vue from 'vue/dist/vue'
 import Router from 'vue-router'
-import Home from '$src/components/page/home/Home.vue'
-import WsIndex from '$src/components/page/index/ws-index.vue'
-import Register from '$src/components/page/register/Register.vue'
-import Login from '$src/components/page/login/Login.vue'
-import WriteEssay from '$src/components/page/writeessay/WriteEssay.vue'
-import WsButton from '$src/components/common/button/button.vue'
-import Alert from '$src/components/common/alert/alert.vue'
-import Carousel from '$src/components/common/carousel/carousel.vue'
+
 import ErrorMsg from '$src/components/common/errormsg/ErrorMsg.vue'
-import Session from '$src/components/page/session/Session.vue'
-import HomePage from '$src/components/page/homepage/HomePage.vue'
-import NewComment from '$src/components/page/homepage/NewComment.vue'
-import Hot from '$src/components/page/homepage/Hot.vue'
-import Setting from '$src/components/page/setting/Setting.vue'
-import BasicSetting from '$src/components/page/setting/BasicSetting.vue'
-import WeiboCertify from '$src/components/page/setting/WeiboCertify.vue'
-import Blacklist from '$src/components/page/setting/Blacklist.vue'
-import AppreciationSetting from '$src/components/page/setting/AppreciationSetting.vue'
-import AccountManagement from '$src/components/page/setting/AccountManagement.vue'
-import PersonalData from '$src/components/page/setting/PersonalData.vue'
-import Message from '$src/components/page/message/Message.vue'
-import Comment from '$src/components/page/message/Comment.vue'
-import Contribution from '$src/components/page/message/Contribution.vue'
-import Information from '$src/components/page/message/Information.vue'
-import LoveAndFavour from '$src/components/page/message/LoveAndFavour.vue'
-import Warn from '$src/components/page/message/Warn.vue'
-import Attention from '$src/components/page/message/Attention.vue'
-import Admire from '$src/components/page/message/Admire.vue'
-import Care from '$src/components/page/care/Care.vue'
-import Feedback from '$src/components/page/feedback/Feedback.vue'
-import Essay from '$src/components/page/writeessay/Essay.vue'
-import WsEssayitem from '$src/components/business-common/ws-essayitem.vue'
-import EssayTabs from '$src/components/page/homepage/EssayTabs.vue'
-import FansTabs from '$src/components/page/homepage/ws-fanstabs.vue'
+
+import WsFeedback from '$src/components/page/feedback/ws-feedback.vue'
+import WsIndex from '$src/components/page/index/ws-index.vue'
+import WsDiscover from '$src/components/page/discover/ws-discover.vue'
+import WsCare from '$src/components/page/care/ws-care.vue'
+import WsMessage from '$src/components/page/message/ws-message.vue'
+import WsMessageAdmire from '$src/components/page/message/ws-message-admire.vue'
+import WsMessageAttention from '$src/components/page/message/ws-message-attention.vue'
+import WsMessageComment from '$src/components/page/message/ws-message-comment.vue'
+import WsMessageContribution from '$src/components/page/message/ws-message-contribution.vue'
+import WsMessageFavour from '$src/components/page/message/ws-message-favour.vue'
+import WsMessageInformation from '$src/components/page/message/ws-message-information.vue'
+import WsMessageWarn from '$src/components/page/message/ws-message-warn.vue'
+import WsSession from '$src/components/page/session/ws-session.vue'
+import WsHomepage from '$src/components/page/homepage/ws-homepage.vue'
+import WsHomepageTabsEssay from '$src/components/page/homepage/ws-homepage-tabs-essay.vue'
+import WsHomepageTabsFans from '$src/components/page/homepage/ws-homepage-tabs-fans.vue'
+import WsSetting from '$src/components/page/setting/ws-setting.vue'
+import WsSettingAccountManage from '$src/components/page/setting/ws-setting-account-manage.vue'
+import WsSettingAppreciation from '$src/components/page/setting/ws-setting-appreciation.vue'
+import WsSettingBasic from '$src/components/page/setting/ws-setting-basic.vue'
+import WsSettingBlacklist from '$src/components/page/setting/ws-setting-blacklist.vue'
+import WsSettingPersonaldata from '$src/components/page/setting/ws-setting-personaldata.vue'
+import WsSettingWeiboCertify from '$src/components/page/setting/ws-setting-weibo-certify.vue'
+import WsCommonEssayDetail from '$src/components/common/essay/ws-common-essay-detail.vue'
+import WsWriteEssay from '$src/components/page/writeessay/ws-writeessay.vue'
 
 Vue.use(Router)
 
 export default new Router({
     routes: [
-        //测试
-        {
-            name: 'test',
-            path: '/test',
-            components:{
-                test:WsEssayitem
-            }
-        },
         //重定向
         {
             path: '/',
             redirect: {
-                name:'home'
+                name:'discover'
             }
         },
         //默认排版
@@ -64,10 +50,10 @@ export default new Router({
             //在默认排版的main中
             children: [
                 {
-                    name: 'home',
-                    path: 'home',
+                    name: 'discover',
+                    path: 'discover',
                     components: {
-                        'main': Home
+                       default: WsDiscover
                     }
                 },
                 //我的主页
@@ -75,21 +61,21 @@ export default new Router({
                     name:'homepage',
                     path:'homepage',
                     components:{
-                        'homepage':HomePage
+                        default:WsHomepage
                     },
                     children:[
                         {
-                            name:'essaytabs',
-                            path:'essaytabs',
+                            name:'tabsessay',
+                            path:'tabsessay',
                             components:{
-                                'usertabs':EssayTabs
+                                'usertabs':WsHomepageTabsEssay
                             }
                         },
                         {
-                            name:'fanstabs',
-                            path:'fanstabs',
+                            name:'tabsfans',
+                            path:'tabsfans',
                             components:{
-                                'usertabs':FansTabs
+                                'usertabs':WsHomepageTabsFans
                             }
                         }
                     ]
@@ -99,49 +85,49 @@ export default new Router({
                     name:'setting',
                     path:'setting',
                     components:{
-                        'setting':Setting
+                        default:WsSetting
                     },
                     children:[
                         {
-                            name:'basic-setting',
-                            path:'basic-setting',
+                            name:'basic',
+                            path:'basic',
                             components:{
-                                'setting-content':BasicSetting
+                                'setting-content':WsSettingBasic
                             }
                         },
                         {
                             name:'weibo-certify',
                             path:'weibo-certify',
                             components:{
-                                'setting-content':WeiboCertify
+                                'setting-content':WsSettingWeiboCertify
                             }
                         },
                         {
                             name:'blacklist',
                             path:'blacklist',
                             components:{
-                                'setting-content':Blacklist
+                                'setting-content':WsSettingBlacklist
                             }
                         },
                         {
-                            name:'appreciation-setting',
-                            path:'appreciation-setting',
+                            name:'appreciation',
+                            path:'appreciation',
                             components:{
-                                'setting-content':AppreciationSetting
+                                'setting-content':WsSettingAppreciation
                             }
                         },
                         {
-                            name:'account-management',
-                            path:'basic-setting',
+                            name:'account-manage',
+                            path:'account-manage',
                             components:{
-                                'setting-content':AccountManagement
+                                'setting-content':WsSettingAccountManage
                             }
                         },
                         {
-                            name:'personal-data',
-                            path:'personal-data',
+                            name:'personaldata',
+                            path:'personaldata',
                             components:{
-                                'setting-content':PersonalData
+                                'setting-content':WsSettingPersonaldata
                             }
                         }
                     ]
@@ -151,65 +137,66 @@ export default new Router({
                     name:'message',
                     path:'message',
                     components:{
-                        'message':Message
+                        default:WsMessage
                     },
                     children:[
                         {
                             name:'admire',
                             path:'admire',
                             components:{
-                                'message':Admire
+                                'message':WsMessageAdmire
                             }
                         },
                         {
                             name:'attention',
                             path:'attention',
                             components:{
-                                'message':Attention
+                                'message':WsMessageAttention
                             }
                         },
                         {
                             name:'comment',
                             path:'comment',
                             components:{
-                                'message':Comment
+                                'message':WsMessageComment
                             }
                         },
                         {
                             name:'contribution',
                             path:'contribution',
                             components:{
-                                'message':Contribution
+                                'message':WsMessageContribution
                             }
                         },
                         {
                             name:'information',
                             path:'information',
                             components:{
-                                'message':Information
+                                'message':WsMessageInformation
                             }
                         },
                         {
-                            name:'love-and-favour',
-                            path:'love-and-favour',
+                            name:'favour',
+                            path:'favour',
                             components:{
-                                'message':LoveAndFavour
+                                'message':WsMessageFavour
                             }
                         },
                         {
                             name:'warn',
                             path:'warn',
                             components:{
-                                'message':Warn
+                                'message':WsMessageWarn
                             }
                         }
                     ]
                 },
+                //关注
                 {
                     name:'care',
                     path:'care',
                     components:{
-                        'care':Care
+                        default:WsCare
                     }
                 },
                 //帮助与反馈
@@ -217,15 +204,15 @@ export default new Router({
                     name:'feedback',
                     path:'feedback',
                     components:{
-                        'feedback':Feedback
+                        default:WsFeedback
                     }
                 },
                 //文章详情
                 {
-                    name:'essay',
-                    path:'essay',
+                    name:'essaydetail',
+                    path:'essaydetail',
                     components:{
-                        'essay':Essay
+                        default:WsCommonEssayDetail
                     }
                 }
             ]
@@ -235,31 +222,15 @@ export default new Router({
             name: 'writeessay',
             path: '/writeessay',
             components: {
-                'writeessay': WriteEssay
+                'writeessay': WsWriteEssay
             }
         },
         {
             name:'session',
             path:'/session',
             components:{
-                'test':Session
-            },
-            children:[
-                {
-                    name:'register',
-                    path:'register',
-                    components:{
-                        'register':Register
-                    }
-                },
-                {
-                    name:'login',
-                    path:'login',
-                    components:{
-                        'login':Login
-                    }
-                }
-            ]
+                'session':WsSession
+            }
         }
     ]
 })

@@ -1,22 +1,50 @@
 <template>
-    <el-row type="flex" align="middle" class="container">
-        <el-col :xs="2" :sm="2" :lg="5" :xl="5" class="title">
+    <el-row
+            type="flex"
+            align="middle"
+            class="container">
+        <el-col
+                :xs="2"
+                :sm="2"
+                :lg="5"
+                :xl="5"
+                class="title">
             <div class="title-wrapper" @click="turnToHomePage">
                 <h1 class="font-color-general font-size-largetitle">荧幕星光</h1>
             </div>
         </el-col>
+
         <!--左导航-->
-        <el-col :xs="15" :sm="16" :lg="12" :xl="13">
+
+        <el-col
+                :xs="15"
+                :sm="16"
+                :lg="12"
+                :xl="13">
             <el-row type="flex" align="middle">
-                <navbar fix-index="header-left" default-active="0" :menu="leftMenus" @select="handleSelect" class="container-nav-left"></navbar>
+                <ws-base-navbar
+                        fix-index="header-left"
+                        default-active="0"
+                        :menu="leftMenus"
+                        @select="handleSelect"
+                        class="container-nav-left"/>
                 <el-col class="search" :span="8">
                     <el-input type="search" placeholder="搜索"></el-input>
                 </el-col>
             </el-row>
         </el-col>
+
         <!--右导航-->
-        <el-col :xs="8" :sm="8" :lg="8" :xl="6">
-            <navbar fix-index="header-right" :menu="rightMenus" class="container-nav-right"></navbar>
+
+        <el-col
+                :xs="8"
+                :sm="8"
+                :lg="8"
+                :xl="6">
+            <ws-base-navbar
+                    fix-index="header-right"
+                    :menu="rightMenus"
+                    class="container-nav-right"/>
         </el-col>
     </el-row>
 
@@ -24,22 +52,22 @@
 
 <script>
 
-    import Navbar from '$src/components/business-common/Navbar.vue'
+    import WsBaseNavbar from '$src/components/base/ws-base-navbar.vue'
 
     export default {
         name: "ws-index-header",
         components: {
-            Navbar
+            WsBaseNavbar
         },
         data() {
             return {
-                fixMenuActive:false,
+                fixMenuActive: false,
                 leftMenus: {
                     mode: 'horizontal',
                     menuItems: [
                         {
                             routerObj: {
-                                name: 'home'
+                                name: 'discover'
                             },
                             label: '发现',
                             labelIconClass: 'el-icon-view'
@@ -57,7 +85,7 @@
                             },
                             label: '消息',
                             labelIconClass: 'el-icon-bell',
-                            menuItems:  [
+                            menuItems: [
                                 {
                                     routerObj: {
                                         name: 'comment'
@@ -116,14 +144,14 @@
                     menuItems: [
                         {
                             routerObj: {
-                                name: 'register'
+                                name: 'session'
                             },
                             label: '注册',
                             labelIconClass: ''
                         },
                         {
                             routerObj: {
-                                name: 'login'
+                                name: 'session'
                             },
                             label: '登录',
                             labelIconClass: ''
@@ -133,12 +161,12 @@
                                 name: 'message'
                             },
                             label: '头像',
-                            isImg:true,
-                            imgUrl:require('$src/assets/star.jpg'),
+                            isImg: true,
+                            imgUrl: require('$src/assets/star.jpg'),
                             menuItems: [
                                 {
                                     routerObj: {
-                                        name: 'essaytabs'
+                                        name: 'tabsessay'
                                     },
                                     label: '我的主页',
                                     labelIconClass: ''
@@ -173,7 +201,7 @@
                                 },
                                 {
                                     routerObj: {
-                                        name: 'basic-setting'
+                                        name: 'basic'
                                     },
                                     label: '设置',
                                     labelIconClass: ''
@@ -204,14 +232,14 @@
                 }
             };
         },
-        created(){
+        created() {
         },
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             },
-            turnToHomePage(){
-                this.$router.push({name:'home'})
+            turnToHomePage() {
+                this.$router.push({name: 'discover'})
             }
         }
     }
@@ -234,14 +262,14 @@
     .title .title-wrapper {
         display: flex;
         align-items: center;
-        min-width:100px;
+        min-width: 100px;
         padding: 0 10px;
         height: 100%;
         margin: 0;
     }
 
-    .title .title-wrapper:hover{
-        cursor:pointer;
+    .title .title-wrapper:hover {
+        cursor: pointer;
     }
 
     /*end 标题*/
