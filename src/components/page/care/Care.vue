@@ -1,60 +1,69 @@
 <template>
-    <el-row :gutter="20">
-        <el-col :span="8">
-            <el-row type="flex" justify="space-between">
-                <el-col :span="12">
+    <el-row class="container" :gutter="40">
+        <el-col class="container-left" :span="8">
+            <el-row class="container-left-header border-color-first"
+                    type="flex" justify="space-between">
+                <el-row type="flex">
                     <span>全部关注</span>
-                </el-col>
-                <el-col :span="12">
-                    <span>添加关注</span>
-                </el-col>
+                </el-row>
+                <el-row type='flex'>
+                    <span class="add-care">添加关注</span>
+                </el-row>
             </el-row>
             <el-row>
                 <el-menu
-                        default-active="1"
-                        class="el-menu-vertical-demo"
-                        router="true">
-                    <el-menu-item v-for="n in 4" index="">
-                        <i class="el-icon-location"></i>
-                        <span slot="title">user{{n}}</span>
+                        default-active="0"
+                        router>
+                    <el-menu-item
+                            v-for="(item,index) in menu.menuItems"
+                            :index="index.toString()"
+                            :route="menu.route"
+                            class="container-menu-item">
+                        <img :src="item.avatar" alt="" class="menu-img">
+                        <span slot="title" class="menu-title">{{item.title}}</span>
                     </el-menu-item>
-
                 </el-menu>
             </el-row>
         </el-col>
         <el-col :span="16">
-            <el-row>
-                <CareUserHeader></CareUserHeader>
-            </el-row>
-            <el-row>
-                <el-tabs class="user-tabs" v-model="activeName" @tab-click="handleClick">
-                    <el-tab-pane label="文章" name="essaylist">
-                        <router-view name="essaylist"></router-view>
-                    </el-tab-pane>
-                    <el-tab-pane label="动态" name="dynamic">
-                        <router-view name="dynamic"></router-view>
-                    </el-tab-pane>
-                    <el-tab-pane label="最新评论" name="new-comment">
-                        <router-view name="new-comment"></router-view>
-                    </el-tab-pane>
-                    <el-tab-pane label="热门" name="hot">
-                        <router-view name="hot"></router-view>
-                    </el-tab-pane>
-                </el-tabs>
-            </el-row>
+            <ws-caredetail></ws-caredetail>
         </el-col>
     </el-row>
 </template>
 
 <script>
     import CareUserHeader from '$src/components/page/care/CareUserHeader.vue'
+    import WsCaredetail from '$src/components/business-common/ws-caredetail.vue'
 
     export default {
         name: "Care",
-        components:{
-            CareUserHeader
+        components: {
+            CareUserHeader,
+            WsCaredetail
         },
-        methods:{
+        data() {
+            return {
+                tabActiveName: '',
+                menu: {
+                    route:{
+                        name:'#'
+                    },
+                    menuItems: [
+                        {
+                            id: '1',
+                            avatar: require(`./logo.png`),
+                            title: 'title1'
+                        },
+                        {
+                            id: '2',
+                            avatar: require(`./logo.png`),
+                            title: 'title2'
+                        }
+                    ]
+                }
+            }
+        },
+        methods: {
             handleClick(tab, event) {
                 console.log(tab, event);
                 this.$router.push({name: tab.$options.propsData.name})
@@ -65,4 +74,43 @@
 
 <style scoped>
 
+    .container {
+        height: 100%;
+    }
+
+    /*左栏*/
+
+    .container-left {
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    .container-left-header {
+        padding: 0 20px 5px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+    }
+
+    .container-left-header .add-care {
+        text-align: right;
+    }
+
+    /*end 左栏*/
+
+    /*菜单栏*/
+
+    .container-menu-item {
+        display: flex;
+        align-items: center;
+        height: 45px;
+    }
+
+    .menu-img {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+        border-radius: 3px;
+    }
+
+    /*end 菜单栏*/
 </style>

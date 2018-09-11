@@ -1,39 +1,33 @@
 <template>
     <el-row type="flex" justify="center">
         <el-col :span="16">
-            <el-row>
-                <h1>C语言排序算法</h1>
-            </el-row>
-            <el-row class='user' type="flex">
-                <img src="./logo.png" alt="" width="48" height="48">
+            <h1 class="font-size-largetitle">C语言排序算法</h1>
+            <el-row class='container-user' type="flex" align="middle">
+                <img class='avatar' src="./logo.png" alt="">
                 <el-col>
-                    <el-row>
-                        <span>极客江南</span>
-                    </el-row>
-                    <el-row>
-                        <p>2018.09.04 15:48* 字数 1495 阅读 177评论 2喜欢 3</p>
-                    </el-row>
+                    <span>极客江南</span>
+                    <p class="font-color-minor">2018.09.04 15:48* 字数 1495 阅读 177评论 2喜欢 3</p>
                 </el-col>
             </el-row>
             <el-row>
-                <p>内容</p>
+                <el-col>内容区域</el-col>
             </el-row>
 
             <el-row class="admire">
                 <p>小礼物走一走，来简书关注我</p>
                 <el-row type="flex" justify="center">
-                    <el-button size="small" type="primary">赞赏支持</el-button>
+                    <el-button size="small" type="primary" round plain>赞赏支持</el-button>
                 </el-row>
             </el-row>
 
             <el-row class="comment-write" type="flex">
-                <img src="./logo.png" alt="" width="38" height="38">
+                <img src="./logo.png" alt="" class="avatar">
                 <el-input type="textarea" placeholder="写下你的评论..."></el-input>
             </el-row>
 
             <el-row>
                 <h3>两条评论</h3>
-                <el-row v-for="n in 2" class="comment-item">
+                <el-row class="comment-item">
                     <el-row type="flex">
                         <img src="./logo.png" alt="" width="38" height="38">
                         <el-row>
@@ -69,9 +63,23 @@
 </script>
 
 <style scoped>
-    .user {
+
+    /*用户信息概览*/
+    .container-user {
         margin: 10px 0;
     }
+
+    .container-user p{
+        margin:0;
+    }
+
+    .avatar {
+        width: 36px;
+        height: 36px;
+        margin-right:10px;
+        border-radius: 18px;
+    }
+    /*end 用户信息概览*/
 
     /*赞赏支持*/
     .admire {
@@ -83,6 +91,8 @@
         text-align: center;
     }
 
+    /*end 赞赏支持*/
+
     /*评论*/
     .comment-item {
         padding: 15px 0;
@@ -92,4 +102,6 @@
     .comment-write {
         margin-bottom: 14px;
     }
+
+    /*end 评论*/
 </style>

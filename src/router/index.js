@@ -1,7 +1,7 @@
 import Vue from 'vue/dist/vue'
 import Router from 'vue-router'
 import Home from '$src/components/page/home/Home.vue'
-import Index from '$src/components/page/Index.vue'
+import WsIndex from '$src/components/page/index/ws-index.vue'
 import Register from '$src/components/page/register/Register.vue'
 import Login from '$src/components/page/login/Login.vue'
 import WriteEssay from '$src/components/page/writeessay/WriteEssay.vue'
@@ -12,7 +12,6 @@ import ErrorMsg from '$src/components/common/errormsg/ErrorMsg.vue'
 import Session from '$src/components/page/session/Session.vue'
 import HomePage from '$src/components/page/homepage/HomePage.vue'
 import NewComment from '$src/components/page/homepage/NewComment.vue'
-import Dynamic from '$src/components/page/homepage/Dynamic.vue'
 import Hot from '$src/components/page/homepage/Hot.vue'
 import Setting from '$src/components/page/setting/Setting.vue'
 import BasicSetting from '$src/components/page/setting/BasicSetting.vue'
@@ -21,7 +20,6 @@ import Blacklist from '$src/components/page/setting/Blacklist.vue'
 import AppreciationSetting from '$src/components/page/setting/AppreciationSetting.vue'
 import AccountManagement from '$src/components/page/setting/AccountManagement.vue'
 import PersonalData from '$src/components/page/setting/PersonalData.vue'
-//消息
 import Message from '$src/components/page/message/Message.vue'
 import Comment from '$src/components/page/message/Comment.vue'
 import Contribution from '$src/components/page/message/Contribution.vue'
@@ -61,7 +59,7 @@ export default new Router({
             name: 'index',
             path: '/index',
             components: {
-                index: Index
+                index: WsIndex
             },
             //在默认排版的main中
             children: [

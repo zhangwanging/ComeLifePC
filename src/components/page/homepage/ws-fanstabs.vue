@@ -1,6 +1,6 @@
 <template>
-    <el-tabs @tab-click="handleClick">
-        <el-tab-pane label="关注用户" name="essaylist">
+    <el-tabs @tab-click="handleClick" v-model="tabActiveName">
+        <el-tab-pane label="关注用户" name="attention">
             <ws-fanslist :list="list"></ws-fanslist>
         </el-tab-pane>
         <el-tab-pane label="粉丝" name="dynamic">
@@ -18,12 +18,21 @@
         },
         data(){
             return{
+                tabActiveName:'attention',
                 list:[]
             }
         },
+        created(){
+          this.fetchData(this.tabActiveName)
+        },
         methods:{
-            handleClick(){
-                this.getFansList()
+            handleClick(tab,event){
+                this.fetchData(tab.name)
+            },
+            fetchData(tabName){
+              if(tabName==='attention'){
+                  this.getFansList()
+              }
             },
             getFansList(){
                 let that=this

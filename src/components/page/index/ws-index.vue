@@ -1,7 +1,7 @@
 <template>
     <el-container class="container">
         <el-header class="border-color-first">
-            <Header class="rs-container-header"></Header>
+            <ws-index-header class="rs-container-header"/>
         </el-header>
         <el-main>
             <el-row type="flex" justify="center">
@@ -20,11 +20,11 @@
 </template>
 
 <script>
-    import Header from '$src/components/page/header/Header.vue'
+    import WsIndexHeader from '$src/components/page/index/ws-index-header.vue'
     export default {
-        name: "Index",
+        name: "ws-index",
         components:{
-            Header
+            WsIndexHeader
         }
     }
 </script>

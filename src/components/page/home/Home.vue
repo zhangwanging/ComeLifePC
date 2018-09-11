@@ -74,7 +74,7 @@
                     </el-row>
                 </el-row>
                 <el-row class="container-list-author">
-                    <el-row v-for="user in users" class="container-item-author" type="flex" align="middle">
+                    <el-row v-for="(user,index) in users" :key="index" class="container-item-author" type="flex" align="middle">
                         <img class="author-img" :src="user.avatar" alt="">
                         <el-col>
                             <el-row type="flex" justify="space-between">

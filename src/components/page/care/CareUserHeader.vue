@@ -1,30 +1,54 @@
 <template>
-    <el-row type="flex" align="middle">
-        <img src="./logo.png" alt="" width="80" height="80">
-        <el-col :span="10">
+    <el-row type="flex" align="middle" justify="space-between">
+        <img :src="avatar" class="avatar" alt="" width="60" height="60">
+        <el-col>
             <el-row>
-                <h3>短片小说</h3>
+                <h3 class="title font-size-smalltitle">{{title}}</h3>
             </el-row>
-            <el-row>
-                <span>简书 遍.</span>
-                <span>收录了</span>
-                <span>71229</span>
-                <span>篇文章.</span>
-                <span>2268028</span>
-                <span>人关注</span>
+            <el-row class="font-color-minor">
+                <span>简书</span> 编 ▪ 收录了<span>{{essayNum}}</span>篇文章 ▪ <span>{{fansNum}}</span>人关注
             </el-row>
         </el-col>
-        <el-button size="small" type="primary">投稿</el-button>
-        <el-button size="small" type="primary">专题主页</el-button>
+        <el-row class="container-btn" type="flex">
+            <el-button size="small" type="primary" round plain>投稿</el-button>
+            <el-button size="small" type="primary" round plain>专题主页</el-button>
+        </el-row>
     </el-row>
 </template>
 
 <script>
     export default {
-        name: "CareUser"
+        name: "CareUser",
+        props:{
+            avatar:{
+                type:String
+            },
+            title:{
+                type:String
+            },
+            essayNum:{
+                type:Number
+            },
+            fansNum:{
+                type:Number
+            }
+        }
     }
 </script>
 
 <style scoped>
 
+    .avatar {
+        width: 60px;
+        height: 60px;
+        margin-right: 15px;
+    }
+
+    .title{
+        margin:0 0 5px;
+    }
+
+    .container-btn .el-button{
+        margin-left:15px;
+    }
 </style>

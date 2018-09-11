@@ -1,7 +1,7 @@
 <template>
     <el-row :gutter="40">
         <el-col :span="16">
-            <el-row v-for="n in 4">
+            <el-row >
                 <el-row>
                     <h1 class="title">热门问题</h1>
                 </el-row>

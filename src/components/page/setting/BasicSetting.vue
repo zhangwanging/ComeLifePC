@@ -4,7 +4,8 @@
             <el-upload
                     class="avatar-uploader"
                     action="https://jsonplaceholder.typicode.com/posts/"
-                    :show-file-list="false"
+                    :auto-upload="false"
+                    :show-file-list="true"
                     :on-success="handleAvatarSuccess"
                     :before-upload="beforeAvatarUpload">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar">

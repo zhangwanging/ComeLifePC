@@ -5,13 +5,11 @@ import App from '$src/App.vue'
 import router from '$src/router/index'
 import store from '$src/store/index'
 import '$src/assets/css/common.css'
-import axios from 'axios'
-import global from '$src/global'
 import util from '$src/utils/util'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import request from '$src/init/request'
-import Mock from '$src/mock/mock'
+import '$src/mock/mock'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import '$src/assets/css/icon.css'
@@ -22,9 +20,8 @@ Vue.use(ElementUI);
 Vue.use(mavonEditor)
 
 
-Vue.prototype.request=request
-Vue.prototype.global=global
-Vue.prototype.util=util
+Vue.prototype.request = request
+Vue.prototype.util = util
 
 Vue.config.productionTip = false
 

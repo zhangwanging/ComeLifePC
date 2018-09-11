@@ -1,6 +1,7 @@
 <template>
     <el-row>
         <el-row
+                @click.native="handleItemClick(item)"
                 v-for="(item,index) in list"
                 :key="index"
                 class="container-item border-color-first">
@@ -29,6 +30,12 @@
         },
         components: {
             WsEssayitem
+        },
+        methods:{
+            handleItemClick(item){
+                console.log("item:"+item)
+                this.$router.push({name:'essay',params:item})
+            }
         }
     }
 </script>

@@ -5,21 +5,16 @@ Vue.use(Vuex)
 
 const store=new Vuex.Store({
     state:{
-        count:0,
-        title:'首页',
-        isLogin:false
+        fixTabActiveIndex:'',
+        tabActive:''
+    },
+    getters:{
     },
     mutations:{
-        increment(state){
-            state.count++
-        },
-        setTitle(state,navbar){
-            state.title=navbar.title
-        },
-        setLogin(state,flag){
-            state.isLogin=flag
+        setFixTabActiveIndex(state,index){
+            state.fixTabActiveIndex=index
+          //  state.tabActive
         }
-
     }
 })
 

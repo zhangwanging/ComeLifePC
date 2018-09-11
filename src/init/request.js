@@ -90,7 +90,7 @@ const editColdJoke=function (data,fun) {
 }
 
 /**
- * 获取轮播图
+ * 获取首页轮播图
  */
 
 const getCarousel=function (data,fun) {

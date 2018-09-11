@@ -23,7 +23,7 @@
                     </template>
                 </el-row>
             </el-col>
-            <img class="item-img" :src="imgUrl" alt="" width="100" height="80">
+            <img class="item-img" :src="imgUrl" alt="" width="100" height="80" >
         </el-row>
     </el-row>
 </template>
@@ -72,6 +72,9 @@
                 type: Number,
                 default: 0
             }
+        },
+        methods:{
+
         }
     }
 </script>

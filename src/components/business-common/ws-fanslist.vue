@@ -1,7 +1,8 @@
 <template>
     <el-row>
         <el-row
-                v-for="item in list"
+                v-for="(item,index) in list"
+                :key="index"
                 class="container-item border-color-first">
             <ws-fansitem
                     :avatar="item.avatar"

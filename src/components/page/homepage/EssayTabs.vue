@@ -1,5 +1,5 @@
 <template>
-    <el-tabs @tab-click="handleClick">
+    <el-tabs @tab-click="handleClick" v-model="tabActiveName">
         <el-tab-pane label="文章" name="essaylist">
             <ws-essaylist :list="essays"></ws-essaylist>
         </el-tab-pane>
@@ -26,13 +26,16 @@
         },
         data() {
             return {
+                tabActiveName:'essaylist',
                 essays:[],
                 dynamic:{}
             };
         },
+        created(){
+          this.fetchData(this.tabActiveName)
+        },
         methods:{
             handleClick(tab, event) {
-                console.log(tab, event);
                 this.fetchData(tab.name)
             },
             fetchData(tabName){
@@ -62,7 +65,6 @@
                 this.request.getDynamicsByUserId({
                     id:'',
                 },function (err,res) {
-                    console.log(JSON.stringify(res.data))
                     if(err)return;
                     if(res.code===0){
                         that.dynamic=res.data

@@ -2,7 +2,7 @@
     <el-row>
         <el-row
                 class="container-item border-color-first"
-                v-for="item in dynamic.contents">
+                v-for="(item,index) in dynamic.contents" :key="index">
             <ws-dynamicitem
                     :type="item.type"
                     :name="dynamic.name"

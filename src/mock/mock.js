@@ -5,7 +5,9 @@ const host = request.host
 
 const Mock = require('mockjs')
 
-console.log('nihaobuhao')
+/*
+获取所有文章
+ */
 
 Mock.mock(host + url.getColdJoke, {
     'code': 0,
@@ -21,6 +23,10 @@ Mock.mock(host + url.getColdJoke, {
         '_id': '@integer'
     }]
 })
+
+/*
+获取首页轮播图
+ */
 
 Mock.mock(host + url.getCarousel, {
     'code': 0,

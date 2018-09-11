@@ -27,7 +27,7 @@
             </el-row>
 
             <el-row class="container-diary">
-                <el-row class="diary" type="flex" justify="space-between" v-for="n in 4">
+                <el-row class="diary" type="flex" justify="space-between">
                     <span>日记本</span>
                     <el-popover
                             placement="bottom"
@@ -76,7 +76,7 @@
                 <i class="el-icon-circle-plus"></i>
                 <span>新建文章</span>
             </el-row>
-            <el-row class="container-essay-item" type="flex" align="middle" v-for="n in 10">
+            <el-row class="container-essay-item" type="flex" align="middle" >
                 <i class="el-icon-document item-document-img"></i>
                 <el-col class="item-content">
                     <el-col class="item-title">title</el-col>
@@ -101,6 +101,7 @@
                 <mavon-editor class="editor" :box-shadow="false" v-model="value"/>
             </el-row>
         </el-col>
+
     </el-row>
 </template>
 

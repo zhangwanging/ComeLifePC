@@ -27,7 +27,7 @@
     import Navbar from '$src/components/business-common/Navbar.vue'
 
     export default {
-        name: "Header",
+        name: "ws-index-header",
         components: {
             Navbar
         },
@@ -134,7 +134,7 @@
                             },
                             label: '头像',
                             isImg:true,
-                            imgUrl:require('./star.jpg'),
+                            imgUrl:require('$src/assets/star.jpg'),
                             menuItems: [
                                 {
                                     routerObj: {

@@ -1,8 +1,8 @@
 <template>
-    <el-row>
+    <el-row >
         <template v-if="type===0">
             <el-row type="flex" align="middle" class="container-header">
-                <img :src="atavar" alt="" class="atavar">
+                <img  :src="atavar" alt="" class="atavar">
                 <span class="username">{{name}}</span>
                 <span class="text-behavior font-color-minor">发表了文章</span>
                 <span class="text-behavior font-color-minor">{{time}}</span>
@@ -31,6 +31,9 @@
             time: {
                 type: String
             }
+        },
+        methods:{
+
         }
     }
 </script>
