@@ -144,6 +144,83 @@ Mock.mock(host+url.login,{
     }
 })
 
+/*
+创建文集
+ */
+
+Mock.mock(host+url.createNote,{
+    code:0,
+    data:{
+        id:'@integer',
+        name: '@ctitle()'
+    }
+})
+
+/*
+获取文集
+ */
+
+Mock.mock(host+url.getNote,{
+    code:0,
+    'data|5': [{
+        id:'@integer',
+        name: '@ctitle()'
+    }]
+})
+
+/*
+根据各类型ID获取文章列表
+ */
+
+Mock.mock(host + url.getEssayById, {
+    'code': 0,
+    'data|5': [{
+        title: '@ctitle()',
+        content: '@cparagraph(10,20)',
+        author: '@ctitle()',
+        imgUrl: '@dataImage()',
+        lookNum: '@natural(0,1000)',
+        commentNum: '@natural(0,1000)',
+        likeNum: '@natural(0,1000)',
+        wordNum:'@natural(0,10000)',
+        time: '@datetime',
+        _id: '@integer'
+    }]
+})
+
+/*
+创建文章
+ */
+
+Mock.mock(host+url.createEssay,{
+    code:0,
+    data:{
+        title: '@ctitle()',
+        content: '@cparagraph(10,20)',
+        author: '@ctitle()',
+        imgUrl: '@dataImage()',
+        lookNum: '@natural(0,1000)',
+        commentNum: '@natural(0,1000)',
+        likeNum: '@natural(0,1000)',
+        wordNum:'@natural(0,10000)',
+        time: '@datetime',
+        _id: '@integer'
+    }
+})
+
+/*
+获取文章内容
+ */
+
+Mock.mock(host+url.getEssayContent,{
+    code:0,
+    data:{
+        title:'@ctitle()',
+        content:'@cparagraph(10,1000)'
+    }
+})
+
+
 
 
 

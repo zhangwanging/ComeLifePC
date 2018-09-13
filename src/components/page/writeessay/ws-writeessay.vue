@@ -3,32 +3,70 @@
         <el-col class="container-col container-collection" :span="4">
 
             <el-row class="container-turnback">
-                <el-button class="turn-back" type="primary" size="small" round plain>回首页</el-button>
+                <el-button
+                        @click="turnToHomeClick"
+                        class="turn-back"
+                        type="primary"
+                        size="mini"
+                        round
+                        plain>
+                    回首页
+                </el-button>
             </el-row>
 
             <el-row class="new-collection">
-                <el-collapse accordion>
-                    <el-collapse-item>
+                <el-collapse
+                        @change="createNotePanelChange"
+                        :value="createNotePanel.switch"
+                        accordion>
+                    <el-collapse-item name="create-note">
                         <template slot="title">
                             <i class="header-icon el-icon-plus"></i>
                             <span>新建文集</span>
                         </template>
-                        <el-form>
-                            <el-form-item>
-                                <el-input type="text" placeholder="请输入文集名"></el-input>
+                        <el-form
+                                :ref="createNotePanel.ref"
+                                :model="createNotePanel.form"
+                                size="mini"
+                                :rules="createNotePanel.rule">
+                            <el-form-item prop="noteName">
+                                <el-input
+                                        v-model="createNotePanel.form.noteName"
+                                        type="text"
+                                        placeholder="请输入文集名"/>
                             </el-form-item>
                         </el-form>
                         <el-row type="flex" justify="">
-                            <el-button type="primary" size="small" round plain>提交</el-button>
-                            <el-button type="primary" size="small" round plain>取消</el-button>
+                            <el-button
+                                    @click="submitCreateNoteClick(createNotePanel.ref)"
+                                    type="primary"
+                                    size="mini"
+                                    round
+                                    plain>
+                                提交
+                            </el-button>
+                            <el-button
+                                    @click="cancelCreateNoteClick"
+                                    type="primary"
+                                    size="mini"
+                                    round
+                                    plain>
+                                取消
+                            </el-button>
                         </el-row>
                     </el-collapse-item>
                 </el-collapse>
             </el-row>
 
             <el-row class="container-diary">
-                <el-row class="diary" type="flex" justify="space-between">
-                    <span>日记本</span>
+                <el-row
+                        @click.native="getEssayByIdClick(item.id)"
+                        v-for="(item,index) in notes"
+                        :key="index"
+                        class="diary"
+                        type="flex"
+                        justify="space-between">
+                    <span>{{item.name}}</span>
                     <el-popover
                             placement="bottom"
                             width="100"
@@ -43,7 +81,6 @@
                         </el-row>
                         <i slot="reference" class="el-icon-setting"></i>
                     </el-popover>
-
                 </el-row>
             </el-row>
 
@@ -71,21 +108,29 @@
                 </el-row>
             </el-row>
         </el-col>
+
         <el-col class="container-col container-essay-list" :span="6">
-            <el-row class="container-new-essay">
+            <el-row @click.native="createEssayClick" class="container-new-essay">
                 <i class="el-icon-circle-plus"></i>
                 <span>新建文章</span>
             </el-row>
-            <el-row class="container-essay-item" type="flex" align="middle" >
-                <i class="el-icon-document item-document-img"></i>
+            <!--文章列表-->
+            <el-row
+                    @click.native="getEssayContentClick"
+                    :key="index"
+                    v-for="(item,index) in essays"
+                    class="container-essay-item"
+                    type="flex"
+                    align="middle">
+                <i class="el-icon-document"></i>
                 <el-col class="item-content">
-                    <el-col class="item-title">title</el-col>
-                    <el-col class="item-outline">哈哈哈hhhhhhhhhhhhhhhhh哈哈哈哈ffffffffff哈哈哈或</el-col>
+                    <el-col class="item-title">{{item.title}}</el-col>
+                    <el-col class="item-outline">{{item.content}}</el-col>
                 </el-col>
                 <i class="el-icon-setting item-setting-icon"></i>
                 <el-row class="item-note">
                     <span>字数:</span>
-                    <span>31</span>
+                    <span>{{item.wordNum}}</span>
                 </el-row>
             </el-row>
             <el-row class="container-new-essay-below">
@@ -93,105 +138,152 @@
                 <span>在下方新建文章</span>
             </el-row>
         </el-col>
+
         <el-col class="container-col container-edit" :span="14">
             <el-row class="container-edit-title" type="flex" align="center">
-                <el-input class="edit-title" placeholder="请输入标题" type="text" style="border: none !important;"></el-input>
+                <el-input
+                        v-model="essay.title"
+                        class="edit-title"
+                        placeholder="请输入标题"
+                        type="text"
+                        style="border: none !important;"/>
             </el-row>
             <el-row class="container-editor">
-                <mavon-editor class="editor" :box-shadow="false" v-model="value"/>
+                <mavon-editor class="editor" :box-shadow="false" v-model="essay.content"/>
             </el-row>
         </el-col>
-
     </el-row>
 </template>
 
 <script>
-    let isEdit = false
     export default {
         name: "ws-writeessay",
         data() {
             return {
+                //文章内容
+                essay: {},
+                //控制‘遇到问题’的弹窗
                 dialogVisible: false,
-                items: [],
-                currentItem: {},
-                content: ''
+                //新建文集
+                createNotePanel: {
+                    ref: 'createNote',
+                    form: {
+                        noteName: ''
+                    },
+                    rule: {
+                        noteName: [
+                            {required: true, message: '请输入文集名~', trigger: 'blur'}
+                        ]
+                    },
+                    switch: '',//控制面板开闭
+                },
+                //文集列表
+                notes: [],
+                //文章列表
+                essays:[]
             }
         },
         created() {
-            this.fetchMyEssays()
+            this.init()
         },
         methods: {
-            handleChange(value) {
-                console.log(value);
+            init() {
+                /*
+                后面改，实际是同步的
+                 */
+                this.getNoteRequest()
+                this.getEssayByIdRequest()
+                this.getEssayContentRequest()
             },
-            createEssay() {
-                isEdit = false
-                this.content = ""
-            },
-            fetchMyEssays() {
-                var that = this
-                this.request.getColdJoke({}, function (err, res) {
-                    if (err) {
-                        return;
+            //获取文章列表数据
+            getEssayByIdRequest(noteId){
+                let that=this
+                this.request.getEssayById({},function (err,res) {
+                    if(res.code===0){
+                        that.essays=res.data
                     }
+                })
+            },
+            //新建文章
+            createEssayRequest(){
+                let that=this
+                this.request.createEssay({},function(err,res){
+                    if(res.code===0){
+                        that.essays.unshift(res.data)
+                        alert('已新建文章')
+                    }
+                })
+            },
+            //新建文集
+            createNoteRequest() {
+                let that = this
+                this.request.createNote(this.createNotePanel.form, function (err, res) {
                     if (res.code === 0) {
-                        that.items = res.data
+                        that.notes.unshift(res.data)
+                        alert('新建成功')
+                    }
+                    that.switchCreateNotePanel()
+                })
+            },
+            //获取文集列表数据
+            getNoteRequest() {
+                let that = this
+                this.request.getNote({}, function (err, res) {
+                    if (res.code === 0) {
+                        that.notes = res.data
                     }
                 })
             },
-            saveEssay() {
-                if (this.content == '') {
-                    alert('内容不能空~')
-                    return;
-                }
-                if (isEdit) {
-                    this.editEssay()
-                } else {
-                    this.addEssay()
-                    isEdit = true
-                }
-            },
-            addEssay() {
-                var that = this;
-                this.request.addColdJoke({
-                    content: this.content,
-                    time: new Date()
-                }, function (err, res) {
-                    if (err) {
-                        return;
+            //获取文章内容
+            getEssayContentRequest(){
+                let that=this
+                this.request.getEssayContent({},function (err,res) {
+                    if(res.code===0){
+                        that.essay=res.data
                     }
-                    if (res.code !== 0) {
-                        alert('失败')
-                        return;
-                    }
-                    that.fetchMyEssays()
                 })
+            },
 
-                this.items.push({
-                    content: this.currentItem.content,
-                    time: new Date()
-                });
+            switchCreateNotePanel() {
+                if (!this.createNotePanel.switch) {
+                    this.createNotePanel.switch = 'create-note'
+                } else {
+                    this.createNotePanel.switch = ''
+                }
             },
-            editEssay(item) {
-                let that = this;
-                this.request.editColdJoke({
-                    coldjoke_id: this.currentItem._id,
-                    content: this.content,
-                    time: new Date()
-                }, function (err, res) {
-                    if (err) return;
-                    if (res.code === 0) {
-                        that.fetchMyEssays()
+
+            getEssayContentClick(){
+                this.getEssayContentRequest()
+            },
+
+            createEssayClick(){
+                this.createEssayRequest()
+            },
+
+            getEssayByIdClick(noteId){
+                this.getEssayByIdRequest()
+            },
+
+            turnToHomeClick() {
+                this.$router.push({name: 'discover'})
+            },
+
+            cancelCreateNoteClick() {
+                this.switchCreateNotePanel()
+            },
+
+            submitCreateNoteClick(formName) {
+                let that = this
+                this.$refs[formName].validate(function (valid) {
+                    if (valid) {
+                        that.createNoteRequest()
                     } else {
-                        alert('失败')
                     }
                 })
             },
-            //  监听事件
-            contentItemClick(item) {
-                isEdit = true
-                this.currentItem = item
-                this.content = item.content
+
+            createNotePanelChange(activeNames) {
+                this.switchCreateNotePanel()
             }
         }
     }
@@ -232,8 +324,14 @@
 
     .diary {
         width: 100%;
-        padding: 5px 13px;
+        padding: 6px 13px;
         border-left: 2px solid red;
+    }
+
+    .diary:hover{
+        background-color: grey;
+        color:white;
+        cursor: pointer;
     }
 
     .container-setting {
@@ -243,6 +341,7 @@
         bottom: 0;
         padding: 13px;
     }
+
     /*end 第一栏目*/
 
     /*第二栏*/
@@ -255,6 +354,10 @@
         border-bottom: 1px solid lightgray;
     }
 
+    .container-new-essay:hover{
+        cursor: pointer;
+    }
+
     .container-essay-item {
         width: 100%;
         position: relative;
@@ -264,7 +367,13 @@
         border-bottom: 1px solid lightgray;
     }
 
-    .item-document-img {
+    .container-essay-item:hover{
+        background-color: grey;
+        color:white;
+        cursor: pointer;
+    }
+
+    .el-icon-document {
         font-size: 18px;
         padding-right: 13px;
     }
@@ -311,8 +420,8 @@
         height: 100%;
     }
 
-    .container-edit-title{
-        height:60px;
+    .container-edit-title {
+        height: 60px;
         padding: 8px 14px;
         overflow: hidden;
     }
@@ -321,12 +430,12 @@
         font-size: 25px;
     }
 
-    .container-editor{
-        height:calc(100% - 60px);
+    .container-editor {
+        height: calc(100% - 60px);
     }
 
-    .editor{
-        height:100%;
+    .editor {
+        height: 100%;
     }
 
     /*end 第三栏目*/

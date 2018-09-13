@@ -34,7 +34,12 @@ const url={
     getDynamicsByUserId:'/getDynamicsByUserId',
     getUserAttention:'/getUserAttention',
     register:'/register',
-    login:'/login'
+    login:'/login',
+    createNote:'/createNote',
+    getNote:'/getNote',
+    getEssayById:'/getEssayById',
+    createEssay:'/createEssay',
+    getEssayContent:'/getEssayContent'
 }
 /*
 * 冷笑话
@@ -210,6 +215,93 @@ const login=function (data,fun) {
     })
 }
 
+/*
+创建文集
+ */
+
+const createNote=function (data,fun) {
+    myAxios({
+        url:url.createNote,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/*
+   获取文集
+ */
+
+const getNote=function (data,fun) {
+    myAxios({
+        url:url.getNote,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+
+/**
+ * 根据各类型ID获取文章列表
+ */
+
+const getEssayById=function (data,fun) {
+    myAxios({
+        url:url.getEssayById,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/*
+新建文章
+ */
+
+const createEssay=function (data,fun) {
+    myAxios({
+        url:url.createEssay,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/*
+获取文章内容
+ */
+
+const getEssayContent=function (data,fun) {
+    myAxios({
+        url:url.getEssayContent,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+
 
 export default {
     host,
@@ -224,7 +316,12 @@ export default {
     getDynamicsByUserId,
     getUserAttention,
     register,
-    login
+    login,
+    createNote,
+    getNote,
+    getEssayById,
+    createEssay,
+    getEssayContent
 }
 
 
