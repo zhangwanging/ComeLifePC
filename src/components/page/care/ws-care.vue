@@ -16,6 +16,7 @@
                         router>
                     <el-menu-item
                             v-for="(item,index) in menu.menuItems"
+                            :key="index"
                             :index="index.toString()"
                             :route="menu.route"
                             class="container-menu-item">

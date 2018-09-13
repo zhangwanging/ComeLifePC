@@ -32,7 +32,9 @@ const url={
     getPartAdviceUser:'/getAdviceUser/part',
     getEssaysByUserId:'/getEssaysByUserId',
     getDynamicsByUserId:'/getDynamicsByUserId',
-    getUserAttention:'/getUserAttention'
+    getUserAttention:'/getUserAttention',
+    register:'/register',
+    login:'/login'
 }
 /*
 * 冷笑话
@@ -174,6 +176,40 @@ const getUserAttention=function (data,fun) {
     })
 }
 
+/*
+注册
+ */
+
+const register=function (data,fun) {
+    myAxios({
+        url:url.register,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/*
+登录
+ */
+
+const login=function (data,fun) {
+    myAxios({
+        url:url.login,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
 
 export default {
     host,
@@ -186,7 +222,9 @@ export default {
     getPartAdviceUser,
     getEssaysByUserId,
     getDynamicsByUserId,
-    getUserAttention
+    getUserAttention,
+    register,
+    login
 }
 
 

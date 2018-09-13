@@ -227,7 +227,7 @@ export default new Router({
         },
         {
             name:'session',
-            path:'/session',
+            path:'/session/:type',
             components:{
                 'session':WsSession
             }

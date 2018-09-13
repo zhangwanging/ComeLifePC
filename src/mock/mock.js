@@ -1,4 +1,4 @@
-import request from '$src/init/request'
+import request from '$src/api/request'
 
 const url = request.url
 const host = request.host
@@ -115,6 +115,35 @@ Mock.mock(host + url.getUserAttention, {
         }
     ]
 })
+
+/*
+注册
+ */
+
+Mock.mock(host+url.register,{
+    code:0,
+    token:'@title()',
+    data:{
+        id:'@integer',
+        name:'@ctitle()',
+        avatar:'@dataImage()',
+    }
+})
+
+/*
+登录
+ */
+
+Mock.mock(host+url.login,{
+    code:0,
+    token:'@title()',
+    data:{
+        id:'@integer',
+        name:'@ctitle()',
+        avatar:'@dataImage()'
+    }
+})
+
 
 
 

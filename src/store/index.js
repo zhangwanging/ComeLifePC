@@ -5,15 +5,23 @@ Vue.use(Vuex)
 
 const store=new Vuex.Store({
     state:{
-        fixTabActiveIndex:'',
-        tabActive:''
+        loginStatus:false,
+        userData:{}
     },
     getters:{
+        loginStatus:state=>{
+            return state.loginStatus
+        },
+        userData:state=>{
+            return state.userData
+        }
     },
     mutations:{
-        setFixTabActiveIndex(state,index){
-            state.fixTabActiveIndex=index
-          //  state.tabActive
+        setLoginStatus(state,loginStatus){
+            state.loginStatus=loginStatus
+        },
+        setUserData(state,userData){
+            state.userData=userData
         }
     }
 })

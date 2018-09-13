@@ -1,7 +1,19 @@
 <template>
     <el-row :gutter="20">
         <el-col :span="8">
-            <ws-base-navbar fix-index="setting" :menu="menu" default-active="0"/>
+            <el-menu
+                    :mode="menu.mode"
+                    :router="true"
+                    :default-active="menu.menuItems[0].routerObj.name"
+                    class="el-menu-vertical-demo">
+                <el-menu-item
+                        :key="index"
+                        v-for="(item,index) in menu.menuItems"
+                        :index="item.routerObj">
+                    <i :class="['iconfont',item.labelIconClass]"></i>
+                    <span slot="title">{{item.label}}</span>
+                </el-menu-item>
+            </el-menu>
         </el-col>
         <el-col :span="16">
             <router-view name="setting-content"></router-view>
@@ -10,11 +22,10 @@
 </template>
 
 <script>
-    import WsBaseNavbar from '$src/components/base/ws-base-navbar.vue'
 
     export default {
         name: "ws-setting",
-        components: {WsBaseNavbar},
+        components: {},
         data(){
             return{
                 menu: {
@@ -71,5 +82,8 @@
 </script>
 
 <style scoped>
-
+    .el-menu-item{
+        height:40px;
+        line-height: 40px;
+    }
 </style>

@@ -1,42 +1,41 @@
 <template>
     <el-row>
-        <el-form label-position="left" :model="form" label-width="60px">
-            <el-form-item label="用户名">
-                <el-input v-model="form.username"></el-input>
+        <el-form
+                ref="login"
+                label-position="left"
+                :model="form"
+                label-width="70px"
+                size="mini"
+                :rules="rule">
+            <el-form-item label="用户名" prop="username">
+                <el-input v-model="form.username"/>
             </el-form-item>
-            <el-form-item label="密码">
-                <el-input v-model="form.password"></el-input>
+            <el-form-item label="密码" prop="password">
+                <el-input v-model="form.password"/>
             </el-form-item>
-            <el-row type="flex" justify="space-between">
-                <el-col :span="10">
-                    <el-form-item label="记住我">
-                        <el-switch v-model="form.remember"></el-switch>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="14">
-                    <el-row class="question" type="flex" justify="end" align="middle">
-                        <a href="#">登录遇到问题？</a>
-                    </el-row>
-                </el-col>
+            <el-row
+                    type="flex"
+                    justify="space-between"
+                    align="middle">
+                <el-form-item class="remember-me" label="记住我">
+                    <el-switch v-model="form.remember"/>
+                </el-form-item>
+                <a href="#" class="login-question">登录遇到问题？</a>
             </el-row>
-            <el-button type="primary" @click="onSubmit" class="button" size="small">登录</el-button>
+            <el-button type="primary" @click="onSubmitLogin('login')" class="button" size="mini">登录</el-button>
 
-            <el-row type="flex" justify="center">
-                <span class="social-login">社交账号登录</span>
-            </el-row>
-            <el-row class="other-type" type="flex" justify="center">
-                <a href="#">
-                    <img src="../../../assets/logo.png" alt="" width="28" height="28">
-                </a>
-                <a href="#">
-                    <img src="../../../assets/logo.png" alt="" width="28" height="28">
-                </a>
-                <a href="#">
-                    <img src="../../../assets/logo.png" alt="" width="28" height="28">
-                </a>
-                <a href="#">
-                    <span>其他</span>
-                </a>
+            <el-row class="footer">
+                <el-row type="flex" justify="center">
+                    <h5 class="font-size-content direct">社交账号登录</h5>
+                </el-row>
+                <el-row class="other-type" type="flex" justify="center">
+                    <a href="#">
+                        <i class="iconfont-weixin iconfont icon-weixin1"></i>
+                    </a>
+                    <a href="#">
+                        <i class="iconfont-qq iconfont icon-qq"></i>
+                    </a>
+                </el-row>
             </el-row>
         </el-form>
     </el-row>
@@ -48,35 +47,51 @@
         data() {
             return {
                 form: {
-                    username: '',
-                    password: '',
+                    username: '123456',
+                    password: '123456',
                     remember: false
+                },
+                rule:{
+                    username:[
+                        {required:true,message:'请输入用户名',trigger:'blur'}
+                    ],
+                    password:[
+                        {required:true,message:'请输入密码',trigger:'blur'}
+                    ]
                 }
             }
         },
         methods: {
-            onSubmit() {
-                var self = this;
-                this.request.post('/login', {
-                    username: this.form.username,
-                    password: this.form.password
-                })
-                    .then(function (res) {
-                        var r = res.data;
-                        if (r.code === 0) {
-                            alert('登录成功')
-                            var s = self.util.storage;
-                            s.setObj(s.key.LOGIN, r.data._id);
-                            self.global.isLogin = true;
-                            self.userData = r.data;
-                            self.$router.push({name: 'home'})
-                        } else {
-                            alert('登录失败')
-                        }
-                    })
-                    .catch(function (err) {
+            onSubmitLogin(formName) {
+                let that=this
+                this.$refs[formName].validate((valid) => {
+                    if(valid) {
+                        that.login()
+                    } else {
                         alert('登录失败')
-                    })
+                    }
+                })
+            },
+            login(){
+                var self = this;
+                this.request.login(this.form,function (err,r) {
+                    if(err){
+                        alert('登录失败')
+                        return
+                    }
+                    if (r.code === 0) {
+                        self.setLoginedData(r)
+                        self.$router.replace({name: 'discover'})
+                        alert('登录成功')
+                    } else {
+                        alert('登录失败')
+                    }
+                })
+            },
+            setLoginedData(res){
+                this.storage.setToken(res.token)
+                this.$store.commit('setLoginStatus',true)
+                this.$store.commit('setUserData',res.data)
             }
         }
     }
@@ -91,40 +106,67 @@
         margin-bottom: 10px;
     }
 
+    /*记住我*/
+    .remember-me{
+        margin-bottom: 0 !important;
+    }
+
     /*登录遇到问题*/
-    .question {
-        height: 40px;
+    .login-question {
+        vertical-align: bottom;
     }
 
     .question a {
         cursor: pointer;
     }
 
-    /*社交账号登录*/
-    .social-login {
-        margin-top: 60px;
-        color: gray;
+    /*登录按钮*/
+    .button{
+        margin:20px 0 30px;
     }
 
-    .social-login:before {
-        content: '-----------   '
+    /*底部：社交账号一下*/
+    .footer {
+        margin-top:20px;
     }
 
-    .social-login:after {
-        content: '  -----------'
+    .direct {
+        font-weight: normal;
+        margin: 0;
     }
 
-    .other-type {
-        margin-top: 10px;
+    .direct:before {
+        content: '---------'
     }
 
-    .other-type a {
+    .direct:after {
+        content: '---------'
+    }
+
+    /*其他登录/注册方式*/
+    .other-type{
+        margin-top:10px;
+    }
+
+    .other-type a{
         display: inline-block;
-        margin-right: 20px;
+        margin-right:20px;
     }
 
-    .other-type a:last-of-type {
+    .other-type a:last-of-type{
         margin-right: 0;
+    }
+    /**/
+    .other-type i{
+        font-size:24px;
+    }
+
+    .other-type .iconfont-weixin{
+        color:#67C23A;
+    }
+
+    .other-type .iconfont-qq{
+        color:#409EFF;
     }
 
 </style>

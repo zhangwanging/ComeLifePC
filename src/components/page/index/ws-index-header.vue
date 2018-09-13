@@ -14,222 +14,150 @@
             </div>
         </el-col>
 
-        <!--左导航-->
-
         <el-col
-                :xs="15"
-                :sm="16"
-                :lg="12"
-                :xl="13">
+                :xs="22"
+                :sm="22"
+                :lg="19"
+                :xl="19">
             <el-row type="flex" align="middle">
-                <ws-base-navbar
-                        fix-index="header-left"
-                        default-active="0"
-                        :menu="leftMenus"
-                        @select="handleSelect"
-                        class="container-nav-left"/>
-                <el-col class="search" :span="8">
-                    <el-input type="search" placeholder="搜索"></el-input>
-                </el-col>
+                <el-menu
+                        active-text-color="#409EFF"
+                        :default-active="defaultActive"
+                        mode="horizontal"
+                        :router="true"
+                        @select="handleSelect">
+                    <el-menu-item
+                            :route="{name:'discover'}"
+                            index="discover">
+                        <i class="iconfont icon-faxian"></i>发现
+                    </el-menu-item>
+                    <el-menu-item
+                            :route="{name:'care'}"
+                            index="care">
+                        <i class="iconfont icon-guanzhu3"></i>关注
+                    </el-menu-item>
+                    <el-submenu index="message">
+                        <template slot="title">
+                            <i class="el-icon-bell"></i>消息
+                        </template>
+                        <el-menu-item
+                                index="comment"
+                                :route="{name:'comment'}">
+                            <i class="iconfont icon-31xiaoxi"></i>评论
+                        </el-menu-item>
+                        <el-menu-item
+                                :route="{name:'information'}"
+                                index="information">
+                            <i class="iconfont icon-chanpincanshu"></i>简信
+                        </el-menu-item>
+                        <el-menu-item
+                                :route="{name:'contribution'}"
+                                index="contribution">
+                            <i class="iconfont icon-31dingdan"></i>投稿请求
+                        </el-menu-item>
+                        <el-menu-item
+                                :route="{name:'favour'}"
+                                index="favour'">
+                            <i class="iconfont icon-31dianzan "></i>喜欢和赞
+                        </el-menu-item>
+                        <el-menu-item
+                                :route="{name:'attention'}"
+                                index="attention">
+                            <i class="iconfont icon-guanzhu2"></i>关注
+                        </el-menu-item>
+                        <el-menu-item
+                                :route="{name:'admire'}"
+                                index=admire">
+                            <i class="iconfont icon-31hongbao"></i>赞赏和付费
+                        </el-menu-item>
+                        <el-menu-item
+                                :route="{name:'warn'}"
+                                index="warn">
+                            <i class="iconfont icon-xinxi"></i>其他提醒
+                        </el-menu-item>
+                    </el-submenu>
+
+                    <el-menu-item index="">
+                        <el-input class="search" type="search" placeholder="搜索"></el-input>
+                    </el-menu-item>
+
+                    <template v-if="!this.$store.getters.loginStatus">
+                        <el-menu-item
+                                index="/session/register">注册
+                        </el-menu-item>
+                        <el-menu-item
+                                index="/session/login">登录
+                        </el-menu-item>
+                    </template>
+                    <template v-else>
+                        <el-submenu index="user">
+                            <template slot="title">
+                                <img :src="basicUserData.avatar" alt="" class="avatar">
+                            </template>
+                            <el-menu-item
+                                    :route="{name:'tabsessay'}"
+                                    index="tabsessay">
+                                <i class="iconfont icon-31xiaoxi"></i>我的主页
+                            </el-menu-item>
+                            <el-menu-item
+                                    :route="{name:'comment'}"
+                                    index="">
+                                <i class="iconfont icon-chanpincanshu"></i>收藏的文章
+                            </el-menu-item>
+                            <el-menu-item
+                                    :route="{name:'comment'}"
+                                    index=" ">
+                                <i class="iconfont icon-31dingdan"></i>喜欢的文章
+                            </el-menu-item>
+                            <el-menu-item
+                                    :route="{name:'comment'}"
+                                    index=" ">
+                                <i class="iconfont icon-31dianzan "></i>已购内容
+                            </el-menu-item>
+                            <el-menu-item
+                                    :route="{name:'comment'}"
+                                    index=" ">
+                                <i class="iconfont icon-guanzhu2"></i>我的钱包
+                            </el-menu-item>
+                            <el-menu-item
+                                    :route="{name:'basic'}"
+                                    index="basic">
+                                <i class="iconfont icon-31hongbao"></i>设置
+                            </el-menu-item>
+                            <el-menu-item
+                                    :route="{name:'feedback'}"
+                                    index="feedback">
+                                <i class="iconfont icon-xinxi"></i>帮助与反馈
+                            </el-menu-item>
+                            <el-menu-item
+                                    :route="{name:'discover'}"
+                                    index="discover"
+                                    @click="exitLogin">
+                                <i class="iconfont icon-xinxi"></i>退出
+                            </el-menu-item>
+                        </el-submenu>
+                    </template>
+                    <el-menu-item
+                            :route="{name:'writeessay'}"
+                            index="writeessay">写文章
+                    </el-menu-item>
+                </el-menu>
             </el-row>
         </el-col>
 
-        <!--右导航-->
-
-        <el-col
-                :xs="8"
-                :sm="8"
-                :lg="8"
-                :xl="6">
-            <ws-base-navbar
-                    fix-index="header-right"
-                    :menu="rightMenus"
-                    class="container-nav-right"/>
-        </el-col>
     </el-row>
 
 </template>
 
 <script>
 
-    import WsBaseNavbar from '$src/components/base/ws-base-navbar.vue'
-
     export default {
         name: "ws-index-header",
         components: {
-            WsBaseNavbar
         },
         data() {
             return {
-                fixMenuActive: false,
-                leftMenus: {
-                    mode: 'horizontal',
-                    menuItems: [
-                        {
-                            routerObj: {
-                                name: 'discover'
-                            },
-                            label: '发现',
-                            labelIconClass: 'el-icon-view'
-                        },
-                        {
-                            routerObj: {
-                                name: 'care'
-                            },
-                            label: '关注',
-                            labelIconClass: 'el-icon-tickets'
-                        },
-                        {
-                            routerObj: {
-                                name: 'comment'
-                            },
-                            label: '消息',
-                            labelIconClass: 'el-icon-bell',
-                            menuItems: [
-                                {
-                                    routerObj: {
-                                        name: 'comment'
-                                    },
-                                    label: '评论',
-                                    labelIconClass: 'icon-31xiaoxi'
-                                },
-                                {
-                                    routerObj: {
-                                        name: 'information'
-                                    },
-                                    label: '简信',
-                                    labelIconClass: 'icon-chanpincanshu'
-                                },
-                                {
-                                    routerObj: {
-                                        name: 'contribution'
-                                    },
-                                    label: '投稿请求',
-                                    labelIconClass: 'icon-31dingdan'
-                                },
-                                {
-                                    routerObj: {
-                                        name: 'love-and-favour'
-                                    },
-                                    label: '喜欢和赞',
-                                    labelIconClass: 'icon-31dianzan'
-                                },
-                                {
-                                    routerObj: {
-                                        name: 'attention'
-                                    },
-                                    label: '关注',
-                                    labelIconClass: 'icon-guanzhu2'
-                                },
-                                {
-                                    routerObj: {
-                                        name: 'admire'
-                                    },
-                                    label: '赞赏和付费',
-                                    labelIconClass: 'icon-31hongbao'
-                                },
-                                {
-                                    routerObj: {
-                                        name: 'warn'
-                                    },
-                                    label: '其他提醒',
-                                    labelIconClass: 'icon-xinxi'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                rightMenus: {
-                    mode: 'horizontal',
-                    menuItems: [
-                        {
-                            routerObj: {
-                                name: 'session'
-                            },
-                            label: '注册',
-                            labelIconClass: ''
-                        },
-                        {
-                            routerObj: {
-                                name: 'session'
-                            },
-                            label: '登录',
-                            labelIconClass: ''
-                        },
-                        {
-                            routerObj: {
-                                name: 'message'
-                            },
-                            label: '头像',
-                            isImg: true,
-                            imgUrl: require('$src/assets/star.jpg'),
-                            menuItems: [
-                                {
-                                    routerObj: {
-                                        name: 'tabsessay'
-                                    },
-                                    label: '我的主页',
-                                    labelIconClass: ''
-                                },
-                                {
-                                    routerObj: {
-                                        name: ''
-                                    },
-                                    label: '收藏的文章',
-                                    labelIconClass: ''
-                                },
-                                {
-                                    routerObj: {
-                                        name: ''
-                                    },
-                                    label: '喜欢的文章',
-                                    labelIconClass: ''
-                                },
-                                {
-                                    routerObj: {
-                                        name: ''
-                                    },
-                                    label: '已购内容',
-                                    labelIconClass: ''
-                                },
-                                {
-                                    routerObj: {
-                                        name: ''
-                                    },
-                                    label: '我的钱包',
-                                    labelIconClass: ''
-                                },
-                                {
-                                    routerObj: {
-                                        name: 'basic'
-                                    },
-                                    label: '设置',
-                                    labelIconClass: ''
-                                },
-                                {
-                                    routerObj: {
-                                        name: 'feedback'
-                                    },
-                                    label: '帮助与反馈',
-                                    labelIconClass: ''
-                                },
-                                {
-                                    routerObj: {
-                                        name: ''
-                                    },
-                                    label: '退出',
-                                    labelIconClass: ''
-                                }
-                            ]
-                        },
-                        {
-                            routerObj: {
-                                name: 'writeessay'
-                            },
-                            label: '写文章'
-                        }
-                    ]
-                }
+                defaultActive:'discover'
             };
         },
         created() {
@@ -237,9 +165,19 @@
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
+                if(key=='exit'){
+                    this.exitLogin()
+                }
             },
             turnToHomePage() {
-                this.$router.push({name: 'discover'})
+            },
+            exitLogin(){
+                this.$store.commit('setLoginStatus',false)
+            }
+        },
+        computed:{
+            basicUserData(){
+                return this.$store.getters.userData
             }
         }
     }
@@ -274,23 +212,26 @@
 
     /*end 标题*/
 
-    /*左边导航栏*/
-
-    .container-nav-left {
-        min-width: 323px;
-    }
+    /*导航栏*/
 
     .search {
+        min-width: 150px;
+        max-width: 300px;
     }
 
-    /*end左边导航栏*/
-
-    /*右边导航栏*/
-
-    .container-nav-right {
-        min-width: 425px;
+    .el-menu i {
+        margin-right: 3px;
     }
 
-    /*end右边导航栏*/
+    /*end导航栏*/
+
+    /*
+    头像
+     */
+    .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+    }
 
 </style>

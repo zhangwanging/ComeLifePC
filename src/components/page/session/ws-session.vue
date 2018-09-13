@@ -1,14 +1,20 @@
 <template>
-    <el-row type="flex" justify="center" align="middle" class="container">
+    <el-row
+            type="flex"
+            justify="center"
+            align="middle"
+            class="container">
         <el-card>
             <el-col class="container-wrapper">
-                <el-tabs v-model="activeName" :stretch="true">
+                <el-tabs
+                        v-model="activePanelName"
+                        :stretch="true"
+                        @tab-click="handleTabClick">
                     <el-tab-pane label="注册" name="register">
-                        <router-view name="register"></router-view>
                         <ws-session-register name="register"/>
                     </el-tab-pane>
                     <el-tab-pane label="登录" name="login">
-                        <ws-session-login  name="login"/>
+                        <ws-session-login name="login"/>
                     </el-tab-pane>
                 </el-tabs>
             </el-col>
@@ -23,20 +29,28 @@
 
     export default {
         name: "ws-session",
-        components:{
+        components: {
             WsSessionRegister,
             WsSessionLogin
         },
         data() {
             return {
-                activeName: 'register'
+                activePanelName: 'register'
             };
         },
         created() {
+            this.init()
         },
         methods: {
-            handleClick(tab, event) {
-                console.log(tab, event);
+            init() {
+                this.setActivePanal()
+            },
+            setActivePanal(name = this.$route.params.type) {
+                this.activePanelName = name
+                this.$router.replace('/session/' + name)
+            },
+            handleTabClick(tab, event) {
+                this.setActivePanal(tab.name)
             }
         }
     }
@@ -49,12 +63,12 @@
     }
 
     .container-wrapper {
-        width: 300px;
+        width: 250px;
         height: 400px;
     }
 
     /*子面板*/
-    .el-tab-pane{
+    .el-tab-pane {
         padding: 15px 20px;
     }
 
