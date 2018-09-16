@@ -1,7 +1,7 @@
 <template>
     <el-row class="container">
         <el-col class="container-col container-collection" :span="4">
-
+            <!--回首页-->
             <el-row class="container-turnback">
                 <el-button
                         @click="turnToHomeClick"
@@ -13,7 +13,7 @@
                     回首页
                 </el-button>
             </el-row>
-
+            <!--新建文集-->
             <el-row class="new-collection">
                 <el-collapse
                         @change="createNotePanelChange"
@@ -57,7 +57,7 @@
                     </el-collapse-item>
                 </el-collapse>
             </el-row>
-
+            <!--文集列表-->
             <el-row class="container-diary">
                 <el-row
                         @click.native="getEssayByIdClick(item.id)"
@@ -71,26 +71,28 @@
                             placement="bottom"
                             width="100"
                             trigger="click">
-                        <el-row>
+                        <el-row class="icon-note-setting-item" @click.native="updateNoteClick(index)">
                             <i class="el-icon-edit-outline"></i>
                             <span>修改文集</span>
                         </el-row>
-                        <el-row>
+                        <el-row class="icon-note-setting-item" @click.native="delNoteClick(index)">
                             <i class="el-icon-delete"></i>
                             <span>删除文集</span>
                         </el-row>
-                        <i slot="reference" class="el-icon-setting"></i>
+                        <span slot="reference">
+                            <i class="icon-note-setting el-icon-setting"></i>
+                        </span>
                     </el-popover>
                 </el-row>
             </el-row>
-
+            <!--设置与遇到问题-->
             <el-row class="container-setting" type="flex" justify="space-between">
                 <el-row>
                     <i class="el-icon-menu"></i>
                     <span>设置</span>
                 </el-row>
                 <el-row>
-                    <div @click="dialogVisible = true">
+                    <div class="meet-problem" @click="dialogVisible = true">
                         <span>遇到问题</span>
                         <i class="el-icon-question"></i>
                     </div>
@@ -110,6 +112,7 @@
         </el-col>
 
         <el-col class="container-col container-essay-list" :span="6">
+            <!--上方新建文章-->
             <el-row @click.native="createEssayClick" class="container-new-essay">
                 <i class="el-icon-circle-plus"></i>
                 <span>新建文章</span>
@@ -133,13 +136,17 @@
                     <span>{{item.wordNum}}</span>
                 </el-row>
             </el-row>
-            <el-row class="container-new-essay-below">
+            <!--下方新建文章-->
+            <el-row
+                    @click.native="createEssayBelowClick"
+                    class="container-new-essay-below font-color-minor">
                 <i class="el-icon-plus"></i>
                 <span>在下方新建文章</span>
             </el-row>
         </el-col>
 
         <el-col class="container-col container-edit" :span="14">
+            <!--文章标题-->
             <el-row class="container-edit-title" type="flex" align="center">
                 <el-input
                         v-model="essay.title"
@@ -148,6 +155,7 @@
                         type="text"
                         style="border: none !important;"/>
             </el-row>
+            <!--文章编辑区-->
             <el-row class="container-editor">
                 <mavon-editor class="editor" :box-shadow="false" v-model="essay.content"/>
             </el-row>
@@ -188,12 +196,7 @@
         },
         methods: {
             init() {
-                /*
-                后面改，实际是同步的
-                 */
                 this.getNoteRequest()
-                this.getEssayByIdRequest()
-                this.getEssayContentRequest()
             },
             //获取文章列表数据
             getEssayByIdRequest(noteId){
@@ -201,15 +204,15 @@
                 this.request.getEssayById({},function (err,res) {
                     if(res.code===0){
                         that.essays=res.data
+                        that.getEssayContentRequest()
                     }
                 })
             },
             //新建文章
-            createEssayRequest(){
-                let that=this
+            createEssayRequest(fun){
                 this.request.createEssay({},function(err,res){
                     if(res.code===0){
-                        that.essays.unshift(res.data)
+                        fun(res.data)
                         alert('已新建文章')
                     }
                 })
@@ -231,6 +234,7 @@
                 this.request.getNote({}, function (err, res) {
                     if (res.code === 0) {
                         that.notes = res.data
+                        that.getEssayByIdRequest()
                     }
                 })
             },
@@ -240,6 +244,24 @@
                 this.request.getEssayContent({},function (err,res) {
                     if(res.code===0){
                         that.essay=res.data
+                    }
+                })
+            },
+            //修改文集名称
+            updateNoteRequest(fun){
+                this.request.updateNote({},function (err,res) {
+                    if(res.code===0){
+                        fun(res.data)
+                        alert('修改成功')
+                    }
+                })
+            },
+            //删除文集
+            delNoteRequest(fun){
+                this.request.delNote({},function (err,res) {
+                    if(res.code===0){
+                        fun(res.data)
+                        alert('删除成功')
                     }
                 })
             },
@@ -257,7 +279,17 @@
             },
 
             createEssayClick(){
-                this.createEssayRequest()
+                let that=this
+                this.createEssayRequest(function (data) {
+                    that.essays.unshift(data)
+                })
+            },
+
+            createEssayBelowClick(){
+                let that=this
+                this.createEssayRequest(function (data) {
+                    that.essays.push(data)
+                })
             },
 
             getEssayByIdClick(noteId){
@@ -284,6 +316,20 @@
 
             createNotePanelChange(activeNames) {
                 this.switchCreateNotePanel()
+            },
+
+            updateNoteClick(index){
+                let that=this
+                this.updateNoteRequest(function (data) {
+                    that.notes[index].name=data.name
+                })
+            },
+
+            delNoteClick(index){
+                let that=this
+                this.delNoteRequest(function (data) {
+                    that.notes.splice(index,1)
+                })
             }
         }
     }
@@ -305,6 +351,8 @@
         border-right: 1px solid lightgray;
     }
 
+    /*回首页*/
+
     .container-turnback {
         width: 100%;
         padding: 25px 15px;
@@ -314,9 +362,13 @@
         width: 100%;
     }
 
+    /*新建文集*/
+
     .new-collection {
         padding: 0 13px 10px;
     }
+
+    /*文集列表*/
 
     .container-diary {
         width: 100%;
@@ -334,12 +386,30 @@
         cursor: pointer;
     }
 
+    /*设置与遇到问题*/
+
     .container-setting {
         width: 100%;
         position: absolute;
         left: 0;
         bottom: 0;
         padding: 13px;
+    }
+
+    .icon-note-setting-item:hover{
+        cursor: pointer;
+    }
+
+    .icon-note-setting{
+        padding: 6px 0 6px 6px;
+    }
+
+    .icon-note-setting:hover{
+        cursor:pointer;
+    }
+
+    .meet-problem:hover{
+        cursor: pointer;
     }
 
     /*end 第一栏目*/
@@ -349,6 +419,8 @@
         overflow: scroll;
     }
 
+    /*上方新建文章*/
+
     .container-new-essay {
         padding: 13px 15px;
         border-bottom: 1px solid lightgray;
@@ -357,6 +429,8 @@
     .container-new-essay:hover{
         cursor: pointer;
     }
+
+    /*文章列表*/
 
     .container-essay-item {
         width: 100%;
@@ -408,9 +482,14 @@
         color: gray;
     }
 
+    /*下方新建文章*/
+
     .container-new-essay-below {
         padding: 13px 15px;
-        color: lightgray;
+    }
+
+    .container-new-essay-below:hover{
+        cursor:pointer;
     }
 
     /*end 第二栏目*/
@@ -419,6 +498,8 @@
     .container-edit {
         height: 100%;
     }
+
+    /*文章标题*/
 
     .container-edit-title {
         height: 60px;
@@ -429,6 +510,8 @@
     .edit-title {
         font-size: 25px;
     }
+
+    /*文章编辑区*/
 
     .container-editor {
         height: calc(100% - 60px);

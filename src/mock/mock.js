@@ -220,6 +220,104 @@ Mock.mock(host+url.getEssayContent,{
     }
 })
 
+/*
+更新文集名
+ */
+
+Mock.mock(host+url.updateNote,{
+    code:0,
+    data:{
+        name:'@ctitle()',
+    }
+})
+
+/*
+删除文集
+ */
+
+Mock.mock(host+url.delNote,{
+    code:0,
+    data:[]
+})
+
+/*
+获取文章详情
+ */
+
+Mock.mock(host+url.getEssayDetail,{
+    code:0,
+    data:{
+        id:'@integer',
+        title: '@ctitle()',
+        content: '@cparagraph(10,500)',
+        author: '@ctitle()',
+        avatar: '@dataImage()',
+        viewNum: '@natural(0,1000)',
+        commentNum: '@natural(0,1000)',
+        likeNum: '@natural(0,1000)',
+        wordNum:'@natural(0,10000)',
+        time: '@datetime',
+        'comments|1-5':[
+            {
+                id:'1',
+                avatar:'@dataImage()',
+                name:'@ctitle()',
+                time:'@datetime',
+                content:'@cparagraph(10,20)',
+                admireNum: '@natural(0,1999)',
+                isAdmire:false,
+                feedbackNum:'@natural(0,1000)',
+                'subcomments|1-6': [
+                    {
+                        id:'@integer',
+                        name:'@ctitle()',
+                        content:'@ctitle()',
+                        time:'@datetime'
+                    }
+                ]
+            }
+        ]
+    }
+})
+
+/**
+ * 添加评论
+ */
+
+Mock.mock(host+url.addComment,{
+    code:0,
+    'data|1':[
+        {
+            id:'@integer',
+            avatar:'@dataImage()',
+            name:'@ctitle()',
+            time:'@datetime',
+            content:'@cparagraph(10,20)',
+            admireNum: '@natural(0,1999)',
+            isAdmire:false
+        }
+    ]
+})
+
+/**
+ * 添加评论赞
+ */
+
+Mock.mock(host+url.addCommentAdmire,{
+    code:0,
+    data:{}
+})
+
+/**
+ * 删除评论赞
+ */
+
+Mock.mock(host+url.delCommentAdmire,{
+    code:0,
+    data:{}
+})
+
+
 
 
 

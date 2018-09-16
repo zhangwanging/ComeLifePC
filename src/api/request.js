@@ -39,7 +39,13 @@ const url={
     getNote:'/getNote',
     getEssayById:'/getEssayById',
     createEssay:'/createEssay',
-    getEssayContent:'/getEssayContent'
+    getEssayContent:'/getEssayContent',
+    updateNote:'/updateNote',
+    delNote:'/delNote',
+    getEssayDetail:'/getEssayDetail',
+    addComment:'/addComment',
+    addCommentAdmire:'/addCommentAdmire',
+    delCommentAdmire:'/delCommentAdmire'
 }
 /*
 * 冷笑话
@@ -164,7 +170,7 @@ const getDynamicsByUserId=function (data,fun) {
     })
 }
 
-/*
+/**
 获取用户关注列表
  */
 
@@ -181,7 +187,7 @@ const getUserAttention=function (data,fun) {
     })
 }
 
-/*
+/**
 注册
  */
 
@@ -198,7 +204,7 @@ const register=function (data,fun) {
     })
 }
 
-/*
+/**
 登录
  */
 
@@ -215,7 +221,7 @@ const login=function (data,fun) {
     })
 }
 
-/*
+/**
 创建文集
  */
 
@@ -232,7 +238,7 @@ const createNote=function (data,fun) {
     })
 }
 
-/*
+/**
    获取文集
  */
 
@@ -267,7 +273,7 @@ const getEssayById=function (data,fun) {
     })
 }
 
-/*
+/**
 新建文章
  */
 
@@ -284,7 +290,7 @@ const createEssay=function (data,fun) {
     })
 }
 
-/*
+/**
 获取文章内容
  */
 
@@ -301,6 +307,116 @@ const getEssayContent=function (data,fun) {
     })
 }
 
+/*
+更新文集名
+ */
+const updateNote=function (data,fun) {
+    myAxios({
+        url:url.updateNote,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/*
+删除文集名
+ */
+
+const delNote=function (data,fun) {
+    myAxios({
+        url:url.delNote,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/*
+获取文章详情
+ */
+
+const getEssayDetail=function (data,fun) {
+    myAxios({
+        url:url.getEssayDetail,
+        data:data,
+        success:function (res) {
+            if(res.data.code===0){
+                let comments=res.data.data.comments
+                for(let i=0;i<comments.length;i++){
+                    comments[i].isSendBoxShow=false
+                    comments[i].inputContent=''
+                }
+            }
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 提交评论
+ */
+
+
+const addComment=function (data,fun) {
+    myAxios({
+        url:url.addComment,
+        data:data,
+        success:function (res) {
+            res.data.data.inputContent=''
+            res.data.data.isSendBoxShow=false
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 添加评论赞
+ */
+
+const addCommentAdmire=function (data,fun) {
+    myAxios({
+        url:url.addCommentAdmire,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 删除评论赞
+ */
+
+const delCommentAdmire=function (data,fun) {
+    myAxios({
+        url:url.delCommentAdmire,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
 
 
 export default {
@@ -321,7 +437,13 @@ export default {
     getNote,
     getEssayById,
     createEssay,
-    getEssayContent
+    getEssayContent,
+    updateNote,
+    delNote,
+    getEssayDetail,
+    addComment,
+    delCommentAdmire,
+    addCommentAdmire
 }
 
 

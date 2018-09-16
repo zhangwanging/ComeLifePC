@@ -2,6 +2,7 @@
     <ws-base-layout-main-left-aside-right>
         <template slot="left">
             <el-row>
+                <!--轮播图-->
                 <el-col class="container-carousel">
                     <el-carousel height="210px"
                                  trigger="click">
@@ -12,6 +13,7 @@
                         </el-carousel-item>
                     </el-carousel>
                 </el-col>
+                <!--热门专题-->
                 <el-col class="container-hot">
                     <el-button class="btn-hot" size="mini" type="info" round plain>故事</el-button>
                     <el-button class="btn-hot" size="mini" type="info" round plain>摄影</el-button>
@@ -26,17 +28,20 @@
                         <i class="el-icon-arrow-right"></i>
                     </ws-base-button-text>
                 </el-col>
+                <!--文章列表-->
                 <el-col>
                     <ws-common-essay-list :list="essays"></ws-common-essay-list>
-                    <el-button @click="getMoreEssays" class="btn-leanmore" size="mini" type="info" round>阅读更多
+                    <el-button @click="getMoreEssaysClick" class="btn-leanmore" size="mini" type="info" round>阅读更多
                     </el-button>
                 </el-col>
+                <!--网站元信息-->
                 <el-col>
                     <div class="font-color-minor">Copyright © 2018 Star-Inc.All Rights Reserved</div>
                 </el-col>
             </el-row>
         </template>
         <template slot="right">
+            <!--导航分类-->
             <el-row>
                 <el-button size="small" class="menu-btn" type="info" plain>7日热门<i class="el-icon-arrow-right"></i>
                 </el-button>
@@ -49,6 +54,7 @@
                 <el-button size="small" class="menu-btn" type="info" plain>简书大学堂<i class="el-icon-arrow-right"></i>
                 </el-button>
             </el-row>
+            <!--扫描码-->
             <el-row>
                 <el-popover
                         placement="top"
@@ -61,12 +67,13 @@
                 </el-popover>
 
             </el-row>
+            <!--推荐作者-->
             <el-row>
                 <el-row class="font-color-minor" type="flex" justify="space-between">
                     <span>推荐作者</span>
                     <el-row>
                         <ws-base-button-text
-                                @click="getPartAdviceUser"
+                                @click="getPartAdviceUserClick"
                                 :loading="adviceUser.isLoading"
                                 type="text">
                             <span>换一批</span>
@@ -74,8 +81,14 @@
                     </el-row>
                 </el-row>
                 <el-row class="container-list-author">
-                    <el-row v-for="(user,index) in users" :key="index" class="container-item-author" type="flex" align="middle">
-                        <img class="author-img" :src="user.avatar" alt="">
+                    <el-row v-for="(user,index) in adviceUser.users"
+                            :key="index"
+                            class="container-item-author"
+                            type="flex"
+                            align="middle">
+                        <img class="author-img"
+                             :src="user.avatar"
+                             alt="">
                         <el-col>
                             <el-row type="flex" justify="space-between">
                                 <span class="font-color-main">{{user.name}}</span>
@@ -112,21 +125,30 @@
         },
         data() {
             return {
+                //文章列表
                 essays: [],
+                //轮播图
                 carousels: [],
-                users: [],
+
                 adviceUser: {
-                    isLoading: false
+                    isLoading: false,
+                    users: []
                 }
             }
         },
         created() {
-            this.getEssays()
-            this.getCarousel()
-            this.getPartAdviceUser()
+            this.init()
         },
         methods: {
-            getEssays() {
+
+            init() {
+                this.getEssaysRequest()
+                this.getCarouselRequest()
+                this.getPartAdviceUserRequest()
+            },
+
+            //获取文章列表
+            getEssaysRequest() {
                 let that = this
                 this.request.getColdJoke(undefined, function (err, res) {
                     if (err) {
@@ -139,7 +161,9 @@
                     }
                 })
             },
-            getCarousel() {
+
+            //获取轮播图
+            getCarouselRequest() {
                 let that = this
                 this.request.getCarousel(undefined, function (err, res) {
                     if (res.code === 0 && res.data.length !== 0) {
@@ -147,24 +171,33 @@
                     }
                 })
             },
-            getPartAdviceUser() {
+
+            //获取推荐作者
+            getPartAdviceUserRequest() {
                 let that = this
                 this.adviceUser.isLoading = true
                 this.request.getPartAdviceUser(undefined, function (err, res) {
                     that.adviceUser.isLoading = false
                     if (res.code === 0 && res.data.length !== 0) {
-                        that.users = res.data
+                        that.adviceUser.users = res.data
                     }
                 })
             },
-            getMoreEssays() {
-                this.getEssays()
+
+            getPartAdviceUserClick(){
+                this.getPartAdviceUserRequest()
+            },
+
+            getMoreEssaysClick() {
+                this.getEssaysRequest()
             }
         }
     }
 </script>
 
 <style scoped>
+
+    /*左列*/
 
     /*轮播图*/
 
@@ -173,8 +206,6 @@
         border-radius: 5px;
         overflow: hidden;
     }
-
-    /*end 轮播图*/
 
     /*更多热门专题*/
 
@@ -194,8 +225,6 @@
         display: inline-block;
     }
 
-    /*end 更多热门专题*/
-
     /*文章列表*/
     .container-essay-item {
         position: relative;
@@ -207,9 +236,9 @@
         margin-bottom: 60px;
     }
 
-    /*end 文章列表*/
+    /*右列*/
 
-    /*右上菜单栏*/
+    /*导航分类*/
 
     .menu-btn {
         width: 100%;
@@ -217,9 +246,7 @@
         text-align: left;
     }
 
-    /*end 右上菜单栏*/
-
-    /*二维码*/
+    /*扫描码*/
 
     .container-qrcode {
         padding: 5px 10px;
@@ -236,8 +263,6 @@
     .container-qrcode p {
         margin: 0;
     }
-
-    /*end二维码*/
 
     /*推荐作者*/
 
@@ -260,5 +285,4 @@
         width: 100%;
     }
 
-    /*end推荐作者*/
 </style>

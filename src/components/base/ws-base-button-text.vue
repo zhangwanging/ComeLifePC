@@ -4,9 +4,9 @@
         <el-button v-if="type!=='text'" type="type" size="mini">
 
         </el-button>
-        <el-button v-else
+        <el-button v-if="type=='text'"
                    class="type-text"
-                   type="text"
+                   :type="type"
                    :loading="loading"
                    @click="handleClick">
             <span class="font-color-minor font-size-content">
@@ -24,7 +24,7 @@
         props: {
             type: {
                 type: String,
-                default: 'primary'
+                default: 'text'
             },
             loading:{
                 type:Boolean,

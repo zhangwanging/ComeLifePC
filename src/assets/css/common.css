@@ -153,3 +153,8 @@ a:active{
     border-color:#DCDFE6
 }
 
+/*fixed bug 强力修改某组件样式*/
+.ws-common-essay-detail-admire .el-input__inner{
+    height:32px !important;
+}
+

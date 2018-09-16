@@ -16,6 +16,7 @@ import '$src/assets/css/icon.css'
 import '$src/assets/css/response.css'
 import 'element-ui/lib/theme-chalk/display.css'
 import storage from '$src/store/storage'
+import '$src/directive/directive.js'
 
 Vue.use(ElementUI);
 Vue.use(mavonEditor)

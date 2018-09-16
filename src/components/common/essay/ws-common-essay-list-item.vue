@@ -6,10 +6,18 @@
                 justify="space-between"
                 align="middle">
             <el-col>
-                <h3 class="item-title">{{title}}</h3>
+
+                <!--标题-->
+                <router-link :to="{name:'essaydetail'}">
+                    <h3 class="item-title">{{title}}</h3>
+                </router-link>
+
+                <!--内容-->
                 <p class="item-content font-color-minor">
                     {{content}}
                 </p>
+
+                <!--底部-->
                 <el-row class="item-container-footer font-color-minor" type="flex" align="middle">
                     <span>{{author}}</span>
                     <template v-if="isLook">
@@ -23,7 +31,16 @@
                     </template>
                 </el-row>
             </el-col>
-            <img class="item-img" :src="imgUrl" alt="" width="100" height="80" >
+
+            <!--图片-->
+            <router-link :to="{name:'essaydetail'}">
+                <img
+                        class="item-img"
+                        :src="imgUrl"
+                        alt=""
+                        width="100"
+                        height="80" >
+            </router-link>
         </el-row>
     </el-row>
 </template>
@@ -80,9 +97,13 @@
 
 <style scoped>
 
+    /*标题*/
+
     .item-title {
         margin: 0;
     }
+
+    /*内容*/
 
     .item-content {
         margin-top: 8px;
@@ -93,6 +114,8 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
     }
+
+    /*图片*/
 
     .item-img {
         margin-left: 15px;
@@ -117,5 +140,4 @@
         font-size:14px;
     }
 
-    /*end 底部*/
 </style>
