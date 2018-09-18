@@ -4,6 +4,8 @@
         <router-view name="index"/>
         <router-view name="writeessay"/>
         <router-view name="session"/>
+        <!--优选连载-->
+        <router-view name="serial"/>
     </div>
 </template>
 

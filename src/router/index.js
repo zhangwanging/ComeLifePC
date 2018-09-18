@@ -28,6 +28,12 @@ import WsSettingPersonaldata from '$src/components/page/setting/ws-setting-perso
 import WsSettingWeiboCertify from '$src/components/page/setting/ws-setting-weibo-certify.vue'
 import WsCommonEssayDetail from '$src/components/common/essay/ws-common-essay-detail.vue'
 import WsWriteEssay from '$src/components/page/writeessay/ws-writeessay.vue'
+import WsHotDay7 from '$src/components/page/hot/ws-hot-day7.vue'
+import WsHotDay30 from '$src/components/page/hot/ws-hot-day30.vue'
+import WsSerial from '$src/components/page/serial/ws-serial.vue'
+import WsCopyright from '$src/components/page/copyright/ws-copyright.vue'
+import WsIndexMainLarge from '$src/components/page/index/ws-index-main-large.vue'
+import WsIndexMainSmall from '$src/components/page/index/ws-index-main-small.vue'
 
 Vue.use(Router)
 
@@ -37,183 +43,223 @@ export default new Router({
         {
             path: '/',
             redirect: {
-                name:'discover'
+                name: 'discover'
             }
         },
-        //默认排版
+        //index排版,含两种布局
         {
-            name: 'index',
-            path: '/index',
-            components: {
-                index: WsIndex
+            name:'index',
+            path:'/index',
+            components:{
+                index:WsIndex
             },
-            //在默认排版的main中
-            children: [
+            children:[
                 {
-                    name: 'discover',
-                    path: 'discover',
-                    components: {
-                       default: WsDiscover
-                    }
-                },
-                //我的主页
-                {
-                    name:'homepage',
-                    path:'homepage',
+                    name:'mainsmall',
+                    path:'mainsmall',
                     components:{
-                        default:WsHomepage
+                        default:WsIndexMainSmall
                     },
                     children:[
                         {
-                            name:'tabsessay',
-                            path:'tabsessay',
-                            components:{
-                                'usertabs':WsHomepageTabsEssay
+                            name: 'discover',
+                            path: 'discover',
+                            components: {
+                                default: WsDiscover
+                            }
+                        },
+                        //我的主页
+                        {
+                            name: 'homepage',
+                            path: 'homepage',
+                            components: {
+                                default: WsHomepage
+                            },
+                            children: [
+                                {
+                                    name: 'tabsessay',
+                                    path: 'tabsessay',
+                                    components: {
+                                        'usertabs': WsHomepageTabsEssay
+                                    }
+                                },
+                                {
+                                    name: 'tabsfans',
+                                    path: 'tabsfans',
+                                    components: {
+                                        'usertabs': WsHomepageTabsFans
+                                    }
+                                }
+                            ]
+                        },
+                        //设置
+                        {
+                            name: 'setting',
+                            path: 'setting',
+                            components: {
+                                default: WsSetting
+                            },
+                            children: [
+                                {
+                                    name: 'basic',
+                                    path: 'basic',
+                                    components: {
+                                        'setting-content': WsSettingBasic
+                                    }
+                                },
+                                {
+                                    name: 'weibo-certify',
+                                    path: 'weibo-certify',
+                                    components: {
+                                        'setting-content': WsSettingWeiboCertify
+                                    }
+                                },
+                                {
+                                    name: 'blacklist',
+                                    path: 'blacklist',
+                                    components: {
+                                        'setting-content': WsSettingBlacklist
+                                    }
+                                },
+                                {
+                                    name: 'appreciation',
+                                    path: 'appreciation',
+                                    components: {
+                                        'setting-content': WsSettingAppreciation
+                                    }
+                                },
+                                {
+                                    name: 'account-manage',
+                                    path: 'account-manage',
+                                    components: {
+                                        'setting-content': WsSettingAccountManage
+                                    }
+                                },
+                                {
+                                    name: 'personaldata',
+                                    path: 'personaldata',
+                                    components: {
+                                        'setting-content': WsSettingPersonaldata
+                                    }
+                                }
+                            ]
+                        },
+                        //消息
+                        {
+                            name: 'message',
+                            path: 'message',
+                            components: {
+                                default: WsMessage
+                            },
+                            children: [
+                                {
+                                    name: 'admire',
+                                    path: 'admire',
+                                    components: {
+                                        'message': WsMessageAdmire
+                                    }
+                                },
+                                {
+                                    name: 'attention',
+                                    path: 'attention',
+                                    components: {
+                                        'message': WsMessageAttention
+                                    }
+                                },
+                                {
+                                    name: 'comment',
+                                    path: 'comment',
+                                    components: {
+                                        'message': WsMessageComment
+                                    }
+                                },
+                                {
+                                    name: 'contribution',
+                                    path: 'contribution',
+                                    components: {
+                                        'message': WsMessageContribution
+                                    }
+                                },
+                                {
+                                    name: 'information',
+                                    path: 'information',
+                                    components: {
+                                        'message': WsMessageInformation
+                                    }
+                                },
+                                {
+                                    name: 'favour',
+                                    path: 'favour',
+                                    components: {
+                                        'message': WsMessageFavour
+                                    }
+                                },
+                                {
+                                    name: 'warn',
+                                    path: 'warn',
+                                    components: {
+                                        'message': WsMessageWarn
+                                    }
+                                }
+                            ]
+                        },
+                        //关注
+                        {
+                            name: 'care',
+                            path: 'care',
+                            components: {
+                                default: WsCare
+                            }
+                        },
+                        //帮助与反馈
+                        {
+                            name: 'feedback',
+                            path: 'feedback',
+                            components: {
+                                default: WsFeedback
+                            }
+                        },
+                        //文章详情
+                        {
+                            name: 'essaydetail',
+                            path: 'essaydetail',
+                            components: {
+                                default: WsCommonEssayDetail
+                            }
+                        },
+                        //热门
+                        {
+                            name: 'hotday7',
+                            path: 'hotday7',
+                            components: {
+                                default: WsHotDay7
                             }
                         },
                         {
-                            name:'tabsfans',
-                            path:'tabsfans',
-                            components:{
-                                'usertabs':WsHomepageTabsFans
+                            name: 'hotday30',
+                            path: 'hotday30',
+                            components: {
+                                default: WsHotDay30
+                            }
+                        },
+                        {
+                            name: 'copyright',
+                            path: 'copyright',
+                            components: {
+                                default: WsCopyright
                             }
                         }
                     ]
                 },
-                //设置
                 {
-                    name:'setting',
-                    path:'setting',
+                    name:'mainlarge',
+                    path:'mainlarge',
                     components:{
-                        default:WsSetting
+                        default:WsIndexMainLarge
                     },
                     children:[
-                        {
-                            name:'basic',
-                            path:'basic',
-                            components:{
-                                'setting-content':WsSettingBasic
-                            }
-                        },
-                        {
-                            name:'weibo-certify',
-                            path:'weibo-certify',
-                            components:{
-                                'setting-content':WsSettingWeiboCertify
-                            }
-                        },
-                        {
-                            name:'blacklist',
-                            path:'blacklist',
-                            components:{
-                                'setting-content':WsSettingBlacklist
-                            }
-                        },
-                        {
-                            name:'appreciation',
-                            path:'appreciation',
-                            components:{
-                                'setting-content':WsSettingAppreciation
-                            }
-                        },
-                        {
-                            name:'account-manage',
-                            path:'account-manage',
-                            components:{
-                                'setting-content':WsSettingAccountManage
-                            }
-                        },
-                        {
-                            name:'personaldata',
-                            path:'personaldata',
-                            components:{
-                                'setting-content':WsSettingPersonaldata
-                            }
-                        }
+
                     ]
-                },
-                //消息
-                {
-                    name:'message',
-                    path:'message',
-                    components:{
-                        default:WsMessage
-                    },
-                    children:[
-                        {
-                            name:'admire',
-                            path:'admire',
-                            components:{
-                                'message':WsMessageAdmire
-                            }
-                        },
-                        {
-                            name:'attention',
-                            path:'attention',
-                            components:{
-                                'message':WsMessageAttention
-                            }
-                        },
-                        {
-                            name:'comment',
-                            path:'comment',
-                            components:{
-                                'message':WsMessageComment
-                            }
-                        },
-                        {
-                            name:'contribution',
-                            path:'contribution',
-                            components:{
-                                'message':WsMessageContribution
-                            }
-                        },
-                        {
-                            name:'information',
-                            path:'information',
-                            components:{
-                                'message':WsMessageInformation
-                            }
-                        },
-                        {
-                            name:'favour',
-                            path:'favour',
-                            components:{
-                                'message':WsMessageFavour
-                            }
-                        },
-                        {
-                            name:'warn',
-                            path:'warn',
-                            components:{
-                                'message':WsMessageWarn
-                            }
-                        }
-                    ]
-                },
-                //关注
-                {
-                    name:'care',
-                    path:'care',
-                    components:{
-                        default:WsCare
-                    }
-                },
-                //帮助与反馈
-                {
-                    name:'feedback',
-                    path:'feedback',
-                    components:{
-                        default:WsFeedback
-                    }
-                },
-                //文章详情
-                {
-                    name:'essaydetail',
-                    path:'essaydetail',
-                    components:{
-                        default:WsCommonEssayDetail
-                    }
                 }
             ]
         },
@@ -226,10 +272,16 @@ export default new Router({
             }
         },
         {
-            name:'session',
-            path:'/session/:type',
-            components:{
-                'session':WsSession
+            name: 'session',
+            path: '/session/:type',
+            components: {
+                'session': WsSession
+            }
+        }, {
+            name: 'serial',
+            path: '/serial',
+            components: {
+                'serial': WsSerial
             }
         }
     ]

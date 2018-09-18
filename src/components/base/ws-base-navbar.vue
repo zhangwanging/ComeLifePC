@@ -44,7 +44,6 @@
 
 <script>
 
-    //TODO:bug,导航栏激活菜单，两个合并为一个来使用时，激活菜单样式改变。思路：定义样式开启/关闭事件
     export default {
         name: "ws-base-navbar",
         props: {

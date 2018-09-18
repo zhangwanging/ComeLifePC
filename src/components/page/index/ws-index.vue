@@ -4,17 +4,14 @@
             <ws-index-header class="rs-container-header"/>
         </el-header>
         <el-main>
-            <el-row type="flex" justify="center">
-                <el-col :xs="24"  :sm="20" :md="18" :lg="14" :xl="12" class=" rs-container-main container-main">
-                    <router-view/>
-                </el-col>
-            </el-row>
+            <router-view/>
         </el-main>
     </el-container>
 </template>
 
 <script>
     import WsIndexHeader from '$src/components/page/index/ws-index-header.vue'
+
     export default {
         name: "ws-index",
         components:{
@@ -25,7 +22,7 @@
 
 <style scoped>
 
-    .container,.el-row,.el-col{
+    .container{
         height:100%;
     }
 
@@ -47,10 +44,5 @@
         z-index:0;
     }
 
-    .container-main{
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
 
 </style>

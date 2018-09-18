@@ -45,7 +45,9 @@ const url={
     getEssayDetail:'/getEssayDetail',
     addComment:'/addComment',
     addCommentAdmire:'/addCommentAdmire',
-    delCommentAdmire:'/delCommentAdmire'
+    delCommentAdmire:'/delCommentAdmire',
+    getSerial:'/getSerial',
+    getCopyrightBooks:'/getCopyrightBooks'
 }
 /*
 * 冷笑话
@@ -419,6 +421,38 @@ const delCommentAdmire=function (data,fun) {
 }
 
 
+/**
+ * 获取优选连载
+ */
+const getSerial=function (data,fun) {
+    myAxios({
+        url:url.getSerial,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 获取版权书籍
+ */
+const getCopyrightBooks=function (data,fun) {
+    myAxios({
+        url:url.getCopyrightBooks,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
 export default {
     host,
     url,
@@ -443,7 +477,9 @@ export default {
     getEssayDetail,
     addComment,
     delCommentAdmire,
-    addCommentAdmire
+    addCommentAdmire,
+    getSerial,
+    getCopyrightBooks
 }
 
 

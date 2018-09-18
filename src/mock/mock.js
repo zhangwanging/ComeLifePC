@@ -317,6 +317,118 @@ Mock.mock(host+url.delCommentAdmire,{
     data:{}
 })
 
+/**
+ * 获取优选连载
+ */
+
+Mock.mock(host+url.getSerial,{
+    code:0,
+    'data|19':[
+        {
+            id:'@integer',
+            coverImgUrl:'@dataImage()',
+            avatar:'@dataImage()',
+            title:'@ctitle()',
+            time:'@datetime',
+            author:'@ctitle()',
+            viewNum: '@natural(0,1999)'
+        }
+    ]
+})
+
+/**
+ * 获取版权书籍
+ */
+
+Mock.mock(host+url.getCopyrightBooks,{
+    code:0,
+    data:[
+        {
+            type:'@integer',
+            label:'小说故事',
+            'books|1-8':[
+                {
+                    id:'@integer',
+                    bookImgUrl:'@dataImage()',
+                    title:'@ctitle()',
+                    author:'@ctitle()',
+                    profile:'@cparagraph(10,40)',
+                    price:'@natural(4,300)'
+                }
+            ]
+        },
+        {
+            type:'@integer',
+            label:'互联网、科普',
+            'books|1-8':[
+                {
+                    id:'@integer',
+                    bookImgUrl:'@dataImage()',
+                    title:'@ctitle()',
+                    author:'@ctitle()',
+                    profile:'@cparagraph(10,40)',
+                    price:'@natural(4,300)'
+                }
+            ]
+        },
+        {
+            type:'@integer',
+            label:'职场、励志、理财',
+            'books|1-8':[
+                {
+                    id:'@integer',
+                    bookImgUrl:'@dataImage()',
+                    title:'@ctitle()',
+                    author:'@ctitle()',
+                    profile:'@cparagraph(10,40)',
+                    price:'@natural(4,300)'
+                }
+            ]
+        },
+        {
+            type:'@integer',
+            label:'文化、历史',
+            'books|1-8':[
+                {
+                    id:'@integer',
+                    bookImgUrl:'@dataImage()',
+                    title:'@ctitle()',
+                    author:'@ctitle()',
+                    profile:'@cparagraph(10,40)',
+                    price:'@natural(4,300)'
+                }
+            ]
+        },
+        {
+            type:'@integer',
+            label:'工具、技能',
+            'books|1-8':[
+                {
+                    id:'@integer',
+                    bookImgUrl:'@dataImage()',
+                    title:'@ctitle()',
+                    author:'@ctitle()',
+                    profile:'@cparagraph(10,40)',
+                    price:'@natural(4,300)'
+                }
+            ]
+        },
+        {
+            type:'@integer',
+            label:'电子书',
+            'books|1-8':[
+                {
+                    id:'@integer',
+                    bookImgUrl:'@dataImage()',
+                    title:'@ctitle()',
+                    author:'@ctitle()',
+                    profile:'@cparagraph(10,40)',
+                    price:'@natural(4,300)'
+                }
+            ]
+        }
+    ]
+})
 
 
 
