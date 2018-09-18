@@ -1,18 +1,33 @@
 <template>
     <el-row type="flex" align="middle" justify="space-between">
-        <img :src="avatar" class="avatar" alt="" width="60" height="60">
+
+        <img
+                :src="profile.avatar"
+                class="avatar"
+                alt="">
+
         <el-col>
             <el-row>
-                <h3 class="title font-size-smalltitle">{{title}}</h3>
+                <h3 class="title font-size-smalltitle">{{profile.title}}</h3>
             </el-row>
             <el-row class="font-color-minor">
-                <span>简书</span> 编 ▪ 收录了<span>{{essayNum}}</span>篇文章 ▪ <span>{{fansNum}}</span>人关注
+                写了{{profile.wordNum}}字，获得了 ▪ {{profile.likeNum}}个喜欢
             </el-row>
         </el-col>
+
         <el-row class="container-btn" type="flex">
-            <el-button size="small" type="primary" round plain>投稿</el-button>
-            <el-button size="small" type="primary" round plain>专题主页</el-button>
+            <el-button
+                    size="small"
+                    type="primary"
+                    round
+                    plain>发简信</el-button>
+            <el-button
+                    size="small"
+                    type="primary"
+                    round
+                    plain>个人主页</el-button>
         </el-row>
+
     </el-row>
 </template>
 
@@ -20,17 +35,35 @@
     export default {
         name: "ws-care-user-detail-header",
         props:{
-            avatar:{
+            //用户标志
+            id:{
                 type:String
+            }
+        },
+        data(){
+            return{
+                profile:{}
+            }
+        },
+        watch:{
+            id:function (newId,oldId) {
+                this.getUserCareProfileRequest(newId)
+            }
+        },
+        created(){
+            this.init()
+        },
+        methods:{
+            init(){
+                this.getUserCareProfileRequest(this.id)
             },
-            title:{
-                type:String
-            },
-            essayNum:{
-                type:Number
-            },
-            fansNum:{
-                type:Number
+            getUserCareProfileRequest(id){
+                let that=this
+                this.request.getUserCareProfile({},function (err,res) {
+                    if(res.code===0){
+                        that.profile=res.data
+                    }
+                })
             }
         }
     }
@@ -39,9 +72,12 @@
 <style scoped>
 
     .avatar {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         margin-right: 15px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
     }
 
     .title{

@@ -1,24 +1,16 @@
 <template>
-    <el-row class="container" :gutter="40">
-        <el-col class="container-left" :span="8">
-            <el-row class="container-left-header border-color-first"
-                    type="flex" justify="space-between">
-                <el-row type="flex">
-                    <span>全部关注</span>
-                </el-row>
-                <el-row type='flex'>
-                    <span class="add-care">添加关注</span>
-                </el-row>
-            </el-row>
+    <el-row class="container-ws-care">
+
+        <!--左栏-->
+        <el-col class="container-left" :span="7">
             <el-row>
                 <el-menu
-                        default-active="0"
-                        router>
+                        @select="handleMenuSelect"
+                        default-active="0">
                     <el-menu-item
-                            v-for="(item,index) in menu.menuItems"
+                            v-for="(item,index) in menus"
                             :key="index"
-                            :index="index.toString()"
-                            :route="menu.route"
+                            :index="item.id.toString()"
                             class="container-menu-item">
                         <img :src="item.avatar" alt="" class="menu-img">
                         <span slot="title" class="menu-title">{{item.title}}</span>
@@ -26,8 +18,10 @@
                 </el-menu>
             </el-row>
         </el-col>
-        <el-col :span="16">
-            <ws-care-user-detail/>
+
+        <!--右栏-->
+        <el-col class="container-right" :span="17">
+            <ws-care-user-detail :id="id" />
         </el-col>
     </el-row>
 </template>
@@ -42,30 +36,33 @@
         },
         data() {
             return {
-                tabActiveName: '',
-                menu: {
-                    route:{
-                        name:'#'
-                    },
-                    menuItems: [
-                        {
-                            id: '1',
-                            avatar: require(`./logo.png`),
-                            title: 'title1'
-                        },
-                        {
-                            id: '2',
-                            avatar: require(`./logo.png`),
-                            title: 'title2'
-                        }
-                    ]
-                }
+                //用户标志
+                id:'',
+                //左栏导航菜单列表
+                menus: []
             }
         },
+        created() {
+            this.init()
+        },
         methods: {
-            handleClick(tab, event) {
-                console.log(tab, event);
-                this.$router.push({name: tab.$options.propsData.name})
+            init(){
+                this.getUserCareListRequest()
+            },
+
+            //获取关注用户列表
+            getUserCareListRequest(){
+                let that=this
+                this.request.getUserCareList({},function (err,res) {
+                    if(res.code===0){
+                        that.menus=res.data
+                    }
+                })
+            },
+
+            //导航栏选中事件,index为用户标志
+            handleMenuSelect(index,indexPath){
+                this.id=index
             }
         }
     }
@@ -73,7 +70,7 @@
 
 <style scoped>
 
-    .container {
+    .container-ws-care {
         height: 100%;
     }
 
@@ -94,14 +91,11 @@
         text-align: right;
     }
 
-    /*end 左栏*/
-
-    /*菜单栏*/
-
     .container-menu-item {
         display: flex;
         align-items: center;
         height: 45px;
+        padding-left:10px !important;
     }
 
     .menu-img {
@@ -111,5 +105,9 @@
         border-radius: 3px;
     }
 
-    /*end 菜单栏*/
+    /*右栏*/
+
+    .container-right{
+        padding-left:25px;
+    }
 </style>

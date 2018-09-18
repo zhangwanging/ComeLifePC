@@ -72,7 +72,8 @@
                 <div class="category-title font-size-smalltitle">{{category.label}}</div>
                 <el-row class="category-content">
                     <el-col
-                            v-for="book in category.books"
+                            v-for="(book,index) in category.books"
+                            :key="index"
                             :span="12">
                         <ws-copyright-book-item
                                 :price="book.price"

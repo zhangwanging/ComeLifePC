@@ -1,14 +1,10 @@
 <template>
     <el-row>
         <el-row>
-            <ws-care-user-detail-header
-                    :avatar="userCareDetail.avatar"
-                    :title="userCareDetail.title"
-                    :essayNum="userCareDetail.essayNum"
-                    :fansNum="userCareDetail.fansNum"/>
+            <ws-care-user-detail-header :id="id"/>
         </el-row>
         <el-row>
-            <ws-care-user-detail-main/>
+            <ws-care-user-detail-main :id="id"/>
         </el-row>
     </el-row>
 </template>
@@ -24,18 +20,20 @@
             WsCareUserDetailHeader,
             WsCareUserDetailMain
         },
+        props:{
+            //用户标志
+          id:{
+              type:String
+          }
+        },
         data(){
             return{
-                userCareDetail:{
-                    avatar:require(`./logo.png`),
-                    title:'title1',
-                    essayNum:10,
-                    fansNum:11
-                }
+
             }
         },
+        created(){
+        },
         methods:{
-
         }
     }
 </script>

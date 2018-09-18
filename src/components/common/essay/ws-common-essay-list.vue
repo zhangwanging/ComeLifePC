@@ -35,7 +35,9 @@
             WsCommonEssayListItem
         },
         props: {
-
+            id:{
+                type:String
+            }
         },
         data(){
           return{
@@ -43,16 +45,21 @@
               essays: []
           }
         },
+        watch:{
+          id:function (newId,oldId) {
+              this.getEssaysInit()
+          }
+        },
         created() {
             this.init()
         },
         methods:{
             init(){
-                this.getEssaysRequest()
+                this.getEssaysInit()
             },
 
             //获取文章列表
-            getEssaysRequest() {
+            getEssaysRequest(fun) {
                 let that = this
                 this.request.getColdJoke(undefined, function (err, res) {
                     if (err) {
@@ -60,14 +67,30 @@
                     }
                     if (res.code === 0) {
                         if (res.data.length !== 0) {
-                            that.essays = that.essays.concat(res.data)
+                            fun(res.data)
                         }
                     }
                 })
             },
 
+            //初次获取文章
+            getEssaysInit(){
+                let that=this
+                this.getEssaysRequest(function (data) {
+                    that.essays = data
+                })
+            },
+
+            //获取更多文章
+            getMoreEssays(){
+                let that=this
+                this.getEssaysRequest(function (data) {
+                    that.essays = that.essays.concat(data)
+                })
+            },
+
             getMoreEssaysClick() {
-                this.getEssaysRequest()
+                this.getMoreEssays()
             }
         }
     }

@@ -47,7 +47,9 @@ const url={
     addCommentAdmire:'/addCommentAdmire',
     delCommentAdmire:'/delCommentAdmire',
     getSerial:'/getSerial',
-    getCopyrightBooks:'/getCopyrightBooks'
+    getCopyrightBooks:'/getCopyrightBooks',
+    getUserCareList:'/getUserCareList',
+    getUserCareProfile:'/getUserCareProfile'
 }
 /*
 * 冷笑话
@@ -453,6 +455,39 @@ const getCopyrightBooks=function (data,fun) {
     })
 }
 
+/**
+ * 获取关注用户列表
+ */
+const getUserCareList=function (data,fun) {
+    myAxios({
+        url:url.getUserCareList,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 获取关注用户概括
+ */
+
+const getUserCareProfile=function (data,fun) {
+    myAxios({
+        url:url.getUserCareProfile,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
 export default {
     host,
     url,
@@ -479,7 +514,9 @@ export default {
     delCommentAdmire,
     addCommentAdmire,
     getSerial,
-    getCopyrightBooks
+    getCopyrightBooks,
+    getUserCareList,
+    getUserCareProfile
 }
 
 

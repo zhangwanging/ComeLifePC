@@ -430,7 +430,37 @@ Mock.mock(host+url.getCopyrightBooks,{
     ]
 })
 
+/**
+ * 获取关注用户列表
+ */
+Mock.mock(host+url.getUserCareList,{
+    code:0,
+    'data|19':[
+        {
+            id:'@integer',
+            avatar:'@dataImage()',
+            title:'@ctitle()',
+            time:'@datetime'
+        }
+    ]
+})
 
+/**
+ * 获取关注用户概括
+ */
+
+Mock.mock(host+url.getUserCareProfile,{
+    code:0,
+    'data|1':[
+        {
+            id:'@integer',
+            avatar:'@dataImage()',
+            title:'@ctitle()',
+            wordNum:'@natural(0,1999)',
+            likeNum:'@natural(0,1999)'
+        }
+    ]
+})
 
 
 
