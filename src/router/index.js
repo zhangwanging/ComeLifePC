@@ -34,6 +34,7 @@ import WsSerial from '$src/components/page/serial/ws-serial.vue'
 import WsCopyright from '$src/components/page/copyright/ws-copyright.vue'
 import WsIndexMainLarge from '$src/components/page/index/ws-index-main-large.vue'
 import WsIndexMainSmall from '$src/components/page/index/ws-index-main-small.vue'
+import WsCommonRecommendAuthorDetail from '$src/components/common/recommend-author/ws-common-recommend-author-detail.vue'
 
 Vue.use(Router)
 
@@ -247,6 +248,14 @@ export default new Router({
                             path: 'copyright',
                             components: {
                                 default: WsCopyright
+                            }
+                        },
+                        //推荐作者详情
+                        {
+                            name:'recommend-author-detail',
+                            path:'recommend-author-detail',
+                            components:{
+                                default:WsCommonRecommendAuthorDetail
                             }
                         }
                     ]

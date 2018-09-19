@@ -1,10 +1,19 @@
 <template>
-    <p>contribution</p>
+    <ws-message-main>
+        <span slot="title">全部投稿请求</span>
+        <ws-base-error/>
+    </ws-message-main>
 </template>
 
 <script>
+    import WsMessageMain from '$src/components/page/message/ws-message-main.vue'
+    import WsBaseError from '$src/components/base/ws-base-error.vue'
     export default {
-        name: "ws-message-contribution"
+        name: "ws-message-contribution",
+        components:{
+            WsMessageMain,
+            WsBaseError
+        }
     }
 </script>
 

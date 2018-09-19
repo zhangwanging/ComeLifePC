@@ -81,16 +81,6 @@
         overflow-y: scroll;
     }
 
-    .container-left-header {
-        padding: 0 20px 5px;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-    }
-
-    .container-left-header .add-care {
-        text-align: right;
-    }
-
     .container-menu-item {
         display: flex;
         align-items: center;

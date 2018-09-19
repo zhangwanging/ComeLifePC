@@ -47,7 +47,8 @@ Mock.mock(host + url.getPartAdviceUser, {
         name: '@ctitle()',
         wordNum: '@natural(0,100000)',
         likeNum: '@natural(0,1000)',
-        avatar: '@dataImage()'
+        avatar: '@dataImage()',
+        isAttention:'@boolean()'
     }]
 })
 
@@ -460,6 +461,72 @@ Mock.mock(host+url.getUserCareProfile,{
             likeNum:'@natural(0,1999)'
         }
     ]
+})
+
+/**
+ * 获取用户基本信息
+ */
+
+Mock.mock(host+url.getUserBasicData,{
+    code:0,
+    data:  {
+        id:'@integer',
+        avatar:'@dataImage()',
+        name:'@ctitle()',
+        attentionNum:'@natural(0,999)',
+        fansNum:'@natural(0,999)',
+        essayNum:'@natural(0,999)',
+        wordNum:'@natural(0,1999)',
+        likeNum:'@natural(0,1999)',
+        motto:'@cparagraph(1,3)',
+        'subjects|2-5':[
+            {
+                id:'@integer',
+                imgUrl:'@dataImage()',
+                name:'@ctitle()'
+            }
+        ],
+        'notes|2-6':[
+            {
+                id:'@integer',
+                name:'@ctitle()'
+            }
+        ]
+    }
+})
+
+/**
+ * 取消关注
+ */
+
+
+Mock.mock(host+url.cancelAttention,{
+    code:0,
+    data:{}
+})
+
+/**
+ * 添加关注
+ */
+
+Mock.mock(host+url.addAttention,{
+    code:0,
+    data:{}
+})
+
+/**
+ * 获取所有推荐作者
+ */
+
+Mock.mock(host + url.getAllRecommendAuthor, {
+    'code': 0,
+    'data|20': [{
+        id: '@integer',
+        name: '@ctitle()',
+        profile:'@cparagraph(1,4)',
+        avatar: '@dataImage()',
+        isAttention:'@boolean()'
+    }]
 })
 
 

@@ -49,7 +49,11 @@ const url={
     getSerial:'/getSerial',
     getCopyrightBooks:'/getCopyrightBooks',
     getUserCareList:'/getUserCareList',
-    getUserCareProfile:'/getUserCareProfile'
+    getUserCareProfile:'/getUserCareProfile',
+    getUserBasicData:'/getUserBasicData',
+    cancelAttention:'/cancelAttention',
+    addAttention:'/addAttention',
+    getAllRecommendAuthor:'/getAllRecommendAuthor'
 }
 /*
 * 冷笑话
@@ -488,6 +492,74 @@ const getUserCareProfile=function (data,fun) {
     })
 }
 
+/**
+ * 获取用户基本信息
+ */
+
+const getUserBasicData=function (data,fun) {
+    myAxios({
+        url:url.getUserBasicData,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 取消关注
+ */
+
+const cancelAttention=function (data,fun) {
+    myAxios({
+        url:url.cancelAttention,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 添加关注
+ */
+
+const addAttention=function (data,fun) {
+    myAxios({
+        url:url.addAttention,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
+/**
+ * 获取所有推荐作者
+ */
+
+const getAllRecommendAuthor=function (data,fun) {
+    myAxios({
+        url:url.getAllRecommendAuthor,
+        data:data,
+        success:function (res) {
+            fun(null,res.data)
+        },
+        fail:function (res) {
+            fun(res,null)
+        }
+    })
+}
+
 export default {
     host,
     url,
@@ -516,7 +588,11 @@ export default {
     getSerial,
     getCopyrightBooks,
     getUserCareList,
-    getUserCareProfile
+    getUserCareProfile,
+    getUserBasicData,
+    cancelAttention,
+    addAttention,
+    getAllRecommendAuthor
 }
 
 

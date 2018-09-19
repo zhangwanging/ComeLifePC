@@ -1,5 +1,7 @@
 <template>
     <el-row>
+
+        <!--头部-->
         <el-row class="font-color-minor" type="flex" justify="space-between">
             <span>推荐作者</span>
             <el-row>
@@ -11,22 +13,39 @@
                 </ws-base-button-text>
             </el-row>
         </el-row>
+
+        <!--推荐作者列表-->
         <el-row class="container-list-author">
-            <el-row v-for="(user,index) in adviceUser.users"
+            <el-row
+                    v-for="(user,index) in adviceUser.users"
                     :key="index"
                     class="container-item-author"
                     type="flex"
                     align="middle">
-                <img class="author-img"
-                     :src="user.avatar"
-                     alt="">
+                <router-link :to="{name:'tabsessay'}">
+                    <img class="author-img"
+                         :src="user.avatar"
+                         alt="">
+                </router-link>
                 <el-col>
                     <el-row type="flex" justify="space-between">
-                        <span class="font-color-main">{{user.name}}</span>
-                        <el-row class="font-color-success">
-                            <i class="el-icon-plus"></i>
-                            <span>关注</span>
-                        </el-row>
+                        <router-link :to="{name:'tabsessay'}">
+                            <span class="author font-color-main">{{user.name}}</span>
+                        </router-link>
+
+                        <ws-base-button-text
+                                @click="cancelAttentionClick(index)"
+                                v-if="user.isAttention">
+                            <i class="icon el-icon-check"></i>
+                            <span>已关注</span>
+                        </ws-base-button-text>
+
+                        <ws-base-button-text
+                                @click="addAttentionClick(index)"
+                                v-else>
+                            <i class="icon font-color-success el-icon-plus"></i>
+                            <span class="font-color-success">关注</span>
+                        </ws-base-button-text>
                     </el-row>
                     <el-row class="font-color-minor">
                         写了 <span>{{user.wordNum}}</span>字 <span>{{user.likeNum}}</span>喜欢
@@ -34,8 +53,16 @@
                 </el-col>
             </el-row>
         </el-row>
+
+        <!--查看全部-->
         <el-row>
-            <el-button size="mini" class="author-btn" type="info">查看全部</el-button>
+            <el-button
+                    @click="turnToRecommendAuthorDetailClick"
+                    size="mini"
+                    class="author-btn"
+                    type="info">
+                查看全部
+            </el-button>
         </el-row>
     </el-row>
 </template>
@@ -46,7 +73,7 @@
 
     export default {
         name: "ws-common-recommend-author",
-        components:{
+        components: {
             WsBaseButtonText
         },
         data() {
@@ -81,8 +108,44 @@
                 })
             },
 
+            //请求取消关注
+            cancelAttentionRequest(fun){
+                this.request.cancelAttention({},function (err,res) {
+                    if(res.code===0){
+                       fun(res.data)
+                    }
+                })
+            },
+
+            //请求添加关注
+            addAttentionRequest(fun){
+                this.request.addAttention({},function (err,res) {
+                    if(res.code===0){
+                        fun(res.data)
+                    }
+                })
+            },
+
             getPartAdviceUserClick() {
                 this.getPartAdviceUserRequest()
+            },
+
+            cancelAttentionClick(index){
+                let that=this
+                this.cancelAttentionRequest(function (data) {
+                    that.adviceUser.users[index].isAttention=false
+                })
+            },
+
+            addAttentionClick(index){
+                let that=this
+                this.addAttentionRequest(function (data) {
+                    that.adviceUser.users[index].isAttention=true
+                })
+            },
+
+            turnToRecommendAuthorDetailClick(){
+                this.$router.push({name:'recommend-author-detail'})
             }
         }
     }
@@ -90,6 +153,7 @@
 
 <style scoped>
 
+    /*推荐作者列表*/
     .container-list-author {
         margin-top: 12px;
     }
@@ -105,6 +169,16 @@
         margin-right: 5px;
     }
 
+    .author-img,.author:hover {
+        cursor: pointer;
+    }
+
+    /*关注图标*/
+    .icon{
+        margin:0 -5px 0 0;
+    }
+
+    /*查看全部按钮*/
     .author-btn {
         width: 100%;
     }
