@@ -11,7 +11,7 @@ const Mock = require('mockjs')
 
 Mock.mock(host + url.getColdJoke, {
     'code': 0,
-    'data|3-10': [{
+    'data|2': [{
         title: '@ctitle()',
         content: '@cparagraph(10,20)',
         author: '@ctitle()',

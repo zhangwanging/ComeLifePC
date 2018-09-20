@@ -60,6 +60,7 @@
                     @click="turnToRecommendAuthorDetailClick"
                     size="mini"
                     class="author-btn"
+                    plain
                     type="info">
                 查看全部
             </el-button>
@@ -181,5 +182,6 @@
     /*查看全部按钮*/
     .author-btn {
         width: 100%;
+        margin-bottom:50px;
     }
 </style>

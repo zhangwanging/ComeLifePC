@@ -2,13 +2,17 @@
     <el-row type="flex" align="middle" justify="space-between">
 
         <img
+                @click="turnToHomePageClick"
                 :src="profile.avatar"
                 class="avatar"
                 alt="">
 
         <el-col>
             <el-row>
-                <h3 class="title font-size-smalltitle">{{profile.title}}</h3>
+                <h3 @click="turnToHomePageClick"
+                    class="title font-size-smalltitle">
+                    {{profile.title}}
+                </h3>
             </el-row>
             <el-row class="font-color-minor">
                 写了{{profile.wordNum}}字，获得了 ▪ {{profile.likeNum}}个喜欢
@@ -22,6 +26,7 @@
                     round
                     plain>发简信</el-button>
             <el-button
+                    @click="turnToHomePageClick"
                     size="small"
                     type="primary"
                     round
@@ -64,6 +69,11 @@
                         that.profile=res.data
                     }
                 })
+            },
+
+            //转向个人主页
+            turnToHomePageClick(){
+                this.$router.push({name:'tabsessay'})
             }
         }
     }
@@ -78,10 +88,12 @@
         -webkit-border-radius: 25px;
         -moz-border-radius: 25px;
         border-radius: 25px;
+        cursor:pointer;
     }
 
     .title{
         margin:0 0 5px;
+        cursor:pointer;
     }
 
     .container-btn .el-button{

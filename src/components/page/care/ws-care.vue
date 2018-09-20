@@ -2,7 +2,7 @@
     <el-row class="container-ws-care">
 
         <!--左栏-->
-        <el-col class="container-left" :span="7">
+        <el-col class="container-left">
             <el-row>
                 <el-menu
                         @select="handleMenuSelect"
@@ -20,7 +20,10 @@
         </el-col>
 
         <!--右栏-->
-        <el-col class="container-right" :span="17">
+        <el-col
+                :offset="7"
+                class="container-right"
+                :span="17">
             <ws-care-user-detail :id="id" />
         </el-col>
     </el-row>
@@ -77,8 +80,11 @@
     /*左栏*/
 
     .container-left {
-        height: 100%;
-        overflow-y: scroll;
+        position:fixed;
+        top:80px;
+        bottom:0px;
+        width:200px;
+        overflow: auto;
     }
 
     .container-menu-item {

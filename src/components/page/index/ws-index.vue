@@ -42,6 +42,7 @@
         padding-bottom: 0;
         margin-top:60px;
         z-index:0;
+        overflow:visible;
     }
 
 

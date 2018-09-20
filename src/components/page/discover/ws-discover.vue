@@ -84,59 +84,39 @@
                 </el-col>
                 <!--网站元信息-->
                 <el-col>
-                    <div class="font-color-minor">Copyright © 2018 Star-Inc.All Rights Reserved</div>
+                    <div class="footer font-color-minor">Copyright © 2018 Star-Inc.All Rights Reserved</div>
                 </el-col>
             </el-row>
         </template>
         <template slot="right">
             <!--导航分类-->
-            <el-row>
+            <el-row class="container-category">
                 <router-link :to="{name:'hotday7'}">
-                    <el-button
-                            size="small"
-                            class="menu-btn"
-                            type="info"
-                            plain>
-                        7日热门<i class="el-icon-arrow-right"></i>
-                    </el-button>
+                    <img class="menu-btn"
+                         :src="require(`$src/assets/img/banner-hot-day-7.png`)"
+                         alt="">
                 </router-link>
                 <router-link :to="{name:'hotday30'}">
-                    <el-button
-                            size="small"
-                            class="menu-btn"
-                            type="info"
-                            plain>
-                        30日热门<i class="el-icon-arrow-right"></i>
-                    </el-button>
+                    <img class="menu-btn"
+                         :src="require(`$src/assets/img/banner-hot-day-30.png`)"
+                         alt="">
                 </router-link>
                 <router-link :to="{name:'serial'}">
-                    <el-button
-                            size="small"
-                            class="menu-btn"
-                            type="info"
-                            plain>
-                        优选连载<i class="el-icon-arrow-right"></i>
-                    </el-button>
+                    <img class="menu-btn"
+                         :src="require(`$src/assets/img/banner-serial.png`)"
+                         alt="">
                 </router-link>
 
                 <router-link :to="{name:'copyright'}">
-                    <el-button
-                            size="small"
-                            class="menu-btn"
-                            type="info"
-                            plain>
-                        简书版权<i class="el-icon-arrow-right"></i>
-                    </el-button>
+                    <img class="menu-btn"
+                         :src="require(`$src/assets/img/banner-copyright.png`)"
+                         alt="">
                 </router-link>
 
                 <router-link :to="{name:'subject'}">
-                    <el-button
-                            size="small"
-                            class="menu-btn"
-                            type="info"
-                            plain>
-                        简书大学堂<i class="el-icon-arrow-right"></i>
-                    </el-button>
+                    <img class="menu-btn"
+                         :src="require(`$src/assets/img/banner-campus.png`)"
+                         alt="">
                 </router-link>
 
             </el-row>
@@ -244,12 +224,24 @@
         display: inline-block;
     }
 
+    /*网站元信息*/
+    .footer{
+        position:absolute;
+        margin-top:60px;
+        margin-bottom:20px;
+    }
+
     /*右列*/
 
     /*导航分类*/
 
+    .container-category{
+        margin-top:-4px;
+    }
+
     .menu-btn {
         width: 100%;
+        height:40px;
         margin-bottom: 10px;
         text-align: left;
     }
@@ -271,6 +263,5 @@
     .container-qrcode p {
         margin: 0;
     }
-
 
 </style>

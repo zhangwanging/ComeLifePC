@@ -19,7 +19,9 @@
 
                 <!--底部-->
                 <el-row class="item-container-footer font-color-minor" type="flex" align="middle">
-                    <span>{{author}}</span>
+                    <router-link :to="{name:'tabsessay'}">
+                        <span>{{author}}</span>
+                    </router-link>
                     <template v-if="isLook">
                         <i class="icon iconfont icon-kanguo"></i><span>{{lookNum}}</span>
                     </template>
@@ -119,6 +121,9 @@
 
     .item-img {
         margin-left: 15px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
     }
 
     /*底部*/
