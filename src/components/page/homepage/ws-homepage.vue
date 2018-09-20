@@ -12,26 +12,37 @@
                 <el-col>
                     <h3 class="username font-size-smalltitle">{{userBasicData.name}}</h3>
                     <el-row :gutter="10">
+                        <!--关注-->
                         <el-col class="user-outline" :span="3">
                             <el-row>{{userBasicData.attentionNum}}</el-row>
-                            <el-row>关注<i class="el-icon-arrow-right"></i></el-row>
+                            <el-row>
+                                <router-link
+                                        :to="{name:'tabsfans'}">关注 <i class="el-icon-arrow-right"></i>
+                                </router-link>
+                            </el-row>
                         </el-col>
+                        <!--粉丝-->
                         <el-col class="user-outline" :span="3">
                             <el-row>{{userBasicData.fansNum}}</el-row>
                             <el-row>
-                                <router-link :to="{name:'tabsfans'}">粉丝 <i class="el-icon-arrow-right"></i></router-link>
+                                <router-link
+                                        :to="{name:'tabsfans'}">粉丝 <i class="el-icon-arrow-right"></i>
+                                </router-link>
                             </el-row>
                         </el-col>
+                        <!--文章-->
                         <el-col class="user-outline" :span="3">
                             <el-row>{{userBasicData.essayNum}}</el-row>
                             <el-row>
                                 <router-link :to="{name:'tabsessay'}">文章 <i class="el-icon-arrow-right"></i></router-link>
                             </el-row>
                         </el-col>
+                        <!--字数-->
                         <el-col class="user-outline" :span="3">
                             <el-row>{{userBasicData.wordNum}}</el-row>
                             <el-row>字数</el-row>
                         </el-col>
+                        <!--收获喜欢-->
                         <el-col class="user-outline" :span="5">
                             <el-row>{{userBasicData.likeNum}}</el-row>
                             <el-row>收获喜欢</el-row>

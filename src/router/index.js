@@ -35,6 +35,13 @@ import WsCopyright from '$src/components/page/copyright/ws-copyright.vue'
 import WsIndexMainLarge from '$src/components/page/index/ws-index-main-large.vue'
 import WsIndexMainSmall from '$src/components/page/index/ws-index-main-small.vue'
 import WsCommonRecommendAuthorDetail from '$src/components/common/recommend-author/ws-common-recommend-author-detail.vue'
+import WsSubject from '$src/components/page/subject/ws-subject.vue'
+import WsSubjectMore from '$src/components/page/subject/ws-subject-more.vue'
+import WsCollection from '$src/components/page/collection/ws-collection.vue'
+import WsIndexMainMini from '$src/components/page/index/ws-index-main-mini.vue'
+import WsShop from '$src/components/page/shop/ws-shop.vue'
+import WsWallet from '$src/components/page/wallet/ws-wallet.vue'
+import WsLike from '$src/components/page/like/ws-like.vue'
 
 Vue.use(Router)
 
@@ -220,14 +227,6 @@ export default new Router({
                                 default: WsFeedback
                             }
                         },
-                        //文章详情
-                        {
-                            name: 'essaydetail',
-                            path: 'essaydetail',
-                            components: {
-                                default: WsCommonEssayDetail
-                            }
-                        },
                         //热门
                         {
                             name: 'hotday7',
@@ -257,6 +256,20 @@ export default new Router({
                             components:{
                                 default:WsCommonRecommendAuthorDetail
                             }
+                        },
+                        {
+                            name:'subject',
+                            path:'subject',
+                            components:{
+                                default:WsSubject
+                            }
+                        },
+                        {
+                            name:'subject-more',
+                            path:'subject-more',
+                            components:{
+                                default:WsSubjectMore
+                            }
                         }
                     ]
                 },
@@ -265,9 +278,55 @@ export default new Router({
                     path:'mainlarge',
                     components:{
                         default:WsIndexMainLarge
+                    }
+                },
+                {
+                    name:'mainmini',
+                    path:'mainmini',
+                    components:{
+                        default:WsIndexMainMini
                     },
                     children:[
-
+                        //收藏的文章
+                        {
+                            name:'collection',
+                            path:'collection',
+                            components:{
+                                default:WsCollection
+                            }
+                        },
+                        //文章详情
+                        {
+                            name: 'essaydetail',
+                            path: 'essaydetail',
+                            components: {
+                                default: WsCommonEssayDetail
+                            }
+                        },
+                        //已购内容
+                        {
+                            name:'shop',
+                            path:'shop',
+                            components:{
+                                default:WsShop
+                            }
+                        },
+                        //我的钱包
+                        {
+                           name:'wallet',
+                           path:'wallet',
+                           components:{
+                               default:WsWallet
+                           }
+                        },
+                        //喜欢的文章
+                        {
+                            name:'like',
+                            path:'like',
+                            components:{
+                                default:WsLike
+                            }
+                        }
                     ]
                 }
             ]

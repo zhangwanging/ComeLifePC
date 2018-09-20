@@ -15,22 +15,72 @@
                 </el-col>
                 <!--热门专题-->
                 <el-col class="container-hot">
-                    <el-button class="btn-hot" size="mini" type="info" round plain>故事</el-button>
-                    <el-button class="btn-hot" size="mini" type="info" round plain>摄影</el-button>
-                    <el-button class="btn-hot" size="mini" type="info" round plain>手绘</el-button>
-                    <el-button class="btn-hot" size="mini" type="info" round plain>读书</el-button>
-                    <el-button class="btn-hot" size="mini" type="info" round plain>自然科普</el-button>
-                    <el-button class="btn-hot" size="mini" type="info" round plain>IT.互联网</el-button>
-                    <el-button class="btn-hot" size="mini" type="info" round plain>简单书影</el-button>
+                    <el-button
+                            @click="turnToSubjectClick"
+                            class="btn-hot"
+                            size="mini"
+                            type="info"
+                            round
+                            plain>
+                        故事
+                    </el-button>
+                    <el-button
+                            @click="turnToSubjectClick"
+                            class="btn-hot"
+                            size="mini"
+                            type="info"
+                            round
+                            plain>
+                        手绘
+                    </el-button>
+                    <el-button
+                            @click="turnToSubjectClick"
+                            class="btn-hot"
+                            size="mini"
+                            type="info"
+                            round
+                            plain>
+                        读书
+                    </el-button>
+                    <el-button
+                            @click="turnToSubjectClick"
+                            class="btn-hot"
+                            size="mini"
+                            type="info"
+                            round
+                            plain>
+                        自然科普
+                    </el-button>
+                    <el-button
+                            @click="turnToSubjectClick"
+                            class="btn-hot"
+                            size="mini"
+                            type="info"
+                            round
+                            plain>
+                        IT.互联网
+                    </el-button>
+                    <el-button
+                            @click="turnToSubjectClick"
+                            class="btn-hot"
+                            size="mini"
+                            type="info"
+                            round
+                            plain>
+                        简单书影
+                    </el-button>
 
-                    <ws-base-button-text type="text">
-                        <span>更多热门专题</span>
-                        <i class="el-icon-arrow-right"></i>
-                    </ws-base-button-text>
+                    <!--更多专题-->
+                    <router-link :to="{name:'subject-more'}">
+                        <ws-base-button-text type="text">
+                            <span>更多热门专题</span>
+                            <i class="el-icon-arrow-right"></i>
+                        </ws-base-button-text>
+                    </router-link>
                 </el-col>
                 <!--文章列表-->
                 <el-col>
-                    <ws-common-essay-list ></ws-common-essay-list>
+                    <ws-common-essay-list></ws-common-essay-list>
                 </el-col>
                 <!--网站元信息-->
                 <el-col>
@@ -79,8 +129,16 @@
                     </el-button>
                 </router-link>
 
-                <el-button size="small" class="menu-btn" type="info" plain>简书大学堂<i class="el-icon-arrow-right"></i>
-                </el-button>
+                <router-link :to="{name:'subject'}">
+                    <el-button
+                            size="small"
+                            class="menu-btn"
+                            type="info"
+                            plain>
+                        简书大学堂<i class="el-icon-arrow-right"></i>
+                    </el-button>
+                </router-link>
+
             </el-row>
             <!--扫描码-->
             <el-row>
@@ -133,8 +191,8 @@
         },
         methods: {
 
-            init(){
-              this.getCarouselRequest()
+            init() {
+                this.getCarouselRequest()
             },
 
             //获取轮播图
@@ -146,6 +204,11 @@
                     }
                 })
             },
+
+            //转向专题页面
+            turnToSubjectClick() {
+                this.$router.push({name: 'subject'})
+            }
 
         }
     }

@@ -9,7 +9,8 @@
                 <el-menu-item
                         :key="index"
                         v-for="(item,index) in menu.menuItems"
-                        :index="item.routerObj">
+                        :route="item.routerObj"
+                        :index="index.toString()">
                     <i :class="['iconfont',item.labelIconClass]"></i>
                     <span slot="title">{{item.label}}</span>
                 </el-menu-item>

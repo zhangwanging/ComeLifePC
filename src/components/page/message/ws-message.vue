@@ -87,12 +87,11 @@
 
 <script>
 
-    import WsBaseNavbar from '$src/components/base/ws-base-navbar.vue'
 
     export default {
         name: "ws-message",
         components:{
-            WsBaseNavbar
+
         },
         data() {
             return {

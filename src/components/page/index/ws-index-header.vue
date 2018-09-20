@@ -67,7 +67,7 @@
                         </el-menu-item>
                         <el-menu-item
                                 :route="{name:'admire'}"
-                                index=admire">
+                                index="admire">
                             <i class="iconfont icon-31hongbao"></i>赞赏和付费
                         </el-menu-item>
                         <el-menu-item
@@ -100,22 +100,22 @@
                                 <i class="iconfont icon-31xiaoxi"></i>我的主页
                             </el-menu-item>
                             <el-menu-item
-                                    :route="{name:'comment'}"
+                                    :route="{name:'collection'}"
                                     index="">
                                 <i class="iconfont icon-chanpincanshu"></i>收藏的文章
                             </el-menu-item>
                             <el-menu-item
-                                    :route="{name:'comment'}"
+                                    :route="{name:'like'}"
                                     index=" ">
                                 <i class="iconfont icon-31dingdan"></i>喜欢的文章
                             </el-menu-item>
                             <el-menu-item
-                                    :route="{name:'comment'}"
+                                    :route="{name:'shop'}"
                                     index=" ">
                                 <i class="iconfont icon-31dianzan "></i>已购内容
                             </el-menu-item>
                             <el-menu-item
-                                    :route="{name:'comment'}"
+                                    :route="{name:'wallet'}"
                                     index=" ">
                                 <i class="iconfont icon-guanzhu2"></i>我的钱包
                             </el-menu-item>

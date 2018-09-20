@@ -1,5 +1,5 @@
 <template>
-    <el-form label-position="left" ref="form" :model="form" label-width="120px">
+    <el-form label-position="left" ref="form"  label-width="120px">
         <el-form-item label="打包下载文章">
             <el-button type="primary" size="small">下载所有文章</el-button>
         </el-form-item>

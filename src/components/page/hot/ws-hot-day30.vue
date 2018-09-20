@@ -13,7 +13,7 @@
         },
         data(){
             return{
-                titleImg:'https://cdn2.jianshu.io/assets/web/thirty-hot-f02153a572050a38141287bda2503320.png'
+                titleImg:require('$src/assets/img/hot-day-30.png')
             }
         }
     }

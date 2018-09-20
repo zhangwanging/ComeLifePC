@@ -1,6 +1,5 @@
 <template>
-    <el-row type="flex" justify="center">
-        <el-col :span="16">
+    <el-row>
             <!--标题-->
             <h1 class="font-size-largetitle">{{essay.title}}</h1>
 
@@ -61,7 +60,7 @@
 
             <!--所有评论列表-->
             <el-row>
-                <h4>{{essay.comments.length}}条评论</h4>
+                <h4>{{essay.comments?essay.comments.length:0}}条评论</h4>
                 <hr>
                 <el-row
                         v-for="(item,index) in essay.comments"
@@ -163,8 +162,6 @@
                     </el-row>
                 </el-row>
             </el-row>
-        </el-col>
-
     </el-row>
 </template>
 

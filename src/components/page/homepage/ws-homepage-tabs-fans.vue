@@ -4,7 +4,7 @@
             <ws-homepage-fans-list :list="list"></ws-homepage-fans-list>
         </el-tab-pane>
         <el-tab-pane label="粉丝" name="dynamic">
-            未知~
+            无~
         </el-tab-pane>
     </el-tabs>
 </template>

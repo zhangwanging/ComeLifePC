@@ -11,7 +11,7 @@
             <el-input type="textarea" v-model="form.desc"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="onSubmit">保存</el-button>
+            <el-button type="primary">保存</el-button>
         </el-form-item>
     </el-form>
 </template>

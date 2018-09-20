@@ -18,5 +18,6 @@
 <style scoped>
     .header{
         height:80px;
+        overflow: hidden;
     }
 </style>

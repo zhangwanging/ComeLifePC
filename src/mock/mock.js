@@ -11,7 +11,7 @@ const Mock = require('mockjs')
 
 Mock.mock(host + url.getColdJoke, {
     'code': 0,
-    'data|2': [{
+    'data|3-10': [{
         title: '@ctitle()',
         content: '@cparagraph(10,20)',
         author: '@ctitle()',
@@ -324,7 +324,7 @@ Mock.mock(host+url.delCommentAdmire,{
 
 Mock.mock(host+url.getSerial,{
     code:0,
-    'data|19':[
+    'data|10-30':[
         {
             id:'@integer',
             coverImgUrl:'@dataImage()',
@@ -520,7 +520,7 @@ Mock.mock(host+url.addAttention,{
 
 Mock.mock(host + url.getAllRecommendAuthor, {
     'code': 0,
-    'data|20': [{
+    'data|21': [{
         id: '@integer',
         name: '@ctitle()',
         profile:'@cparagraph(1,4)',

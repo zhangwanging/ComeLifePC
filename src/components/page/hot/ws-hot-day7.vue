@@ -13,7 +13,7 @@
         },
         data(){
             return{
-                titleImg:'https://cdn2.jianshu.io/assets/web/seven-hot-344e8726a99ec07a8d552b33fe50be82.png'
+                titleImg:require('$src/assets/img/hot-day-7.png')
             }
         }
     }

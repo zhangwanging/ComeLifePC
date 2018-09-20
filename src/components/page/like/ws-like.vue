@@ -1,0 +1,19 @@
+<template>
+    <el-row>
+        <ws-base-error/>
+    </el-row>
+</template>
+
+<script>
+
+    import WsBaseError from '$src/components/base/ws-base-error.vue'
+
+    export default {
+        name: "ws-like",
+        components: {WsBaseError}
+    }
+</script>
+
+<style scoped>
+
+</style>
