@@ -20,21 +20,38 @@
                 <el-form-item class="remember-me" label="记住我">
                     <el-switch v-model="form.remember"/>
                 </el-form-item>
-                <a href="#" class="login-question">登录遇到问题？</a>
+
+                <ws-base-button-text @click='meetProblemClick' class="login-question">
+                    登录遇到问题？
+                </ws-base-button-text>
+
             </el-row>
-            <el-button type="primary" @click="onSubmitLogin('login')" class="button" size="mini">登录</el-button>
+            <el-button
+                    type="primary"
+                    @click="submitLoginClick('login')"
+                    class="button"
+                    size="mini">
+                登录
+            </el-button>
 
             <el-row class="footer">
                 <el-row type="flex" justify="center">
                     <h5 class="font-size-content direct">社交账号登录</h5>
                 </el-row>
-                <el-row class="other-type" type="flex" justify="center">
-                    <a href="#">
+                <el-row
+                        class="other-type"
+                        type="flex"
+                        justify="center">
+                    <ws-base-button-text
+                            class="item-type"
+                            @click="loginByWeixinClick">
                         <i class="iconfont-weixin iconfont icon-weixin1"></i>
-                    </a>
-                    <a href="#">
+                    </ws-base-button-text>
+                    <ws-base-button-text
+                            class="item-type"
+                            @click="loginByQqClick">
                         <i class="iconfont-qq iconfont icon-qq"></i>
-                    </a>
+                    </ws-base-button-text>
                 </el-row>
             </el-row>
         </el-form>
@@ -42,8 +59,14 @@
 
 </template>
 <script>
+
+    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
+
     export default {
         name: 'ws-session-login',
+        components:{
+            WsBaseButtonText
+        },
         data() {
             return {
                 form: {
@@ -62,36 +85,68 @@
             }
         },
         methods: {
-            onSubmitLogin(formName) {
+            showLoginFailMsg(){
+              this.$message({
+                  message: '登录失败',
+                  type: 'warn'
+              })
+            },
+            showLoginSuccessMsg(){
+                this.$message({
+                    message: '登录成功',
+                    type: 'success'
+                });
+            },
+            showWaitAchieveMsg(){
+                this.$message({
+                    message: '待实现',
+                    type: 'warn'
+                })
+            },
+            submitLoginClick(formName) {
                 let that=this
                 this.$refs[formName].validate((valid) => {
                     if(valid) {
                         that.login()
                     } else {
-                        alert('登录失败')
+                        that.$message({
+                            message: '输入不合法，请重新输入再登录',
+                            type: 'warn'
+                        })
                     }
                 })
             },
+
             login(){
                 var self = this;
                 this.request.login(this.form,function (err,r) {
                     if(err){
-                        alert('登录失败')
+                        self.showLoginFailMsg()
                         return
                     }
                     if (r.code === 0) {
-                        self.setLoginedData(r)
-                        self.$router.replace({name: 'discover'})
-                        alert('登录成功')
+                        self.setLoginSeccess(r)
                     } else {
-                        alert('登录失败')
+                        self.showLoginFailMsg()
                     }
                 })
             },
-            setLoginedData(res){
+            setLoginSeccess(res){
                 this.storage.setToken(res.token)
                 this.$store.commit('setLoginStatus',true)
                 this.$store.commit('setUserData',res.data)
+
+                this.$router.replace({name: 'discover'})
+                this.showLoginSuccessMsg()
+            },
+            loginByWeixinClick(){
+                this.showWaitAchieveMsg()
+            },
+            loginByQqClick(){
+                this.showWaitAchieveMsg()
+            },
+            meetProblemClick(){
+                this.showWaitAchieveMsg()
             }
         }
     }
@@ -148,12 +203,12 @@
         margin-top:10px;
     }
 
-    .other-type a{
+    .other-type .item-type{
         display: inline-block;
         margin-right:20px;
     }
 
-    .other-type a:last-of-type{
+    .other-type .item-type:last-of-type{
         margin-right: 0;
     }
     /**/

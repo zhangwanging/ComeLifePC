@@ -62,7 +62,7 @@
                     class="author-btn"
                     plain
                     type="info">
-                查看全部
+                查看全部 <i class="el-icon-arrow-right"></i>
             </el-button>
         </el-row>
     </el-row>
@@ -139,6 +139,10 @@
             },
 
             addAttentionClick(index){
+                if(!this.$store.getters.loginStatus){
+                    this.$router.push({name:'session'})
+                    return
+                }
                 let that=this
                 this.addAttentionRequest(function (data) {
                     that.adviceUser.users[index].isAttention=true

@@ -1,50 +1,56 @@
 <template>
-    <el-row>
-        <el-row
-                class="border-color-first"
-                type="flex"
-                justify="space-between"
-                align="middle">
-            <el-col>
+    <transition name="more">
+        <el-row class="container-ws-common-essay-list-item">
+            <el-row
+                    class="border-color-first"
+                    type="flex"
+                    justify="space-between"
+                    align="middle">
+                <el-col>
 
-                <!--标题-->
-                <router-link :to="{name:'essaydetail'}">
-                    <h3 class="item-title">{{title}}</h3>
-                </router-link>
-
-                <!--内容-->
-                <p class="item-content font-color-minor">
-                    {{content}}
-                </p>
-
-                <!--底部-->
-                <el-row class="item-container-footer font-color-minor" type="flex" align="middle">
-                    <router-link :to="{name:'tabsessay'}">
-                        <span>{{author}}</span>
+                    <!--标题-->
+                    <router-link :to="{name:'essaydetail'}">
+                        <h3 class="item-title">{{title}}</h3>
                     </router-link>
-                    <template v-if="isLook">
-                        <i class="icon iconfont icon-kanguo"></i><span>{{lookNum}}</span>
-                    </template>
-                    <template v-if="isComment">
-                        <i class="icon iconfont icon-31wangwangxuanzhong"></i><span>{{commentNum}}</span>
-                    </template>
-                    <template v-if="isLike">
-                        <i class="icon iconfont icon-31guanzhu1xuanzhong"></i><span>{{likeNum}}</span>
-                    </template>
-                </el-row>
-            </el-col>
 
-            <!--图片-->
-            <router-link :to="{name:'essaydetail'}">
-                <img
-                        class="item-img"
-                        :src="imgUrl"
-                        alt=""
-                        width="100"
-                        height="80" >
-            </router-link>
+                    <!--内容-->
+                    <p class="item-content font-color-minor">
+                        {{content}}
+                    </p>
+
+                    <!--底部-->
+                    <el-row class="item-container-footer font-color-minor" type="flex" align="middle">
+                        <router-link :to="{name:'tabsessay'}">
+                            <span>{{author}}</span>
+                        </router-link>
+                        <template v-if="isLook">
+                            <router-link :to="{name:'essaydetail'}">
+                                <i class="icon iconfont icon-kanguo"></i><span>{{lookNum}}</span>
+                            </router-link>
+                        </template>
+                        <template v-if="isComment">
+                            <router-link :to="{name:'essaydetail'}">
+                                <i class="icon iconfont icon-31wangwangxuanzhong"></i><span>{{commentNum}}</span>
+                            </router-link>
+                        </template>
+                        <template v-if="isLike">
+                            <i class="icon iconfont icon-31guanzhu1xuanzhong"></i><span>{{likeNum}}</span>
+                        </template>
+                    </el-row>
+                </el-col>
+
+                <!--图片-->
+                <router-link :to="{name:'essaydetail'}">
+                    <img
+                            class="item-img"
+                            :src="imgUrl"
+                            alt=""
+                            width="100"
+                            height="80">
+                </router-link>
+            </el-row>
         </el-row>
-    </el-row>
+    </transition>
 </template>
 
 <script>
@@ -66,9 +72,9 @@
             imgUrl: {
                 type: String
             },
-            isLook:{
-                type:Boolean,
-                default:true
+            isLook: {
+                type: Boolean,
+                default: true
             },
             isComment: {
                 type: Boolean,
@@ -78,9 +84,9 @@
                 type: Boolean,
                 default: true
             },
-            lookNum:{
-                type:Number,
-                default:0
+            lookNum: {
+                type: Number,
+                default: 0
             },
             commentNum: {
                 type: Number,
@@ -91,13 +97,14 @@
                 default: 0
             }
         },
-        methods:{
-
-        }
+        methods: {}
     }
 </script>
 
 <style scoped>
+
+    .container-ws-common-essay-list-item {
+    }
 
     /*标题*/
 
@@ -130,19 +137,21 @@
 
     .icon {
         margin-left: 7px;
-        margin-right:2px;
+        margin-right: 2px;
     }
 
-    .icon-kanguo{
-        font-size:17px;
+    .icon-kanguo {
+        font-size: 17px;
     }
 
-    .icon-31wangwangxuanzhong{
-        font-size:13px;
+    .icon-31wangwangxuanzhong {
+        font-size: 13px;
     }
 
-    .icon-31guanzhu1xuanzhong{
-        font-size:14px;
+    .icon-31guanzhu1xuanzhong {
+        font-size: 14px;
     }
+
+
 
 </style>

@@ -1,15 +1,19 @@
 <template>
     <el-tabs @tab-click="handleClick" v-model="tabActiveName">
         <el-tab-pane label="文章" name="essaylist">
+            <span slot="label"><i class="el-icon-document"></i> 文章</span>
             <ws-common-essay-list/>
         </el-tab-pane>
         <el-tab-pane label="动态" name="dynamic">
+            <span slot="label"><i class="el-icon-news"></i> 动态</span>
             <ws-homepage-dynamic-list :dynamic="dynamic"/>
         </el-tab-pane>
         <el-tab-pane label="最新评论" name="new-comment">
+            <span slot="label"><i class="iconfont icon-xiaoxi"></i> 最新评论</span>
             <ws-common-essay-list/>
         </el-tab-pane>
         <el-tab-pane label="热门" name="hot">
+            <span slot="label"><i class="iconfont icon-huore"></i> 热门</span>
             <ws-common-essay-list/>
         </el-tab-pane>
     </el-tabs>

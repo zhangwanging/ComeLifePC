@@ -2,30 +2,34 @@
     <el-row class="container-ws-care">
 
         <!--左栏-->
-        <el-col class="container-left">
-            <el-row>
-                <el-menu
-                        @select="handleMenuSelect"
-                        default-active="0">
-                    <el-menu-item
-                            v-for="(item,index) in menus"
-                            :key="index"
-                            :index="item.id.toString()"
-                            class="container-menu-item">
-                        <img :src="item.avatar" alt="" class="menu-img">
-                        <span slot="title" class="menu-title">{{item.title}}</span>
-                    </el-menu-item>
-                </el-menu>
-            </el-row>
-        </el-col>
+        <transition name="fade">
+            <el-col class="container-left">
+                <el-row>
+                    <el-menu
+                            @select="handleMenuSelect"
+                            default-active="0">
+                        <el-menu-item
+                                v-for="(item,index) in menus"
+                                :key="index"
+                                :index="item.id.toString()"
+                                class="container-menu-item">
+                            <img :src="item.avatar" alt="" class="menu-img">
+                            <span slot="title" class="menu-title">{{item.title}}</span>
+                        </el-menu-item>
+                    </el-menu>
+                </el-row>
+            </el-col>
+        </transition>
 
         <!--右栏-->
+
         <el-col
                 :offset="7"
                 class="container-right"
                 :span="17">
-            <ws-care-user-detail :id="id" />
+                <ws-care-user-detail :id="id"/>
         </el-col>
+
     </el-row>
 </template>
 
@@ -40,7 +44,7 @@
         data() {
             return {
                 //用户标志
-                id:'',
+                id: '',
                 //左栏导航菜单列表
                 menus: []
             }
@@ -49,23 +53,23 @@
             this.init()
         },
         methods: {
-            init(){
+            init() {
                 this.getUserCareListRequest()
             },
 
             //获取关注用户列表
-            getUserCareListRequest(){
-                let that=this
-                this.request.getUserCareList({},function (err,res) {
-                    if(res.code===0){
-                        that.menus=res.data
+            getUserCareListRequest() {
+                let that = this
+                this.request.getUserCareList({}, function (err, res) {
+                    if (res.code === 0) {
+                        that.menus = res.data
                     }
                 })
             },
 
             //导航栏选中事件,index为用户标志
-            handleMenuSelect(index,indexPath){
-                this.id=index
+            handleMenuSelect(index, indexPath) {
+                this.id = index
             }
         }
     }
@@ -80,10 +84,10 @@
     /*左栏*/
 
     .container-left {
-        position:fixed;
-        top:80px;
-        bottom:0px;
-        width:200px;
+        position: fixed;
+        top: 80px;
+        bottom: 0px;
+        width: 200px;
         overflow: auto;
     }
 
@@ -91,7 +95,7 @@
         display: flex;
         align-items: center;
         height: 45px;
-        padding-left:10px !important;
+        padding-left: 10px !important;
     }
 
     .menu-img {
@@ -103,7 +107,7 @@
 
     /*右栏*/
 
-    .container-right{
-        padding-left:25px;
+    .container-right {
+        padding-left: 25px;
     }
 </style>

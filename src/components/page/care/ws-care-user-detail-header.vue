@@ -21,6 +21,7 @@
 
         <el-row class="container-btn" type="flex">
             <el-button
+                    @click="turnToInformationClick"
                     size="small"
                     type="primary"
                     round
@@ -74,6 +75,10 @@
             //转向个人主页
             turnToHomePageClick(){
                 this.$router.push({name:'tabsessay'})
+            },
+            //转向简信
+            turnToInformationClick(){
+                this.$router.push({name:'information',params:{defaultActive:'information'}})
             }
         }
     }

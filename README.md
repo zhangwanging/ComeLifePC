@@ -1,14 +1,12 @@
 # 项目说明
-Web移动端——荧幕星光
+仿简书
 
 ## 主要技术
-**vue+element-ui+webpack**
+**vue+vue-router+vuex+element-ui+webpack**
 
 ## 功能模块
 
-- **浏览所有稿件**。
-- **注册**。
-- **登录**。
+
 
 
 ## 软件控制

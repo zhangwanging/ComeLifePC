@@ -8,7 +8,7 @@
                             :key="index"
                             v-for="(category,index) in categorys">
                         <a target='_self'
-                           :href="'#'+$route.path+'/'+category.type">{{category.label}}</a>
+                           :href="'#'+category.type">{{category.label}}</a>
                     </ws-copyright-nav-item>
                 </template>
             </ws-copyright-nav>
@@ -65,11 +65,14 @@
                 class="container-right"
                 :span="19">
             <el-row
-                    :id="$route.path+'/'+category.type"
                     v-for="(category,index) in categorys"
                     :key="index"
                     class="container-category">
-                <div class="category-title font-size-smalltitle">{{category.label}}</div>
+                <div
+                        :id="category.type"
+                        class="category-title font-size-smalltitle">
+                    <span>{{category.label}}</span>
+                </div>
                 <el-row class="category-content">
                     <el-col
                             v-for="(book,index) in category.books"
@@ -103,24 +106,24 @@
             WsCopyrightNavItem,
             WsCopyrightBookItem
         },
-        data(){
-            return{
-                categorys:[]
+        data() {
+            return {
+                categorys: []
             }
         },
-        created(){
+        created() {
             this.init()
         },
-        methods:{
-            init(){
+        methods: {
+            init() {
                 this.getCopyrightBooksRequest()
             },
-            getCopyrightBooksRequest(){
-                let that=this
-                this.request.getCopyrightBooks({},function (err,res) {
-                    if(res.code===0){
+            getCopyrightBooksRequest() {
+                let that = this
+                this.request.getCopyrightBooks({}, function (err, res) {
+                    if (res.code === 0) {
                         console.dir(res.data)
-                        that.categorys=res.data
+                        that.categorys = res.data
                     }
                 })
             }
@@ -145,17 +148,25 @@
         height: 100%;
     }
 
-    .category-title{
-        padding-left:8px;
+    .category-title span {
+        display: inline-block;
+        padding-left: 8px;
         margin-bottom: 15px;
-        border-left:3px solid #409EFF;
+        border-left: 3px solid #409EFF;
     }
 
-    .container-category{
+    .category-title:before {
+        content: "";
+        display: block;
+        height:60px;
+        margin: -80px 0 0;
+    }
+
+    .container-category {
         margin-bottom: 30px;
     }
 
-    .category-content .el-col{
-        padding:0 8px 8px 0;
+    .category-content .el-col {
+        padding: 0 8px 8px 0;
     }
 </style>

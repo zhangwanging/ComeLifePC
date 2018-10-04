@@ -3,10 +3,10 @@
         <el-col
                 :xs="24"
                 :sm="20"
-                :md="18"
-                :lg="13"
-                :xl="12"
-                class="rs-container-main">
+                :md="14"
+                :lg="14"
+                :xl="14"
+                class="container-ws-base-layout-main-center">
             <slot></slot>
         </el-col>
     </el-row>
@@ -19,6 +19,10 @@
 </script>
 
 <style scoped>
+
+    .container-ws-base-layout-main-center{
+
+    }
 
     .el-row, .el-col {
         height: 100%;

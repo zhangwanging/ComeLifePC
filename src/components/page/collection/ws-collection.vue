@@ -4,7 +4,7 @@
             <template slot="header">
                 <img
                         class="header-img"
-                        :src="require(`$src/assets/img/recommend-author.png`)"
+                        :src="require(`$src/assets/img/collect-note.png`)"
                         alt="">
             </template>
         </ws-base-layout-main-bottom-header>

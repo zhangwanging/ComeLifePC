@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: "ws-message-information-list-item.vue"
+        name: "ws-message-information-list-item"
     }
 </script>
 

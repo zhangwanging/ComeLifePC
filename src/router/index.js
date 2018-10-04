@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue'
 import Router from 'vue-router'
+import store from '$src/store/index'
 
 import ErrorMsg from '$src/components/common/errormsg/ErrorMsg.vue'
 
@@ -42,10 +43,12 @@ import WsIndexMainMini from '$src/components/page/index/ws-index-main-mini.vue'
 import WsShop from '$src/components/page/shop/ws-shop.vue'
 import WsWallet from '$src/components/page/wallet/ws-wallet.vue'
 import WsLike from '$src/components/page/like/ws-like.vue'
+import WsHomepageTabsLike from '$src/components/page/homepage/ws-homepage-tabs-like.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router= new Router({
+
     routes: [
         //重定向
         {
@@ -78,6 +81,7 @@ export default new Router({
                         },
                         //我的主页
                         {
+                            meta: { requiresAuth: true },
                             name: 'homepage',
                             path: 'homepage',
                             components: {
@@ -97,11 +101,19 @@ export default new Router({
                                     components: {
                                         'usertabs': WsHomepageTabsFans
                                     }
+                                },
+                                {
+                                    name:'tabslike',
+                                    path:'tabslike',
+                                    components:{
+                                        'usertabs':WsHomepageTabsLike
+                                    }
                                 }
                             ]
                         },
                         //设置
                         {
+                            meta: { requiresAuth: true },
                             name: 'setting',
                             path: 'setting',
                             components: {
@@ -154,10 +166,14 @@ export default new Router({
                         },
                         //消息
                         {
+                            meta: { requiresAuth: true },
                             name: 'message',
                             path: 'message',
                             components: {
                                 default: WsMessage
+                            },
+                            props:{
+                              default:true
                             },
                             children: [
                                 {
@@ -193,6 +209,9 @@ export default new Router({
                                     path: 'information',
                                     components: {
                                         'message': WsMessageInformation
+                                    },
+                                    props:{
+                                        'message':true
                                     }
                                 },
                                 {
@@ -213,6 +232,7 @@ export default new Router({
                         },
                         //关注
                         {
+                            meta: { requiresAuth: true },
                             name: 'care',
                             path: 'care',
                             components: {
@@ -221,6 +241,7 @@ export default new Router({
                         },
                         //帮助与反馈
                         {
+                            meta: { requiresAuth: true },
                             name: 'feedback',
                             path: 'feedback',
                             components: {
@@ -229,6 +250,7 @@ export default new Router({
                         },
                         //热门
                         {
+                            meta: { requiresAuth: true },
                             name: 'hotday7',
                             path: 'hotday7',
                             components: {
@@ -236,6 +258,7 @@ export default new Router({
                             }
                         },
                         {
+                            meta: { requiresAuth: true },
                             name: 'hotday30',
                             path: 'hotday30',
                             components: {
@@ -243,6 +266,7 @@ export default new Router({
                             }
                         },
                         {
+                            meta: { requiresAuth: true },
                             name: 'copyright',
                             path: 'copyright',
                             components: {
@@ -289,6 +313,7 @@ export default new Router({
                     children:[
                         //收藏的文章
                         {
+                            meta: { requiresAuth: true },
                             name:'collection',
                             path:'collection',
                             components:{
@@ -305,6 +330,7 @@ export default new Router({
                         },
                         //已购内容
                         {
+                            meta: { requiresAuth: true },
                             name:'shop',
                             path:'shop',
                             components:{
@@ -313,6 +339,7 @@ export default new Router({
                         },
                         //我的钱包
                         {
+                            meta: { requiresAuth: true },
                            name:'wallet',
                            path:'wallet',
                            components:{
@@ -321,6 +348,7 @@ export default new Router({
                         },
                         //喜欢的文章
                         {
+                            meta: { requiresAuth: true },
                             name:'like',
                             path:'like',
                             components:{
@@ -333,6 +361,7 @@ export default new Router({
         },
         //文章编辑排版
         {
+            meta: { requiresAuth: true },
             name: 'writeessay',
             path: '/writeessay',
             components: {
@@ -352,5 +381,35 @@ export default new Router({
                 'serial': WsSerial
             }
         }
-    ]
+    ],
+    scrollBehavior (to, from, savedPosition) {
+/*        console.log('to:'+JSON.stringify(to.hash))
+        if (to.hash) {
+            return {
+                selector: to.hash
+            }
+        }*/
+    }
 })
+
+router.beforeEach((to,from,next)=>{
+    console.log('beforeEach')
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!store.getters.loginStatus) {
+            next({
+                name: 'session'
+            })
+        } else {
+            next()
+        }
+    } else {
+        next() // 确保一定要调用 next()
+    }
+})
+
+router.afterEach((to,from)=>{
+
+})
+
+
+export default router

@@ -123,6 +123,10 @@ a:active{
 .font-color-success{
     color:#67C23A;
 }
+
+.font-color-primary{
+    color:#409EFF;
+}
 /*end 字体颜色*/
 
 /*背景色彩*/
@@ -159,3 +163,16 @@ a:active{
     height:32px !important;
 }
 
+/*调整submenu*/
+.container-ws-index-header .el-submenu__title{
+    height: 59px !important;
+    line-height: 59px !important;
+}
+
+/*fade*/
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to{
+    opacity: 0;
+}

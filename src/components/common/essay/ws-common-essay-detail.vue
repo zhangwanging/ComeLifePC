@@ -1,5 +1,6 @@
 <template>
-    <el-row>
+    <transition name="fade">
+        <el-row>
             <!--标题-->
             <h1 class="font-size-largetitle">{{essay.title}}</h1>
 
@@ -8,7 +9,7 @@
                 <img class='avatar' :src="essay.avatar" alt="">
                 <el-col>
                     <span>{{essay.author}}</span>
-                    <p class="container-author-outline font-color-minor">
+                    <p class="container-author-outline font-color-minor hidden-sm-and-down">
                         <span>{{essay.time}}</span>
                         字数 <span>{{essay.wordNum}}</span>
                         阅读 <span>{{essay.viewNum}}</span>
@@ -87,7 +88,7 @@
                             <span
                                     @click="delCommentAdmireClick(index)"
                                     v-if="item.isAdmire">
-                                <i class="iconfont icon-xiaoxi"></i>
+                                <i class="iconfont icon-zan2"></i>
                                 {{item.admireNum}}人赞
                             </span>
                             <span
@@ -162,7 +163,8 @@
                     </el-row>
                 </el-row>
             </el-row>
-    </el-row>
+        </el-row>
+    </transition>
 </template>
 
 <script>

@@ -1,12 +1,12 @@
 <template>
-    <el-row>
         <el-row>
-            <ws-care-user-detail-header :id="id"/>
+            <el-row>
+                <ws-care-user-detail-header :id="id"/>
+            </el-row>
+            <el-row>
+                <ws-care-user-detail-main :id="id"/>
+            </el-row>
         </el-row>
-        <el-row>
-            <ws-care-user-detail-main :id="id"/>
-        </el-row>
-    </el-row>
 </template>
 
 <script>
@@ -16,25 +16,22 @@
 
     export default {
         name: "ws-care-user-detail",
-        components:{
+        components: {
             WsCareUserDetailHeader,
             WsCareUserDetailMain
         },
-        props:{
+        props: {
             //用户标志
-          id:{
-              type:String
-          }
-        },
-        data(){
-            return{
-
+            id: {
+                type: String
             }
         },
-        created(){
+        data() {
+            return {}
         },
-        methods:{
-        }
+        created() {
+        },
+        methods: {}
     }
 </script>
 

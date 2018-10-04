@@ -1,9 +1,9 @@
 <template>
     <el-container class="container">
-        <el-header class="border-color-first">
+        <el-header class="border-color-first hidden-sm-and-down">
             <ws-index-header class="rs-container-header"/>
         </el-header>
-        <el-main>
+        <el-main class="ws-sm-discover-main">
             <router-view/>
         </el-main>
     </el-container>

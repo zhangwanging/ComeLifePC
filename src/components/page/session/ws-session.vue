@@ -45,7 +45,7 @@
             init() {
                 this.setActivePanal()
             },
-            setActivePanal(name = this.$route.params.type) {
+            setActivePanal(name = 'login') {
                 this.activePanelName = name
                 this.$router.replace('/session/' + name)
             },
@@ -69,7 +69,7 @@
 
     /*子面板*/
     .el-tab-pane {
-        padding: 15px 20px;
+        padding: 15px 15px;
     }
 
 </style>

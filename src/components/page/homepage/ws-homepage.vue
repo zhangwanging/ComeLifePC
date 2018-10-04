@@ -34,7 +34,8 @@
                         <el-col class="user-outline" :span="3">
                             <el-row>{{userBasicData.essayNum}}</el-row>
                             <el-row>
-                                <router-link :to="{name:'tabsessay'}">文章 <i class="el-icon-arrow-right"></i></router-link>
+                                <router-link :to="{name:'tabsessay'}">文章 <i class="el-icon-arrow-right"></i>
+                                </router-link>
                             </el-row>
                         </el-col>
                         <!--字数-->
@@ -67,9 +68,39 @@
                         type="flex"
                         justify="space-between">
                     <span class="font-color-note">个人介绍</span>
-                    <a href="#" class="font-color-note">编辑</a>
+
+                    <ws-base-button-text @click="isEditProfile=true">
+                        <i class="el-icon-edit"></i>编辑
+                    </ws-base-button-text>
+
                 </el-row>
-                <el-row class="outline-item-line">
+                <el-row v-if="isEditProfile">
+                    <el-col style="margin:10px 0;">
+                        <el-input
+                                type="textarea"
+                                :rows="3"
+                                :placeholder="userBasicData.motto"
+                                v-model="userBasicData.motto">
+                        </el-input>
+                    </el-col>
+                    <el-col>
+                        <el-button
+                                style="margin-right:5px;"
+                                @click="isEditProfile=false"
+                                size="mini"
+                                type="success"
+                                plain
+                                round>
+                            保存
+                        </el-button>
+                        <ws-base-button-text
+                                @click="isEditProfile=false">
+                            取消
+                        </ws-base-button-text>
+                    </el-col>
+                </el-row>
+                <el-row v-else
+                        class="outline-item-line">
                     <p>{{userBasicData.motto}}</p>
                 </el-row>
             </el-row>
@@ -77,18 +108,22 @@
             <!--我关注的专题/文集/连载，喜欢的文章-->
             <el-row class="outline-item">
                 <el-row
-                        class="outline-item-line"
-                        type="flex"
-                        align="middle">
-                    <i class="iconfont icon-zhongtumoshi"></i>
-                    <span>我关注的专题/文集/连载</span>
+                        class="outline-item-line">
+                    <router-link :to="{name:'tabslike'}">
+                        <el-row type="flex" align="middle">
+                            <i class="iconfont icon-zhongtumoshi"></i>
+                            <span>我关注的专题/文集/连载</span>
+                        </el-row>
+                    </router-link>
                 </el-row>
                 <el-row
-                        class="outline-item-line"
-                        type="flex"
-                        align="middle">
-                    <i class="iconfont icon-zan"></i>
-                    <span>我喜欢的文章</span>
+                        class="outline-item-line">
+                    <router-link :to="{name:'tabslike'}">
+                        <el-row type="flex" align="middle">
+                            <i class="iconfont icon-zan"></i>
+                            <span>我喜欢的文章</span>
+                        </el-row>
+                    </router-link>
                 </el-row>
             </el-row>
 
@@ -99,7 +134,11 @@
                         type="flex"
                         justify="space-between">
                     <span>我创建的专题</span>
-                    <a href="#">新建专题</a>
+                    <ws-base-button-text @click="createSubjectClick">
+                        <span class="font-color-primary">
+                            <i class="el-icon-plus"></i>新建专题
+                        </span>
+                    </ws-base-button-text>
                 </el-row>
                 <el-row class="outline-item-line">
                     <el-row class="subject"
@@ -107,8 +146,12 @@
                             align="middle"
                             :key="index"
                             v-for="(subject,index) in userBasicData.subjects">
-                        <img class="subject-img" :src="subject.imgUrl" alt="">
-                        <span>{{subject.name}}</span>
+                        <router-link :to="{name:'subject'}">
+                            <el-row type="flex" align="middle">
+                                <img class="subject-img" :src="subject.imgUrl" alt="">
+                                <span>{{subject.name}}</span>
+                            </el-row>
+                        </router-link>
                     </el-row>
                 </el-row>
             </el-row>
@@ -120,6 +163,8 @@
                 </el-row>
                 <el-row class="outline-item-line">
                     <el-row
+                            style="cursor:pointer;"
+                            @click.native="myNotesClick"
                             v-for="(note,index) in userBasicData.notes"
                             :key="index"
                             type='flex'
@@ -137,33 +182,50 @@
 <script>
     import WsBaseLayoutMainLeftAsideRight from '$src/components/base/ws-base-layout-main-left-aside-right.vue'
     import WsHomepageTabsEssay from '$src/components/page/homepage/ws-homepage-tabs-essay.vue'
+    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
 
     export default {
         name: "ws-homepage",
         components: {
             WsBaseLayoutMainLeftAsideRight,
-            WsHomepageTabsEssay
+            WsHomepageTabsEssay,
+            WsBaseButtonText
         },
         data() {
             return {
-                userBasicData:{}
+                userBasicData: {},
+                isEditProfile: false
             };
         },
-        created(){
+        created() {
             this.init()
         },
         methods: {
-            init(){
+            init() {
                 this.getUserBasicDataRequest()
             },
 
             //获取用户基础数据
-            getUserBasicDataRequest(){
-                let that=this
-                this.request.getUserBasicData({},function (err,res) {
-                    if(res.code===0){
-                        that.userBasicData=res.data
+            getUserBasicDataRequest() {
+                let that = this
+                this.request.getUserBasicData({}, function (err, res) {
+                    if (res.code === 0) {
+                        that.userBasicData = res.data
                     }
+                })
+            },
+
+            createSubjectClick() {
+                this.$message({
+                    type: 'warning',
+                    message: '待实现'
+                })
+            },
+
+            myNotesClick() {
+                this.$message({
+                    type: 'warning',
+                    message: '待实现'
                 })
             }
         }
@@ -175,37 +237,37 @@
     /*左栏*/
 
     /*用户简介*/
-    .container-user-header{
+    .container-user-header {
         margin-bottom: 12px;
     }
 
-    .atavar{
-        width:60px;
-        height:60px;
-        margin-right:20px;
+    .atavar {
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
         border-radius: 30px;
     }
 
     .username {
-        margin:0;
+        margin: 0;
     }
 
     .user-outline {
         border-right: 1px solid lightgrey;
-        min-width:50px;
+        min-width: 50px;
     }
 
-    .user-outline .el-row:last-child{
-        min-width:60px;
+    .user-outline .el-row:last-child {
+        min-width: 60px;
     }
 
     .user-outline:last-child {
         border-right: 0;
     }
 
-    .user-outline .el-row:last-child{
+    .user-outline .el-row:last-child {
         cursor: pointer;
-        color:#C0C4CC;
+        color: #C0C4CC;
     }
 
     /*右栏*/
@@ -217,36 +279,37 @@
 
     .outline-item-line {
         padding: 5px 0;
+        cursor: pointer;
     }
 
-    i{
-        margin-right:5px;
+    i {
+        margin-right: 5px;
     }
-    
+
     /*我的专题*/
 
-    .subject{
+    .subject {
         margin-bottom: 8px;
     }
 
-    .subject:last-child{
+    .subject:last-child {
         margin-bottom: 0;
     }
 
-    .subject-img{
-        width:24px;
-        height:20px;
-        margin-right:5px;
+    .subject-img {
+        width: 24px;
+        height: 20px;
+        margin-right: 5px;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
     }
 
-    .note{
+    .note {
         margin-bottom: 8px;
     }
 
-    .note:last-child{
+    .note:last-child {
         margin-bottom: 0;
     }
 </style>

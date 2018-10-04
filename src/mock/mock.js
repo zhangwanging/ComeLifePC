@@ -11,7 +11,7 @@ const Mock = require('mockjs')
 
 Mock.mock(host + url.getColdJoke, {
     'code': 0,
-    'data|2': [{
+    'data|2-5': [{
         title: '@ctitle()',
         content: '@cparagraph(10,20)',
         author: '@ctitle()',
@@ -90,7 +90,7 @@ Mock.mock(host + url.getDynamicsByUserId, {
                 commentNum: '@natural(0,1000)',
                 imgUrl: '@dataImage()',
                 likeNum: '@natural(0,1000)',
-                time: '@datatime'
+                time: '@datetime'
             }
         ]
     }
@@ -345,7 +345,7 @@ Mock.mock(host+url.getCopyrightBooks,{
     code:0,
     data:[
         {
-            type:'@integer',
+            type:'@title()',
             label:'小说故事',
             'books|1-8':[
                 {
@@ -359,7 +359,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@integer',
+            type:'@title()',
             label:'互联网、科普',
             'books|1-8':[
                 {
@@ -373,7 +373,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@integer',
+            type:'@title()',
             label:'职场、励志、理财',
             'books|1-8':[
                 {
@@ -387,7 +387,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@integer',
+            type:'@title()',
             label:'文化、历史',
             'books|1-8':[
                 {
@@ -401,7 +401,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@integer',
+            type:'@title()',
             label:'工具、技能',
             'books|1-8':[
                 {
@@ -415,7 +415,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@integer',
+            type:'@title()',
             label:'电子书',
             'books|1-8':[
                 {

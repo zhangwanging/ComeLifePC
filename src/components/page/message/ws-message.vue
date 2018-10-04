@@ -1,11 +1,11 @@
 <template>
     <el-row class="container-ws-message">
         <!--左栏-->
-        <el-col class="container-left" :span="7">
+        <el-col class="container-left">
             <el-row>
                 <el-menu
                         router
-                        default-active="comment">
+                        :default-active="defaultActive">
                     <el-menu-item
                             index="comment"
                             :route="{name:'comment'}"
@@ -79,7 +79,7 @@
             </el-row>
         </el-col>
 
-        <el-col class="container-right" :span="17">
+        <el-col class="container-right" :offset="7" :span="17">
             <router-view name="message"></router-view>
         </el-col>
     </el-row>
@@ -93,10 +93,14 @@
         components:{
 
         },
+        props:['defaultActive'],
         data() {
             return {
 
             }
+        },
+        created(){
+            console.log('defaultActive:'+this.defaultActive)
         }
     }
 </script>
@@ -110,7 +114,11 @@
     /*左栏*/
 
     .container-left {
-        height: 100%;
+        position:fixed;
+        top:0;
+        bottom:0;
+        width:200px;
+        margin-top:80px;
         overflow-y: scroll;
     }
 
