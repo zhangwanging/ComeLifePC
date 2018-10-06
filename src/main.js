@@ -17,6 +17,9 @@ import '$src/assets/css/response.css'
 import 'element-ui/lib/theme-chalk/display.css'
 import storage from '$src/store/storage'
 import '$src/directive/directive.js'
+import { Popover } from 'element-ui';
+
+Vue.use(Popover);
 
 Vue.use(ElementUI);
 Vue.use(mavonEditor)
@@ -32,10 +35,20 @@ Vue.config.productionTip = false
 
 
 
-new Vue({
+const app=new Vue({
     el: '#app',
     router,
     store,
     components: {App},
-    template: '<App/>'
+    template: '<App/>',
+    data:{
+    },
+    methods:{
+
+    },
+    watch:{
+
+    }
 })
+
+console.dir(app)

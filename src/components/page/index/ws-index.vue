@@ -1,5 +1,5 @@
 <template>
-    <el-container class="container">
+    <el-container class="container" >
         <el-header class="border-color-first hidden-sm-and-down">
             <ws-index-header class="rs-container-header"/>
         </el-header>
@@ -16,6 +16,8 @@
         name: "ws-index",
         components:{
             WsIndexHeader
+        },
+        methods:{
         }
     }
 </script>
@@ -23,7 +25,6 @@
 <style scoped>
 
     .container{
-        height:100%;
     }
 
     .el-header{
@@ -38,7 +39,6 @@
     }
 
     .el-main{
-        height:calc(100% - 60px);
         padding-bottom: 0;
         margin-top:60px;
         z-index:0;

@@ -1,5 +1,5 @@
 <template>
-    <ws-base-layout-main-left-aside-right>
+    <ws-base-layout-main-left-aside-right @scroll.native="handleAppScroll">
         <template slot="left">
             <el-row>
                 <!--轮播图-->
@@ -186,7 +186,9 @@
             this.init()
         },
         methods: {
-
+            handleAppScroll(e){
+                console.dir("e:"+e)
+            },
             init() {
                 this.getCarouselRequest()
             },

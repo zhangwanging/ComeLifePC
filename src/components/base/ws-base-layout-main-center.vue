@@ -25,7 +25,7 @@
     }
 
     .el-row, .el-col {
-        height: 100%;
+
     }
 
 </style>
