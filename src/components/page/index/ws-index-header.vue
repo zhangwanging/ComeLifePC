@@ -11,17 +11,18 @@
                 :xl="5"
                 class="title">
             <div class="title-wrapper" @click="turnToHomePage">
-                <h1 class="font-color-primary font-size-largetitle">荧幕星光</h1>
+                <h1 class="font-color-primary font-size-largetitle">简书</h1>
             </div>
         </el-col>
 
         <el-col
+                style="height:100%;"
                 :xs="19"
                 :sm="19"
                 :md="19"
                 :lg="19"
                 :xl="19">
-            <el-row style="width:100%;" type="flex" align="middle">
+            <el-row style="width:100%;height:100%;" type="flex" align="middle">
                 <el-menu
                         active-text-color="#409EFF"
                         :default-active="defaultActive"
@@ -92,10 +93,19 @@
                                 class="search"
                                 :route="{name:'discover'}"
                                 index="search">
-                            <el-input
-                                    size="small"
-                                    type="search"
-                                    placeholder="搜索"/>
+                            <div style="height:56px;display: flex;align-items: center;">
+                                <el-input
+                                        size="small"
+                                        type="search"
+                                        placeholder="输入搜索字"/>
+                                <el-input
+                                        @click.native="searchClick"
+                                        class="search-btn"
+                                        size="small"
+                                        type="button"
+                                        value="搜索"/>
+                            </div>
+
                         </el-menu-item>
                     </div>
 
@@ -196,6 +206,10 @@
                 this.$store.commit('setLoginStatus', false)
             },
             searchClick() {
+                this.$message({
+                    type: 'warning',
+                    message: '待实现'
+                })
                 console.log('search....')
             }
         },
@@ -212,9 +226,8 @@
 
 <style scoped>
 
-    .container {
+    .container-ws-index-header {
         height: 100%;
-        min-width: 778px;
     }
 
     /*标题*/
@@ -245,7 +258,17 @@
 
     }
 
-    .search:hover{
+    .search-btn {
+        width:60px;
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    .search-btn:hover{
+        cursor:pointer;
+    }
+
+    .search:hover {
         background-color: white;
     }
 
@@ -259,14 +282,15 @@
         display: -ms-flex;
         justify-content: space-between;
         width: 100%;
+        height:100%;
         border-bottom: none;
     }
 
-    .el-menu:before{
+    .el-menu:before {
         content: none;
     }
 
-    .el-menu:after{
+    .el-menu:after {
         content: none;
     }
 
@@ -275,6 +299,7 @@
         display: -moz-flex;
         display: -ms-flex;
         justify-content: flex-start;
+        align-items: center;
     }
 
     .el-menu .right {
@@ -282,17 +307,17 @@
         display: -moz-flex;
         display: -ms-flex;
         justify-content: flex-end;
-        margin-right:10%;
+        align-items: center;
+        margin-right: 10%;
     }
 
-    .el-menu .right .user{
-        min-width:90px;
+    .el-menu .right .user {
+        min-width: 90px;
     }
 
     .el-menu-item {
         display: flex;
         align-items: center;
-        height:59px;
     }
 
     .el-menu .message {

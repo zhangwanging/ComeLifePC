@@ -345,7 +345,7 @@ Mock.mock(host+url.getCopyrightBooks,{
     code:0,
     data:[
         {
-            type:'@title()',
+            type:'story',
             label:'小说故事',
             'books|1-8':[
                 {
@@ -359,7 +359,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@title()',
+            type:'technology',
             label:'互联网、科普',
             'books|1-8':[
                 {
@@ -373,7 +373,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@title()',
+            type:'money',
             label:'职场、励志、理财',
             'books|1-8':[
                 {
@@ -387,7 +387,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@title()',
+            type:'culture',
             label:'文化、历史',
             'books|1-8':[
                 {
@@ -401,7 +401,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@title()',
+            type:'tip',
             label:'工具、技能',
             'books|1-8':[
                 {
@@ -415,7 +415,7 @@ Mock.mock(host+url.getCopyrightBooks,{
             ]
         },
         {
-            type:'@title()',
+            type:'electribook',
             label:'电子书',
             'books|1-8':[
                 {

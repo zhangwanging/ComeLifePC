@@ -13,8 +13,7 @@ body{
     font-size:12px;
     color:#606266;
     overflow-x: hidden;
-/*
-    overflow-y:scroll;*/
+    overflow-y:scroll;
 }
 
 

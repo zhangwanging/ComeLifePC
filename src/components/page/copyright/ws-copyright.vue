@@ -1,5 +1,6 @@
 <template>
     <el-row class="container">
+        <el-row id="copyright-target" class="body-scroll-target"></el-row>
         <el-col class="container-left" :span="5">
             <ws-copyright-nav>
                 <span slot="title">分类导航</span>
@@ -7,8 +8,9 @@
                     <ws-copyright-nav-item
                             :key="index"
                             v-for="(category,index) in categorys">
-                        <a target='_self'
-                           :href="'#'+category.type">{{category.label}}</a>
+                        <ws-base-button-text
+                           @click="turnToCategoryClick('#'+category.type)">{{category.label}}
+                        </ws-base-button-text>
                     </ws-copyright-nav-item>
                 </template>
             </ws-copyright-nav>
@@ -98,13 +100,16 @@
     import WsCopyrightNav from '$src/components/page/copyright/ws-copyright-nav.vue'
     import WsCopyrightNavItem from '$src/components/page/copyright/ws-copyright-nav-item.vue'
     import WsCopyrightBookItem from '$src/components/page/copyright/ws-copyright-book-item.vue'
+    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
+    const VueScrollTo = require('vue-scrollto')
 
     export default {
         name: "ws-copyright",
         components: {
             WsCopyrightNav,
             WsCopyrightNavItem,
-            WsCopyrightBookItem
+            WsCopyrightBookItem,
+            WsBaseButtonText
         },
         data() {
             return {
@@ -126,6 +131,33 @@
                         that.categorys = res.data
                     }
                 })
+            },
+            turnToCategoryClick(originSelector){
+                console.log('selector:'+originSelector)
+                this.scrollToTarget(originSelector)
+            },
+            //不明白，body-origin的scrollTop追着各selector?
+            scrollToTarget(originSelector){
+                let options = {
+                    container: '#body-origin',
+                    easing: 'ease-in',
+                    offset: -15,
+                    duration: 200,
+                    force: true,
+                    cancelable: true,
+                    onStart: function (element) {
+                        // scrolling started
+                    },
+                    onDone: function (element) {
+                        // scrolling is done
+                    },
+                    onCancel: function () {
+                        // scrolling has been interrupted
+                    },
+                    x: false,
+                    y: true
+                }
+                VueScrollTo.scrollTo(originSelector, options)
             }
         }
     }
@@ -168,5 +200,13 @@
 
     .category-content .el-col {
         padding: 0 8px 8px 0;
+    }
+
+
+    .body-scroll-target {
+        position: fixed;
+        top: 60px;
+        width: 100%;
+        height: 1px;
     }
 </style>

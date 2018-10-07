@@ -85,8 +85,7 @@
         position: fixed;
         top: 60px;
         width: 100%;
-        height: 1px;
-        background-color: white;
+        height: 0;
     }
 
     .to-top-btn {
