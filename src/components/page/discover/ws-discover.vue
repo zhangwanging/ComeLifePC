@@ -67,7 +67,7 @@
                     <!--更多专题-->
                     <router-link :to="{name:'subject-more'}">
                         <ws-base-button-text type="text">
-                            <span>更多热门专题</span>
+                            <span class="more-text">更多热门专题</span>
                             <i class="el-icon-arrow-right"></i>
                         </ws-base-button-text>
                     </router-link>
@@ -96,34 +96,34 @@
             <el-row class="container-category">
                 <router-link :to="{name:'hotday7'}">
                     <img class="menu-btn"
-                         :src="require(`$src/assets/img/banner-hot-day-7.png`)"
+                         :src="require(`./banner-hot-day-7.png`)"
                          :key="1"
                          alt="">
                 </router-link>
                 <router-link :to="{name:'hotday30'}">
                     <img class="menu-btn"
                          :key="2"
-                         :src="require(`$src/assets/img/banner-hot-day-30.png`)"
+                         :src="require(`./banner-hot-day-30.png`)"
                          alt="">
                 </router-link>
                 <router-link :to="{name:'serial'}">
                     <img class="menu-btn"
                          :key="3"
-                         :src="require(`$src/assets/img/banner-serial.png`)"
+                         :src="require(`./banner-serial.png`)"
                          alt="">
                 </router-link>
 
                 <router-link :to="{name:'copyright'}">
                     <img class="menu-btn"
                          :key="4"
-                         :src="require(`$src/assets/img/banner-copyright.png`)"
+                         :src="require(`./banner-copyright.png`)"
                          alt="">
                 </router-link>
 
                 <router-link :to="{name:'subject'}">
                     <img class="menu-btn"
                          :key="5"
-                         :src="require(`$src/assets/img/banner-campus.png`)"
+                         :src="require(`./banner-campus.png`)"
                          alt="">
                 </router-link>
 
@@ -158,8 +158,8 @@
 </template>
 
 <script>
-    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
-    import WsBaseLayoutMainLeftAsideRight from '$src/components/base/ws-base-layout-main-left-aside-right.vue'
+    import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
+    import WsBaseLayoutMainLeftAsideRight from '$src/components/base/layout/ws-base-layout-main-left-aside-right.vue'
     import WsCommonEssayList from "$src/components/common/essay/ws-common-essay-list.vue"
     import WsCommonRecommendAuthor from '$src/components/common/recommend-author/ws-common-recommend-author.vue'
 
@@ -212,7 +212,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     /*左列*/
 
@@ -220,26 +220,27 @@
 
     .container-carousel {
         margin-bottom: 20px;
-        border-radius: 5px;
         overflow: hidden;
+        @include corner(large)
     }
 
     /*更多热门专题*/
 
     .container-hot {
         margin-bottom: 30px;
+        .btn-hot {
+            margin: 10px 10px 0 0;
+        }
+        .hot-more {
+            display: inline-block;
+        }
+        .more-text{
+            color:$font-color-note;
+        }
     }
 
     .el-button + .el-button {
         margin-left: 0;
-    }
-
-    .btn-hot {
-        margin: 10px 10px 0 0;
-    }
-
-    .hot-more {
-        display: inline-block;
     }
 
     /*网站元信息*/
@@ -247,12 +248,11 @@
         position: absolute;
         margin-top: 30px;
         margin-bottom: 20px;
-    }
-
-    .container-left-footer p a {
-        display: inline-block;
-        margin-right: 15px;
-        color: #909399;
+        p a {
+            display: inline-block;
+            margin-right: 15px;
+            color: $font-color-note;
+        }
     }
 
     /*右列*/
@@ -261,13 +261,12 @@
 
     .container-category {
         margin-top: -4px;
-    }
-
-    .menu-btn {
-        width: 100%;
-        height: 40px;
-        margin-bottom: 10px;
-        text-align: left;
+        .menu-btn {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
     }
 
     /*扫描码*/
@@ -275,17 +274,14 @@
     .container-qrcode {
         padding: 5px 10px;
         margin-bottom: 20px;
-        border-width: 1px;
-        border-style: solid;
-        border-radius: 5px;
-    }
-
-    .container-qrcode:hover {
-        cursor: pointer;
-    }
-
-    .container-qrcode p {
-        margin: 0;
+        @include border;
+        @include corner;
+        &:hover {
+            cursor: pointer;
+        }
+        p {
+            margin: 0;
+        }
     }
 
 </style>

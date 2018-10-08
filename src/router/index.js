@@ -2,8 +2,6 @@ import Vue from 'vue/dist/vue'
 import Router from 'vue-router'
 import store from '$src/store/index'
 
-import ErrorMsg from '$src/components/common/errormsg/ErrorMsg.vue'
-
 import WsFeedback from '$src/components/page/feedback/ws-feedback.vue'
 import WsIndex from '$src/components/page/index/ws-index.vue'
 import WsDiscover from '$src/components/page/discover/ws-discover.vue'

@@ -180,9 +180,9 @@
 </template>
 
 <script>
-    import WsBaseLayoutMainLeftAsideRight from '$src/components/base/ws-base-layout-main-left-aside-right.vue'
+    import WsBaseLayoutMainLeftAsideRight from '$src/components/base/layout/ws-base-layout-main-left-aside-right.vue'
     import WsHomepageTabsEssay from '$src/components/page/homepage/ws-homepage-tabs-essay.vue'
-    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
+    import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
 
     export default {
         name: "ws-homepage",

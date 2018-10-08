@@ -46,11 +46,10 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .container-item{
         padding:10px 0;
-        border-bottom-width: 1px;
-        border-bottom-style:solid;
+        @include border(bottom)
     }
 
 </style>

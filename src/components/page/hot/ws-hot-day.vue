@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import WsBaseLayoutMainLeftAsideRight from '$src/components/base/ws-base-layout-main-left-aside-right.vue'
+    import WsBaseLayoutMainLeftAsideRight from '$src/components/base/layout/ws-base-layout-main-left-aside-right.vue'
     import WsCommonEssayList from '$src/components/common/essay/ws-common-essay-list.vue'
     import WsCommonRecommendAuthor from '$src/components/common/recommend-author/ws-common-recommend-author.vue'
 

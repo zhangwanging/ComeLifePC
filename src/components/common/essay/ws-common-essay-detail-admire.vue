@@ -29,7 +29,7 @@
                         type="flex"
                         justify="center"
                         align="middle">
-                    <img class="avatar" src="../../../assets/logo.png" alt="">
+                    <img class="avatar" src="../../../assets/star.jpg" alt="">
                     <span>给作者送糖</span>
                 </el-row>
                 <!--选择糖果数目-->

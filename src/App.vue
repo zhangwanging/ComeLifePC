@@ -16,7 +16,7 @@
 
 <script>
 
-    import WsBaseScrollToTop from '$src/components/base/ws-base-scrolltotop.vue'
+    import WsBaseScrollToTop from '$src/components/base/scroll/ws-base-scrolltotop.vue'
 
     export default {
         name: 'App',
@@ -33,9 +33,10 @@
     }
 </script>
 
-<style>
+<style scoped lang="scss">
 
     .container-app {
         height: 100%;
     }
+
 </style>

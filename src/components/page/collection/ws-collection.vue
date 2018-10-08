@@ -4,7 +4,7 @@
             <template slot="header">
                 <img
                         class="header-img"
-                        :src="require(`$src/assets/img/collect-note.png`)"
+                        :src="require(`./collect-note.png`)"
                         alt="">
             </template>
         </ws-base-layout-main-bottom-header>
@@ -13,8 +13,8 @@
 
 <script>
 
-    import WsBaseLayoutMainCenter from '$src/components/base/ws-base-layout-main-center.vue'
-    import WsBaseLayoutMainBottomHeader from '$src/components/base/ws-base-layout-main-bottom-header.vue'
+    import WsBaseLayoutMainCenter from '$src/components/base/layout/ws-base-layout-main-center.vue'
+    import WsBaseLayoutMainBottomHeader from '$src/components/base/layout/ws-base-layout-main-bottom-header.vue'
 
     export default {
         name: "ws-collection",

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import WsBaseLayoutMainCenterMini from '$src/components/base/ws-base-layout-main-center-mini.vue'
+    import WsBaseLayoutMainCenterMini from '$src/components/base/layout/ws-base-layout-main-center-mini.vue'
 
     export default {
         name: "ws-index-main-mini",

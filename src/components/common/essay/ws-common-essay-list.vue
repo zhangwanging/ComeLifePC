@@ -5,7 +5,7 @@
             <el-row
                     v-for="(item,index) in essays"
                     :key="index"
-                    class="container-item border-color-first">
+                    class="container-item">
                 <ws-common-essay-list-item
                         :title="item.title"
                         :content="item.content"
@@ -112,11 +112,10 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .container-item {
         padding: 10px 0;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
+        @include border(bottom)
     }
 
     .btn-leanmore {

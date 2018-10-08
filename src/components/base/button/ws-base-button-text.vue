@@ -9,7 +9,7 @@
                    :type="type"
                    :loading="loading"
                    @click="handleClick">
-            <span class="font-color-minor font-size-content">
+            <span class="font-slot">
                 <slot></slot>
             </span>
         </el-button>
@@ -26,26 +26,32 @@
                 type: String,
                 default: 'text'
             },
-            loading:{
-                type:Boolean,
-                default:false
+            loading: {
+                type: Boolean,
+                default: false
             }
         },
-        methods:{
-            handleClick(e){
-                this.$emit('click',e)
+        methods: {
+            handleClick(e) {
+                this.$emit('click', e)
             }
         }
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .container {
         display: inline-block;
+
+        .type-text {
+            padding: 0;
+        }
+        .font-slot{
+            color:$font-color-formal;
+            font-size:$font-size-formal;
+        }
     }
 
-    .type-text {
-        padding: 0;
-    }
+
 </style>

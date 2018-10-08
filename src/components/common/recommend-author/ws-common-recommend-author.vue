@@ -2,7 +2,7 @@
     <el-row>
 
         <!--头部-->
-        <el-row class="font-color-minor" type="flex" justify="space-between">
+        <el-row class="author-header" type="flex" justify="space-between">
             <span>推荐作者</span>
             <el-row>
                 <ws-base-button-text
@@ -27,27 +27,27 @@
                          :src="user.avatar"
                          alt="">
                 </router-link>
-                <el-col>
+                <el-col class="attention">
                     <el-row type="flex" justify="space-between">
                         <router-link :to="{name:'tabsessay'}">
-                            <span class="author font-color-main">{{user.name}}</span>
+                            <span class="author">{{user.name}}</span>
                         </router-link>
 
                         <ws-base-button-text
                                 @click="cancelAttentionClick(index)"
                                 v-if="user.isAttention">
                             <i class="icon el-icon-check"></i>
-                            <span>已关注</span>
+                            <span class="icon-text">已关注</span>
                         </ws-base-button-text>
 
                         <ws-base-button-text
                                 @click="addAttentionClick(index)"
                                 v-else>
                             <i class="icon font-color-success el-icon-plus"></i>
-                            <span class="font-color-success">关注</span>
+                            <span class="icon-text font-color-success">关注</span>
                         </ws-base-button-text>
                     </el-row>
-                    <el-row class="font-color-minor">
+                    <el-row class="author-profile">
                         写了 <span>{{user.wordNum}}</span>字 <span>{{user.likeNum}}</span>喜欢
                     </el-row>
                 </el-col>
@@ -70,7 +70,7 @@
 
 <script>
 
-    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
+    import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
 
     export default {
         name: "ws-common-recommend-author",
@@ -110,18 +110,18 @@
             },
 
             //请求取消关注
-            cancelAttentionRequest(fun){
-                this.request.cancelAttention({},function (err,res) {
-                    if(res.code===0){
-                       fun(res.data)
+            cancelAttentionRequest(fun) {
+                this.request.cancelAttention({}, function (err, res) {
+                    if (res.code === 0) {
+                        fun(res.data)
                     }
                 })
             },
 
             //请求添加关注
-            addAttentionRequest(fun){
-                this.request.addAttention({},function (err,res) {
-                    if(res.code===0){
+            addAttentionRequest(fun) {
+                this.request.addAttention({}, function (err, res) {
+                    if (res.code === 0) {
                         fun(res.data)
                     }
                 })
@@ -131,61 +131,71 @@
                 this.getPartAdviceUserRequest()
             },
 
-            cancelAttentionClick(index){
-                let that=this
+            cancelAttentionClick(index) {
+                let that = this
                 this.cancelAttentionRequest(function (data) {
-                    that.adviceUser.users[index].isAttention=false
+                    that.adviceUser.users[index].isAttention = false
                 })
             },
 
-            addAttentionClick(index){
-                if(!this.$store.getters.loginStatus){
-                    this.$router.push({name:'session'})
+            addAttentionClick(index) {
+                if (!this.$store.getters.loginStatus) {
+                    this.$router.push({name: 'session'})
                     return
                 }
-                let that=this
+                let that = this
                 this.addAttentionRequest(function (data) {
-                    that.adviceUser.users[index].isAttention=true
+                    that.adviceUser.users[index].isAttention = true
                 })
             },
 
-            turnToRecommendAuthorDetailClick(){
-                this.$router.push({name:'recommend-author-detail'})
+            turnToRecommendAuthorDetailClick() {
+                this.$router.push({name: 'recommend-author-detail'})
             }
         }
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     /*推荐作者列表*/
     .container-list-author {
         margin-top: 12px;
+        .container-item-author {
+            margin-bottom: 12px;
+            .author-img {
+                @include round(40px);
+                margin-right: 5px;
+                .author:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+        .icon { /*关注图标*/
+            margin: 0 -5px 0 0;
+        }
+
+        .author-profile{
+            color:$font-color-note;
+        }
+
+        .attention{
+            .icon,.icon-text{
+                color:$font-color-primary;
+            }
+        }
     }
 
-    .container-item-author {
-        margin-bottom: 12px;
-    }
-
-    .author-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        margin-right: 5px;
-    }
-
-    .author-img,.author:hover {
-        cursor: pointer;
-    }
-
-    /*关注图标*/
-    .icon{
-        margin:0 -5px 0 0;
+    //推荐作者
+    .author-header{
+        span{
+            color:$font-color-note;
+        }
     }
 
     /*查看全部按钮*/
     .author-btn {
         width: 100%;
-        margin-bottom:50px;
+        margin-bottom: 50px;
     }
 </style>

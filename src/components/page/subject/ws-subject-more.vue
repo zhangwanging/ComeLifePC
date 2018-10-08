@@ -1,7 +1,7 @@
 <template>
     <ws-base-layout-main-bottom-header>
         <template slot="header">
-            <img :src="require(`$src/assets/img/subject-more-header.png`)"
+            <img :src="require(`./subject-more-header.png`)"
                  alt=""
                  class="header-img">
         </template>
@@ -33,7 +33,7 @@
     /**
      * 注意：数据用的是recommend-author(推荐作者)的数据接口和模板
      */
-    import WsBaseLayoutMainBottomHeader from '$src/components/base/ws-base-layout-main-bottom-header.vue'
+    import WsBaseLayoutMainBottomHeader from '$src/components/base/layout/ws-base-layout-main-bottom-header.vue'
     import WsSubjectMoreTab from '$src/components/page/subject/ws-subject-more-tab.vue'
 
     export default {

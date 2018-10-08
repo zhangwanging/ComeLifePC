@@ -1,6 +1,6 @@
 <template>
     <el-container class="container" >
-        <el-header class="border-color-first hidden-sm-and-down">
+        <el-header class="hidden-sm-and-down">
             <ws-index-header class="rs-container-header"/>
         </el-header>
         <el-main class="ws-sm-discover-main">
@@ -22,7 +22,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .container{
     }
@@ -32,10 +32,9 @@
         position: fixed;
         top:0;
         left:0;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
         z-index:1;
-        background-color: white;
+        background-color: $bg-formal;
+        @include border(bottom)
     }
 
     .el-main{
@@ -44,6 +43,5 @@
         z-index:0;
         overflow:visible;
     }
-
 
 </style>

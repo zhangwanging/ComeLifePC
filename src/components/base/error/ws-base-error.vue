@@ -10,7 +10,7 @@
         name: "ws-base-error",
         data(){
             return{
-                errorImgUrl:require(`$src/assets/img/error.png`)
+                errorImgUrl:require(`./error.png`)
             }
         }
     }

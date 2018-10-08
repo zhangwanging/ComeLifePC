@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import WsBaseLayoutMainCenter from '$src/components/base/ws-base-layout-main-center.vue'
+    import WsBaseLayoutMainCenter from '$src/components/base/layout/ws-base-layout-main-center.vue'
     import WsSerialItem from '$src/components/page/serial/ws-serial-item.vue'
 
     export default {

@@ -60,7 +60,7 @@
 </template>
 <script>
 
-    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
+    import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
 
     export default {
         name: 'ws-session-login',

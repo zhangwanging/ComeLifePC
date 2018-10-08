@@ -13,7 +13,7 @@
 
 <script>
     import WsCommonEssayList from '$src/components/common/essay/ws-common-essay-list.vue'
-    import WsBaseError from '$src/components/base/ws-base-error.vue'
+    import WsBaseError from '$src/components/base/error/ws-base-error.vue'
 
     export default {
         name: "ws-homepage-tabs-like",

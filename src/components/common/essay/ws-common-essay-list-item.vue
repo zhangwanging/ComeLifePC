@@ -2,7 +2,6 @@
     <transition name="more">
         <el-row class="container-ws-common-essay-list-item">
             <el-row
-                    class="border-color-first"
                     type="flex"
                     justify="space-between"
                     align="middle">
@@ -14,18 +13,23 @@
                     </router-link>
 
                     <!--内容-->
-                    <p class="item-content font-color-minor">
+                    <p class="item-content">
                         {{content}}
                     </p>
 
                     <!--底部-->
-                    <el-row class="item-container-footer font-color-minor" type="flex" align="middle">
+                    <el-row
+                            class="item-container-footer"
+                            type="flex"
+                            align="middle">
                         <router-link :to="{name:'tabsessay'}">
                             <span>{{author}}</span>
                         </router-link>
                         <template v-if="isLook">
                             <router-link :to="{name:'essaydetail'}">
-                                <i class="icon iconfont icon-kanguo"></i><span>{{lookNum}}</span>
+                                <el-row type="flex" align="middle">
+                                    <i class="icon iconfont icon-kanguo"></i><span>{{lookNum}}</span>
+                                </el-row>
                             </router-link>
                         </template>
                         <template v-if="isComment">
@@ -101,57 +105,60 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .container-ws-common-essay-list-item {
+        /*标题*/
+
+        .item-title {
+            margin: 0;
+            color: $font-color-title;
+        }
+
+        /*内容*/
+
+        .item-content {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            color: $font-color-note;
+        }
+
+        /*图片*/
+
+        .item-img {
+            margin-left: 15px;
+            @include corner();
+        }
+
+        /*底部*/
+        .item-container-footer {
+            span,i {
+                color: $font-color-note;
+            }
+
+            .icon {
+                margin-left: 7px;
+                margin-right: 2px;
+            }
+
+            .icon-kanguo {
+                font-size: 16px;
+            }
+
+            .icon-31wangwangxuanzhong {
+                font-size: 13px;
+            }
+
+            .icon-31guanzhu1xuanzhong {
+                font-size: 14px;
+            }
+        }
+
     }
-
-    /*标题*/
-
-    .item-title {
-        margin: 0;
-    }
-
-    /*内容*/
-
-    .item-content {
-        margin-top: 8px;
-        margin-bottom: 8px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-    }
-
-    /*图片*/
-
-    .item-img {
-        margin-left: 15px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-    }
-
-    /*底部*/
-
-    .icon {
-        margin-left: 7px;
-        margin-right: 2px;
-    }
-
-    .icon-kanguo {
-        font-size: 17px;
-    }
-
-    .icon-31wangwangxuanzhong {
-        font-size: 13px;
-    }
-
-    .icon-31guanzhu1xuanzhong {
-        font-size: 14px;
-    }
-
-
 
 </style>

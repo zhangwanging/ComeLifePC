@@ -1,0 +1,171 @@
+/*字体大小*/
+
+$font-size-formal: 12px;
+
+$font-size-small-title: 14px;
+
+$font-size-large-title: 16px;
+
+$font-size-note: 8px;
+
+/*字体颜色*/
+
+$font-color-formal: #606266;
+
+$font-color-note: #909399;
+
+$font-color-title: #303133;
+
+$font-color-success: #67C23A;
+
+$font-color-primary: #409EFF;
+
+/*背景色彩*/
+
+$bg-formal: white;
+
+$bg-primary: #409EFF;
+
+$bg-success: #67C23A;
+
+$bg-warning: #E6A23C;
+
+$bg-danger: #F56C6C;
+
+$bg-info: $font-color-formal;
+
+/*边框颜色*/
+
+$border-color-formal: #DCDFE6;
+
+@mixin border(
+  $location:all,
+  $width:1px,
+  $style:solid,
+  $color:$border-color-formal) {
+  @if $location==top {
+    border-top: $width $style $color;
+  } @else if $location==left {
+    border-left: $width $style $color;
+  } @else if $location==right {
+    border-right: $width $style $color;
+  } @else if $location==bottom {
+    border-bottom: $width $style $color;
+  } @else {
+    border: $width $style $color;
+  }
+}
+
+/*圆*/
+@mixin round($width) {
+  width: $width;
+  height: $width;
+  -webkit-border-radius: $width/2;
+  -moz-border-radius: $width/2;
+  border-radius: $width/2;
+}
+
+/*圆角*/
+@mixin border-raduis($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin corner($size:formal) {
+  @if $size==large {
+    @include border-raduis(6px);
+  } @else if $size==formal {
+    @include border-raduis(4px);
+  } @else if $size==small {
+    @include border-raduis(2px);
+  }
+}
+
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+body {
+  @extend html;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size: $font-size-formal;
+  color: $font-color-formal;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: $bg-formal;
+}
+
+/*容器*/
+.container-y {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.container-x {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*部分标签初始化*/
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #409EFF;
+}
+
+a:visited {
+  color: #606266;
+}
+
+a:hover {
+  color: #409EFF;
+}
+
+a:active {
+
+}
+
+/*fixed bug 强力修改某组件样式*/
+.ws-common-essay-detail-admire .el-input__inner {
+  height: 32px !important;
+}
+
+/*调整submenu*/
+.container-ws-index-header .el-submenu__title {
+  height: 59px !important;
+  line-height: 59px !important;
+}
+
+/*fade transition*/
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}

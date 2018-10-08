@@ -2,19 +2,19 @@
     <transition name="fade">
         <el-row>
             <!--标题-->
-            <h1 class="font-size-largetitle">{{essay.title}}</h1>
+            <h1>{{essay.title}}</h1>
 
             <!--作者简介-->
             <el-row class='container-user' type="flex" align="middle">
                 <img class='avatar' :src="essay.avatar" alt="">
                 <el-col>
                     <span>{{essay.author}}</span>
-                    <p class="container-author-outline font-color-minor hidden-sm-and-down">
+                    <p class="container-author-outline hidden-sm-and-down">
                         <span>{{essay.time}}</span>
-                        字数 <span>{{essay.wordNum}}</span>
-                        阅读 <span>{{essay.viewNum}}</span>
-                        评论 <span>{{essay.commentNum}}</span>
-                        喜欢 <span>{{essay.likeNum}}</span>
+                        <span>字数 {{essay.wordNum}}</span>
+                        <span>阅读 {{essay.viewNum}}</span>
+                        <span>评论 {{essay.commentNum}}</span>
+                        <span>喜欢 {{essay.likeNum}}</span>
                     </p>
                 </el-col>
             </el-row>
@@ -61,7 +61,7 @@
 
             <!--所有评论列表-->
             <el-row>
-                <h4>{{essay.comments?essay.comments.length:0}}条评论</h4>
+                <h4>{{essay.comments?essay.comments.length:0}} 条评论</h4>
                 <hr>
                 <el-row
                         v-for="(item,index) in essay.comments"
@@ -75,7 +75,7 @@
                              alt="">
                         <el-row>
                             <div>{{item.name}}</div>
-                            <div class="font-color-minor">{{item.time}}</div>
+                            <div class="time">{{item.time}}</div>
                         </el-row>
                     </el-row>
                     <!--评论内容-->
@@ -115,8 +115,7 @@
                             <el-row>
                                 <span>{{subitem.name}}</span>：<span>{{subitem.content}}</span>
                             </el-row>
-                            <el-row
-                                    class="font-color-minor">
+                            <el-row class="profile">
                                 <span>{{subitem.time}}</span>
                                 <ws-base-button-text
                                         @click="feedBackChildClick(item,index,subitem.name)">
@@ -170,7 +169,7 @@
 <script>
 
     import WsCommonEssayDetailAdmire from '$src/components/common/essay/ws-common-essay-detail-admire.vue'
-    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
+    import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
 
     export default {
         name: "ws-common-essay-detail",
@@ -324,87 +323,92 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+    h1 {
+        color: $font-color-title;
+    }
+
+    .avatar {
+        margin-right: 10px;
+        @include round(36px);
+    }
 
     /*作者简介*/
     .container-user {
         margin: 10px 0;
-    }
-
-    .container-user p {
-        margin: 0;
-    }
-
-    .avatar {
-        width: 36px;
-        height: 36px;
-        margin-right: 10px;
-        border-radius: 18px;
-    }
-
-    .container-author-outline span {
-        margin-right: 5px;
+        p {
+            margin: 0;
+            span {
+                color: $font-color-note;
+            }
+        }
+        .container-author-outline span {
+            margin-right: 5px;
+        }
     }
 
     /*评论*/
 
     .container-comment-mine {
         margin-bottom: 14px;
-    }
-
-    .container-sendbox {
-        margin-top: 10px;
-        text-align: end;
-    }
-
-    .container-sendbox .button {
-        margin-left: 20px;
+        .container-sendbox {
+            margin-top: 10px;
+            text-align: end;
+            .button {
+                margin-left: 20px;
+            }
+        }
     }
 
     /*所有评论*/
     .container-comment-all {
         padding: 15px 0;
-    }
 
-    .container-comment-content {
-        margin: 10px 0;
-    }
+        .time{
+            color:$font-color-note;
+        }
 
-    .container-comment-content p {
-        margin: 0;
-    }
+        .container-comment-content {
+            margin: 10px 0;
+            p {
+                margin: 0;
+            }
+        }
 
-    .container-favour-feedback span {
-        margin-right: 5px;
-    }
+        .container-favour-feedback {
+            margin-bottom: 10px;
+            span,i{
+                color:$font-color-note;
+            }
+            span {
+                margin-right: 5px;
+            }
+        }
 
-    .container-favour-feedback {
-        margin-bottom: 10px;
-    }
-
-    /*子评论列表*/
-    .container-subcomment {
-        padding: 5px 15px;
-        border-left-width: 2px;
-        border-left-style: solid;
-    }
-
-    .container-subcomment-item {
-        padding: 10px 0;
-        border-bottom-width: 1px;
-        border-bottom-style: dashed;
-    }
-
-    .container-subcomment-sendbox {
-        margin-top: 10px;
-    }
-
-    .container-subcomment-sendbox .comment-add {
-        margin-bottom: 20px;
-    }
-
-    .subcomment-content {
-        margin-bottom: 10px;
+        /*子评论列表*/
+        .container-subcomment {
+            padding: 5px 15px;
+            @include border(left);
+            .profile{
+                span,i{
+                    color:$font-color-note;
+                }
+            }
+            .container-subcomment-item {
+                padding: 10px 0;
+                @include border(bottom,1px,dashed);
+            }
+            .container-subcomment-sendbox {
+                margin-top: 10px;
+                .comment-add {
+                    margin-bottom: 20px;
+                }
+                .subcomment-content {
+                    margin-bottom: 10px;
+                }
+            }
+        }
     }
 
 </style>

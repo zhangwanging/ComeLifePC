@@ -1,7 +1,7 @@
 <template>
     <ws-base-layout-main-bottom-header>
         <template slot="header">
-            <img :src="require(`$src/assets/img/recommend-author.png`)"
+            <img :src="require(`./recommend-author.png`)"
                  alt=""
                  class="header-img">
         </template>
@@ -38,7 +38,7 @@
 
     import WsCommonRecommendAuthorDetailItem
         from '$src/components/common/recommend-author/ws-common-recommend-author-detail-item.vue'
-    import WsBaseLayoutMainBottomHeader from '$src/components/base/ws-base-layout-main-bottom-header.vue'
+    import WsBaseLayoutMainBottomHeader from '$src/components/base/layout/ws-base-layout-main-bottom-header.vue'
 
     export default {
         name: "ws-common-recommend-author-detail",

@@ -13,7 +13,7 @@
         },
         data(){
             return{
-                titleImg:require('$src/assets/img/hot-day-7.png')
+                titleImg:require('./hot-day-7.png')
             }
         }
     }

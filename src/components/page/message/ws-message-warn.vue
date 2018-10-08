@@ -7,7 +7,7 @@
 
 <script>
     import WsMessageMain from '$src/components/page/message/ws-message-main.vue'
-    import WsBaseError from '$src/components/base/ws-base-error.vue'
+    import WsBaseError from '$src/components/base/error/ws-base-error.vue'
     export default {
         name: "ws-message-warn",
         components:{

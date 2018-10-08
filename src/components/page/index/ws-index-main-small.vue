@@ -6,7 +6,7 @@
 
 <script>
 
-    import WsBaseLayoutMainCenter from '$src/components/base/ws-base-layout-main-center.vue'
+    import WsBaseLayoutMainCenter from '$src/components/base/layout/ws-base-layout-main-center.vue'
 
     export default {
         name: "ws-index-main-small",

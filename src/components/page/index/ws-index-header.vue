@@ -11,7 +11,7 @@
                 :xl="5"
                 class="title">
             <div class="title-wrapper" @click="turnToHomePage">
-                <h1 class="font-color-primary font-size-largetitle">简书</h1>
+                <h1 class="title-text">简书</h1>
             </div>
         </el-col>
 
@@ -224,7 +224,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .container-ws-index-header {
         height: 100%;
@@ -237,43 +237,36 @@
         height: 100%;
         justify-content: center;
         min-width: 100px;
-    }
-
-    .title .title-wrapper {
-        display: flex;
-        align-items: center;
-        min-width: 100px;
-        padding: 0 10px;
-        height: 100%;
-        margin: 0;
-    }
-
-    .title .title-wrapper:hover {
-        cursor: pointer;
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            min-width: 100px;
+            padding: 0 10px;
+            height: 100%;
+            margin: 0;
+            &:hover {
+                cursor: pointer;
+            }
+            .title-text{
+                color:$font-color-primary;
+            }
+        }
     }
 
     /*导航栏*/
 
     .search {
-
-    }
-
-    .search-btn {
-        width:60px;
-        display: inline-block;
-        margin-left: 5px;
-    }
-
-    .search-btn:hover{
-        cursor:pointer;
-    }
-
-    .search:hover {
-        background-color: white;
-    }
-
-    .el-menu i {
-        margin-right: 3px;
+        &:hover {
+            background-color: $bg-formal;
+        }
+        .search-btn {
+            width: 60px;
+            display: inline-block;
+            margin-left: 5px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 
     .el-menu {
@@ -282,55 +275,45 @@
         display: -ms-flex;
         justify-content: space-between;
         width: 100%;
-        height:100%;
+        height: 100%;
         border-bottom: none;
-    }
-
-    .el-menu:before {
-        content: none;
-    }
-
-    .el-menu:after {
-        content: none;
-    }
-
-    .el-menu .left {
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    .el-menu .right {
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-right: 10%;
-    }
-
-    .el-menu .right .user {
-        min-width: 90px;
-    }
-
-    .el-menu-item {
-        display: flex;
-        align-items: center;
-    }
-
-    .el-menu .message {
-        min-width: 120px;
-    }
-
-    /*
-    头像
-     */
-    .avatar {
-        width: 30px;
-        height: 30px;
-        border-radius: 15px;
+        i {
+            margin-right: 3px;
+        }
+        &:before {
+            content: none;
+        }
+        &:after {
+            content: none;
+        }
+        .left {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            justify-content: flex-start;
+            align-items: center;
+            .message {
+                min-width: 120px;
+            }
+        }
+        .right {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 10%;
+            .user {
+                min-width: 90px;
+                .avatar {
+                    @include round(30px)
+                }
+            }
+        }
+        .el-menu-item {
+            display: flex;
+            align-items: center;
+        }
     }
 
 </style>

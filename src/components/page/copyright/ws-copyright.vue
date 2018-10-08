@@ -100,7 +100,7 @@
     import WsCopyrightNav from '$src/components/page/copyright/ws-copyright-nav.vue'
     import WsCopyrightNavItem from '$src/components/page/copyright/ws-copyright-nav-item.vue'
     import WsCopyrightBookItem from '$src/components/page/copyright/ws-copyright-book-item.vue'
-    import WsBaseButtonText from '$src/components/base/ws-base-button-text.vue'
+    import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
     const VueScrollTo = require('vue-scrollto')
 
     export default {
