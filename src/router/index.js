@@ -1,10 +1,10 @@
 import Vue from 'vue/dist/vue'
 import Router from 'vue-router'
-import store from '$src/store/index'
 
+import store from '$src/store/index'
 import WsFeedback from '$src/components/page/feedback/ws-feedback.vue'
 import WsIndex from '$src/components/page/index/ws-index.vue'
-import WsDiscover from '$src/components/page/discover/ws-discover.vue'
+const WsDiscover =()=> import ('$src/components/page/discover/ws-discover.vue')
 import WsCare from '$src/components/page/care/ws-care.vue'
 import WsMessage from '$src/components/page/message/ws-message.vue'
 import WsMessageAdmire from '$src/components/page/message/ws-message-admire.vue'
