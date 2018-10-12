@@ -19,6 +19,7 @@ import storage from '$src/store/storage'
 import '$src/directive/directive.js'
 import { Popover } from 'element-ui';
 
+
 Vue.use(Popover);
 
 Vue.use(ElementUI);
@@ -30,9 +31,6 @@ Vue.prototype.util = util
 Vue.prototype.storage=storage
 
 Vue.config.productionTip = false
-
-
-
 
 
 const app=new Vue({

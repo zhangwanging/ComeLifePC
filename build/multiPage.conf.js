@@ -10,13 +10,13 @@ const multiPagePath = path.join(util.rootPath, './src/components/view')
 
 module.exports = {
     entry: {
-        test: path.join(multiPagePath, './test/test.js')
+       /* test: path.join(multiPagePath, './test/test.js')*/
     },
     plugins: [
-        new htmlWebpackPlugin({
+ /*       new htmlWebpackPlugin({
             template: path.join(multiPagePath, './test/test.html'),
             filename: 'test.html',
             chunks: ['test']
-        })
+        })*/
     ]
 }
