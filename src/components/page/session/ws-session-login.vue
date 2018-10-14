@@ -61,6 +61,7 @@
 <script>
 
     import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
+    import {login} from '$src/api/page/session.js'
 
     export default {
         name: 'ws-session-login',
@@ -107,7 +108,7 @@
                 let that=this
                 this.$refs[formName].validate((valid) => {
                     if(valid) {
-                        that.login()
+                        that.loginRequest()
                     } else {
                         that.$message({
                             message: '输入不合法，请重新输入再登录',
@@ -117,9 +118,9 @@
                 })
             },
 
-            login(){
+            loginRequest(){
                 var self = this;
-                this.request.login(this.form,function (err,r) {
+                login(this.form,function (err,r) {
                     if(err){
                         self.showLoginFailMsg()
                         return

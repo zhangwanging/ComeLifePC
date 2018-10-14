@@ -56,6 +56,8 @@
 <script>
 
     import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
+    import {register} from "../../../api/page/session";
+
     export default {
         name: 'ws-session-register',
         components:{
@@ -99,15 +101,15 @@
                 let that=this
                 this.$refs[formName].validate((valid)=>{
                     if(valid){
-                        that.register()
+                        that.registerRequest()
                     }else{
                         console.log('err submit')
                     }
                 })
             },
-            register(){
+            registerRequest(){
                 var self = this;
-                this.request.register(this.form,function(err,r){
+                register(this.form,function(err,r){
                     if(err){
                         alert('注册失败')
                         return

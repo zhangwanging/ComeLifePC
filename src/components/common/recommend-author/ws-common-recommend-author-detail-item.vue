@@ -15,6 +15,7 @@
 <script>
 
     import WsCommonCardAttention from '$src/components/common/card/ws-common-card-attention.vue'
+    import {cancelAttention,addAttention} from '$src/api/common/recommend-author.js'
 
     export default {
         name: "ws-common-recommend-author-detail-item",
@@ -43,7 +44,7 @@
         methods: {
             addAttentionClick() {
                 let that=this
-                this.request.addAttention({},function (err,res) {
+                addAttention({},function (err,res) {
                     if(res.code===0){
                         that.isAttented=true
                     }
@@ -51,7 +52,7 @@
             },
             cancelAttentionClick() {
                 let that=this
-                this.request.addAttention({},function (err,res) {
+                cancelAttention({},function (err,res) {
                     if(res.code===0){
                         that.isAttented=false
                     }

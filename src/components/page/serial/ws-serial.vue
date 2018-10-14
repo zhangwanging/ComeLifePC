@@ -23,6 +23,7 @@
 <script>
     import WsBaseLayoutMainCenter from '$src/components/base/layout/ws-base-layout-main-center.vue'
     import WsSerialItem from '$src/components/page/serial/ws-serial-item.vue'
+    import {getSerial} from '$src/api/page/serial.js'
 
     export default {
         name: "ws-serial",
@@ -44,7 +45,7 @@
             },
             getSerialRequest(){
                 let that=this
-                this.request.getSerial({},function (err,res){
+                getSerial({},function (err,res){
                     if(res.code===0){
                         that.serials=res.data
                     }

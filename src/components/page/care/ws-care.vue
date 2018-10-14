@@ -35,6 +35,7 @@
 
 <script>
     import WsCareUserDetail from '$src/components/page/care/ws-care-user-detail.vue'
+    import {getUserCareList} from '$src/api/page/care.js'
 
     export default {
         name: "ws-care",
@@ -60,7 +61,7 @@
             //获取关注用户列表
             getUserCareListRequest() {
                 let that = this
-                this.request.getUserCareList({}, function (err, res) {
+                getUserCareList({}, function (err, res) {
                     if (res.code === 0) {
                         that.menus = res.data
                     }

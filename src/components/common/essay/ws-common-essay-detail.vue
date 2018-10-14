@@ -170,6 +170,9 @@
 
     import WsCommonEssayDetailAdmire from '$src/components/common/essay/ws-common-essay-detail-admire.vue'
     import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
+    import {getEssayDetail,addCommentAdmire,delCommentAdmire,addComment}
+    from '$src/api/common/essay.js'
+
 
     export default {
         name: "ws-common-essay-detail",
@@ -205,7 +208,7 @@
             //获取文章详情
             getEssayDetailRequest() {
                 let that = this
-                this.request.getEssayDetail({}, function (err, res) {
+                getEssayDetail({}, function (err, res) {
                     if (res.code === 0) {
                         that.essay = res.data
                     }
@@ -214,7 +217,7 @@
 
             //添加评论请求
             addCommentRequest(fun) {
-                this.request.addComment({}, function (err, res) {
+                addComment({}, function (err, res) {
                     if (res.code === 0) {
                         fun(res.data)
                     }
@@ -288,7 +291,7 @@
 
             //评论添加赞
             addCommentAdmireRequest(fun) {
-                this.request.addCommentAdmire({}, function (err, res) {
+                addCommentAdmire({}, function (err, res) {
                     if (res.code === 0) {
                         fun(res.data)
                     }
@@ -297,7 +300,7 @@
 
             //评论删除赞
             delCommentAdmireRequest(fun) {
-                this.request.delCommentAdmire({}, function (err, res) {
+                delCommentAdmire({}, function (err, res) {
                     if (res.code === 0) {
                         fun(res.data)
                     }

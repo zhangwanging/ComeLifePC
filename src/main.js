@@ -7,7 +7,6 @@ import '$src/style/common.scss'
 import util from '$src/utils/util'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import request from '$src/api/request'
 import '$src/mock/mock'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -24,8 +23,6 @@ Vue.use(Popover);
 Vue.use(ElementUI);
 Vue.use(mavonEditor)
 
-
-Vue.prototype.request = request
 Vue.prototype.util = util
 Vue.prototype.storage=storage
 

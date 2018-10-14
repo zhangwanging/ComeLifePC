@@ -12,6 +12,7 @@
 <script>
 
     import WsHomepageFansList from '$src/components/page/homepage/ws-homepage-fans-list.vue'
+    import {getUserAttention} from '$src/api/page/homepage.js'
 
     export default {
         name: "ws-homepage-tabs-fans",
@@ -38,7 +39,7 @@
             },
             getFansList(){
                 let that=this
-                this.request.getUserAttention({},function (err,res) {
+                getUserAttention({},function (err,res) {
                     if(err)return
                     if(res.code===0){
                         that.list=res.data

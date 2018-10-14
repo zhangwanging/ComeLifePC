@@ -164,6 +164,17 @@
 </template>
 
 <script>
+    import {
+        createNote,
+        getNote,
+        updateNote,
+        delNote,
+        createEssay,
+        getEssayContent,
+        getEssayById
+    }
+    from '$src/api/page/writeessay.js'
+
     export default {
         name: "ws-writeessay",
         data() {
@@ -201,7 +212,7 @@
             //获取文章列表数据
             getEssayByIdRequest(noteId){
                 let that=this
-                this.request.getEssayById({},function (err,res) {
+                getEssayById({},function (err,res) {
                     if(res.code===0){
                         that.essays=res.data
                         that.getEssayContentRequest()
@@ -210,7 +221,7 @@
             },
             //新建文章
             createEssayRequest(fun){
-                this.request.createEssay({},function(err,res){
+                createEssay({},function(err,res){
                     if(res.code===0){
                         fun(res.data)
                         alert('已新建文章')
@@ -220,7 +231,7 @@
             //新建文集
             createNoteRequest() {
                 let that = this
-                this.request.createNote(this.createNotePanel.form, function (err, res) {
+                createNote(this.createNotePanel.form, function (err, res) {
                     if (res.code === 0) {
                         that.notes.unshift(res.data)
                         alert('新建成功')
@@ -231,7 +242,7 @@
             //获取文集列表数据
             getNoteRequest() {
                 let that = this
-                this.request.getNote({}, function (err, res) {
+                getNote({}, function (err, res) {
                     if (res.code === 0) {
                         that.notes = res.data
                         that.getEssayByIdRequest()
@@ -241,7 +252,7 @@
             //获取文章内容
             getEssayContentRequest(){
                 let that=this
-                this.request.getEssayContent({},function (err,res) {
+                getEssayContent({},function (err,res) {
                     if(res.code===0){
                         that.essay=res.data
                     }
@@ -249,7 +260,7 @@
             },
             //修改文集名称
             updateNoteRequest(fun){
-                this.request.updateNote({},function (err,res) {
+                updateNote({},function (err,res) {
                     if(res.code===0){
                         fun(res.data)
                         alert('修改成功')
@@ -258,7 +269,7 @@
             },
             //删除文集
             delNoteRequest(fun){
-                this.request.delNote({},function (err,res) {
+                delNote({},function (err,res) {
                     if(res.code===0){
                         fun(res.data)
                         alert('删除成功')

@@ -183,6 +183,7 @@
     import WsBaseLayoutMainLeftAsideRight from '$src/components/base/layout/ws-base-layout-main-left-aside-right.vue'
     import WsHomepageTabsEssay from '$src/components/page/homepage/ws-homepage-tabs-essay.vue'
     import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
+    import {getUserBasicData} from '$src/api/page/homepage.js'
 
     export default {
         name: "ws-homepage",
@@ -208,7 +209,7 @@
             //获取用户基础数据
             getUserBasicDataRequest() {
                 let that = this
-                this.request.getUserBasicData({}, function (err, res) {
+                getUserBasicData({}, function (err, res) {
                     if (res.code === 0) {
                         that.userBasicData = res.data
                     }

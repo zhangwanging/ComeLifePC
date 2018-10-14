@@ -39,6 +39,7 @@
     import WsCommonRecommendAuthorDetailItem
         from '$src/components/common/recommend-author/ws-common-recommend-author-detail-item.vue'
     import WsBaseLayoutMainBottomHeader from '$src/components/base/layout/ws-base-layout-main-bottom-header.vue'
+    import {getAllRecommendAuthor} from '$src/api/common/recommend-author.js'
 
     export default {
         name: "ws-common-recommend-author-detail",
@@ -61,7 +62,7 @@
 
             //请求获取推荐作者
             getAllRecommendAuthorRequest(fun) {
-                this.request.getAllRecommendAuthor({}, function (err, res) {
+                getAllRecommendAuthor({}, function (err, res) {
                     if (res.code === 0) {
                         fun(res.data)
                     }

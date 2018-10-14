@@ -38,6 +38,8 @@
 </template>
 
 <script>
+    import {getUserCareProfile} from '$src/api/page/care.js'
+
     export default {
         name: "ws-care-user-detail-header",
         props:{
@@ -65,7 +67,7 @@
             },
             getUserCareProfileRequest(id){
                 let that=this
-                this.request.getUserCareProfile({},function (err,res) {
+                getUserCareProfile({},function (err,res) {
                     if(res.code===0){
                         that.profile=res.data
                     }

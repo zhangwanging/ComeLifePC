@@ -32,7 +32,7 @@
 <script>
 
     import WsCommonEssayListItem from '$src/components/common/essay/ws-common-essay-list-item.vue'
-
+    import {getEssaysByUserId} from '$src/api/common/essay.js'
 
     export default {
         name: "ws-common-essay-list",
@@ -73,10 +73,10 @@
             },
 
             //获取文章列表
-            getEssaysRequest(fun) {
+            getEssaysByUserIdRequest(fun) {
                 let that = this
                 this.showLoading()
-                this.request.getColdJoke(undefined, function (err, res) {
+                getEssaysByUserId(undefined, function (err, res) {
                     that.hideLoading()
                     if (err) {
                         return
@@ -92,7 +92,7 @@
             //初次获取文章
             getEssaysInit() {
                 let that = this
-                this.getEssaysRequest(function (data) {
+                this.getEssaysByUserIdRequest(function (data) {
                     that.essays = data
                 })
             },
@@ -100,7 +100,7 @@
             //获取更多文章
             getMoreEssays() {
                 let that = this
-                this.getEssaysRequest(function (data) {
+                this.getEssaysByUserIdRequest(function (data) {
                     that.essays = that.essays.concat(data)
                 })
             },

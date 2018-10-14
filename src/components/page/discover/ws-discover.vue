@@ -162,6 +162,7 @@
     import WsBaseLayoutMainLeftAsideRight from '$src/components/base/layout/ws-base-layout-main-left-aside-right.vue'
     import WsCommonEssayList from "$src/components/common/essay/ws-common-essay-list.vue"
     import WsCommonRecommendAuthor from '$src/components/common/recommend-author/ws-common-recommend-author.vue'
+    import {getCarousel} from '$src/api/page/discover.js'
 
     export default {
         name: "ws-discover",
@@ -196,7 +197,7 @@
             //获取轮播图
             getCarouselRequest() {
                 let that = this
-                this.request.getCarousel(undefined, function (err, res) {
+                getCarousel(undefined, function (err, res) {
                     if (res.code === 0 && res.data.length !== 0) {
                         that.carousels = res.data
                     }
@@ -207,7 +208,6 @@
             turnToSubjectClick() {
                 this.$router.push({name: 'subject'})
             }
-
         }
     }
 </script>

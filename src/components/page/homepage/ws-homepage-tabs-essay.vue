@@ -22,6 +22,7 @@
 <script>
     import WsCommonEssayList from '$src/components/common/essay/ws-common-essay-list.vue'
     import WsHomepageDynamicList from '$src/components/page/homepage/ws-homepage-dynamic-list.vue'
+    import {getDynamicsByUserId} from '$src/api/page/homepage.js'
 
     export default {
         name: "ws-homepage-tabs-essay",
@@ -45,16 +46,16 @@
             fetchData(tabName) {
                 if (tabName === 'essaylist') {
                 } else if (tabName === 'dynamic') {
-                    this.getDynamicsByUserId()
+                    this.getDynamicsByUserIdRequest()
                 } else if (tabName === 'new-comment') {//仅排序不同
                 } else if (tabName === 'hot') {
                 }
             },
 
             //获取用户动态
-            getDynamicsByUserId() {
+            getDynamicsByUserIdRequest() {
                 let that = this
-                this.request.getDynamicsByUserId({
+                getDynamicsByUserId({
                     id: '',
                 }, function (err, res) {
                     if (err) return;

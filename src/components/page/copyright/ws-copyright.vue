@@ -101,6 +101,8 @@
     import WsCopyrightNavItem from '$src/components/page/copyright/ws-copyright-nav-item.vue'
     import WsCopyrightBookItem from '$src/components/page/copyright/ws-copyright-book-item.vue'
     import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
+    import {getCopyrightBooks} from '$src/api/page/copyright.js'
+
     const VueScrollTo = require('vue-scrollto')
 
     export default {
@@ -125,7 +127,7 @@
             },
             getCopyrightBooksRequest() {
                 let that = this
-                this.request.getCopyrightBooks({}, function (err, res) {
+                getCopyrightBooks({}, function (err, res) {
                     if (res.code === 0) {
                         console.dir(res.data)
                         that.categorys = res.data

@@ -71,6 +71,7 @@
 <script>
 
     import WsBaseButtonText from '$src/components/base/button/ws-base-button-text.vue'
+    import {getPartAdviceUser} from '$src/api/common/recommend-author.js'
 
     export default {
         name: "ws-common-recommend-author",
@@ -101,7 +102,7 @@
             getPartAdviceUserRequest() {
                 let that = this
                 this.adviceUser.isLoading = true
-                this.request.getPartAdviceUser(undefined, function (err, res) {
+                getPartAdviceUser(undefined, function (err, res) {
                     that.adviceUser.isLoading = false
                     if (res.code === 0 && res.data.length !== 0) {
                         that.adviceUser.users = res.data
