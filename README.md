@@ -1,5 +1,5 @@
 ## 前言
->仿[简书](https://www.jianshu.com/)的单页面应用。
+>仿<a href="https://www.jianshu.com/" target="_blank">简书</a>的单页面应用。
 
 ## 技术栈
 **vue+vue-router+vuex+axios+element-ui+webpack**
