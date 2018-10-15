@@ -15,7 +15,7 @@ import '$src/style/response.scss'
 import 'element-ui/lib/theme-chalk/display.css'
 import storage from '$src/store/storage'
 import '$src/directive/directive.js'
-import { Popover } from 'element-ui';
+import { Popover } from 'element-ui'
 
 
 Vue.use(Popover);

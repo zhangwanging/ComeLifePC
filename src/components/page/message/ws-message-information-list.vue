@@ -1,6 +1,6 @@
 <template>
     <el-row>
-        <el-col class="container-item border-color-first">
+        <el-col class="container-item">
              <ws-message-information-list-item/>
         </el-col>
     </el-row>
@@ -18,11 +18,10 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .container-item{
-        border-top-width: 1px;
-        border-top-style: solid;
+        @include border(top);
         padding:10px;
     }
 

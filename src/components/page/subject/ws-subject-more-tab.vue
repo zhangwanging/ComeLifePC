@@ -30,7 +30,7 @@
 <script>
 
     import WsSubjectMoreTabItem from '$src/components/page/subject/ws-subject-more-tab-item.vue'
-
+    import {getAllRecommendAuthor} from '$src/api/common/recommend-author.js'
     export default {
         name: "ws-subject-more-tab",
         components: {
@@ -51,7 +51,7 @@
 
             //请求获取推荐作者
             getAllRecommendAuthorRequest(fun) {
-                this.request.getAllRecommendAuthor({}, function (err, res) {
+                getAllRecommendAuthor({}, function (err, res) {
                     if (res.code === 0) {
                         fun(res.data)
                     }

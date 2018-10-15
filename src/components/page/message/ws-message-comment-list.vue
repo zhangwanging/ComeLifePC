@@ -1,6 +1,6 @@
 <template>
     <el-row>
-        <el-row class="container-item border-color-first">
+        <el-row class="container-item">
             <ws-message-comment-list-item/>
         </el-row>
     </el-row>
@@ -18,10 +18,9 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .container-item{
-        border-top-width: 1px;
-        border-top-style: solid;
+        @include border(top);
         padding:10px;
     }
 </style>

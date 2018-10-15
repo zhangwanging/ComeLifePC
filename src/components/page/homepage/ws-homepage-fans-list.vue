@@ -3,7 +3,7 @@
         <el-row
                 v-for="(item,index) in list"
                 :key="index"
-                class="container-item border-color-first">
+                class="container-item">
             <ws-homepage-fans-list-item
                     :avatar="item.avatar"
                     :title="item.title"
@@ -34,10 +34,9 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .container-item{
         padding: 10px 0;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
+        @include border(bottom);
     }
 </style>

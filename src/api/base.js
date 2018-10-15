@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 const host='http://localhost:6000'
 
 //注意：这里列出url仅仅为了mock数据

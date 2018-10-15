@@ -1,5 +1,5 @@
 <template>
-    <el-row class="container-ws-copyright-nav-item border-color-first">
+    <el-row class="container-ws-copyright-nav-item">
         <slot></slot>
     </el-row>
 </template>
@@ -10,12 +10,11 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .container-ws-copyright-nav-item {
         padding: 10px 5px;
-        border-top-width: 1px;
-        border-top-style: solid;
+        @include border(bottom);
     }
 
     a{

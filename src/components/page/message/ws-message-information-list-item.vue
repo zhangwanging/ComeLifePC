@@ -20,15 +20,11 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
     .avatar{
-        width:40px;
-        height:40px;
         margin-right:10px;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        border-radius: 20px;
+        @include round(40px);
     }
     
 </style>
