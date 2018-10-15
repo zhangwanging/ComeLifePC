@@ -1,5 +1,5 @@
 ## 前言
-仿简书
+>仿[简书](https://www.jianshu.com/)的单页面应用。
 
 ## 技术栈
 **vue+vue-router+vuex+axios+element-ui+webpack**
@@ -43,7 +43,6 @@ npm start
 ![](https://i.imgur.com/mKzqvBL.png)
 ### 我的主页页面
 ![](https://i.imgur.com/24JaQwm.png)
-## 功能模块
 
 
 
