@@ -1,5 +1,5 @@
 const path = require('path')
-// 在内存中，根据指定的模板页面，生成一份内存中的首页，同时自动把打包好的bundle注入到页面底部
+
 const htmlWebpackPlugin = require('html-webpack-plugin')
 //vue-loader 15版本以上需要配置
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -10,7 +10,7 @@ const multiPageConf = require('./multiPage.conf')
 
 module.exports = {
     entry: {
-        index: path.join(util.rootPath, './src/main.js'),
+        index: ["babel-polyfill", "./src/main.js"],
         ...multiPageConf.entry
     },
     output: {

@@ -1,3 +1,14 @@
+/*弹性布局*/
+@mixin flex{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+/*主题颜色*/
+$theme-color:#ea6f5a;
+
 /*字体大小*/
 
 $font-size-formal: 12px;
@@ -18,13 +29,13 @@ $font-color-title: #303133;
 
 $font-color-success: #67C23A;
 
-$font-color-primary: #409EFF;
+$font-color-primary: $theme-color;
 
 /*背景色彩*/
 
 $bg-formal: white;
 
-$bg-primary: #409EFF;
+$bg-primary: $theme-color;
 
 $bg-success: #67C23A;
 
@@ -135,7 +146,7 @@ a {
 }
 
 a:link {
-  color: #409EFF;
+  color: $theme-color;
 }
 
 a:visited {
@@ -143,7 +154,7 @@ a:visited {
 }
 
 a:hover {
-  color: #409EFF;
+  color:$theme-color;
 }
 
 a:active {

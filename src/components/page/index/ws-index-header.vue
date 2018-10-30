@@ -24,7 +24,6 @@
                 :xl="19">
             <el-row style="width:100%;height:100%;" type="flex" align="middle">
                 <el-menu
-                        active-text-color="#409EFF"
                         :default-active="defaultActive"
                         mode="horizontal"
                         :router="true"
@@ -54,6 +53,7 @@
                             <el-menu-item
                                     index="comment"
                                     :route="{name:'comment',params:{defaultActive:'comment'}}">
+
                                 <i class="iconfont icon-31xiaoxi"></i>评论
                             </el-menu-item>
                             <el-menu-item
@@ -247,8 +247,8 @@
             &:hover {
                 cursor: pointer;
             }
-            .title-text{
-                color:$font-color-primary;
+            .title-text {
+                color: $font-color-primary;
             }
         }
     }
@@ -270,9 +270,7 @@
     }
 
     .el-menu {
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flex;
+        @include flex;
         justify-content: space-between;
         width: 100%;
         height: 100%;
@@ -287,9 +285,7 @@
             content: none;
         }
         .left {
-            display: -webkit-flex;
-            display: -moz-flex;
-            display: -ms-flex;
+            @include flex;
             justify-content: flex-start;
             align-items: center;
             .message {
@@ -297,9 +293,7 @@
             }
         }
         .right {
-            display: -webkit-flex;
-            display: -moz-flex;
-            display: -ms-flex;
+            @include flex;
             justify-content: flex-end;
             align-items: center;
             margin-right: 10%;
@@ -311,7 +305,7 @@
             }
         }
         .el-menu-item {
-            display: flex;
+            @include flex;
             align-items: center;
         }
     }
