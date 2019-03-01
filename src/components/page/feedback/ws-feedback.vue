@@ -8,9 +8,9 @@
                 <el-row>
                     <el-card>
                         <ul class="item-container">
-                            <li><router-link :to="{name:'tabsessay'}">iOS充值问题（余额、使用、异常问题）</router-link></li>
-                            <li><router-link :to="{name:'tabsessay'}">不想分享小程序怎么办？</router-link></li>
-                            <li><router-link :to="{name:'tabsessay'}">为什么文章会被锁定？</router-link></li>
+                            <li><router-link :to="{name:'essaydetail'}">iOS充值问题（余额、使用、异常问题）</router-link></li>
+                            <li><router-link :to="{name:'essaydetail'}">不想分享小程序怎么办？</router-link></li>
+                            <li><router-link :to="{name:'essaydetail'}">为什么文章会被锁定？</router-link></li>
                         </ul>
                     </el-card>
                 </el-row>
@@ -22,10 +22,10 @@
                 <el-row>
                     <el-card>
                         <ul class="item-container">
-                            <li><router-link :to="{name:'tabsessay'}">怎么关闭评论</router-link></li>
-                            <li><router-link :to="{name:'tabsessay'}">如何在简书进行创作</router-link></li>
-                            <li><router-link :to="{name:'tabsessay'}">发现页热门文章使用指南</router-link></li>
-                            <li><router-link :to="{name:'tabsessay'}">如何让更多的人看到自己的文章</router-link></li>
+                            <li><router-link :to="{name:'essaydetail'}">怎么关闭评论</router-link></li>
+                            <li><router-link :to="{name:'essaydetail'}">如何在简书进行创作</router-link></li>
+                            <li><router-link :to="{name:'essaydetail'}">发现页热门文章使用指南</router-link></li>
+                            <li><router-link :to="{name:'essaydetail'}">如何让更多的人看到自己的文章</router-link></li>
                         </ul>
                     </el-card>
                 </el-row>

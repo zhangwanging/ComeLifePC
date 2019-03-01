@@ -10,8 +10,7 @@ const multiPageConf = require('./multiPage.conf')
 
 module.exports = {
     entry: {
-        index: ["babel-polyfill", "./src/main.js"],
-        ...multiPageConf.entry
+        index: ["babel-polyfill", "./src/main.js"]
     },
     output: {
         path: path.join(util.rootPath, './dist'),
@@ -23,7 +22,6 @@ module.exports = {
             filename: 'index.html',
             chunks: ['index']
         }),
-        ...multiPageConf.plugins,
         new VueLoaderPlugin()
     ],
     module: {
@@ -40,11 +38,9 @@ module.exports = {
                             //全局导入*.scss,方便任意处调用变量
                             loader: 'sass-resources-loader',
                             options: {
-                                resources:
-                                    ['./src/style/common.scss',
-                                        './src/style/response.scss']
-                            },
-                        },
+                                resources: ['./src/style/common.scss','./src/style/response.scss']
+                            }
+                        }
                     ]
             },
             {test: /\.(ico|jpg|png|gif|bmp|jpeg)$/, use: 'url-loader?limit=7631&name=[hash:8]-[name].[ext]'},
@@ -59,4 +55,4 @@ module.exports = {
             $src: path.resolve(util.rootPath, 'src'),
         }
     }
-}
+};
