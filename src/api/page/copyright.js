@@ -2,7 +2,7 @@ import {myAxios} from "../base";
 
 const url={
     getCopyrightBooks:'/getCopyrightBooks'
-}
+};
 
 /**
  * 获取版权书籍
@@ -12,14 +12,14 @@ const getCopyrightBooks=function (data,fun) {
         url:url.getCopyrightBooks,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 export {
     getCopyrightBooks
-}
+};

@@ -5,7 +5,7 @@ const url={
     getDynamicsByUserId:'/getDynamicsByUserId',
     getUserBasicData:'/getUserBasicData',
     getUserAttention:'/getUserAttention'
-}
+};
 /*
 获取用户动态数据
  */
@@ -15,13 +15,13 @@ const getDynamicsByUserId=function (data,fun) {
         url:url.getDynamicsByUserId,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /**
  * 获取用户基本信息
@@ -32,13 +32,13 @@ const getUserBasicData=function (data,fun) {
         url:url.getUserBasicData,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /**
  获取用户关注（粉丝）列表
@@ -49,16 +49,16 @@ const getUserAttention=function (data,fun) {
         url:url.getUserAttention,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 export {
     getDynamicsByUserId,
     getUserBasicData,
     getUserAttention
-}
+};

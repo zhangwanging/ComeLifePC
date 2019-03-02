@@ -4,7 +4,7 @@ const url={
     getAllRecommendAuthor:'/getAllRecommendAuthor',
     cancelAttention:'/cancelAttention',
     addAttention:'/addAttention'
-}
+};
 
 /**
  * 获取推荐作者
@@ -15,13 +15,13 @@ const getPartAdviceUser=function (data,fun) {
         url:url.getPartAdviceUser,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 
 /**
@@ -33,13 +33,13 @@ const getAllRecommendAuthor=function (data,fun) {
         url:url.getAllRecommendAuthor,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /**
  * 取消关注
@@ -50,13 +50,13 @@ const cancelAttention=function (data,fun) {
         url:url.cancelAttention,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /**
  * 添加关注
@@ -67,17 +67,17 @@ const addAttention=function (data,fun) {
         url:url.addAttention,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 export{
     getPartAdviceUser,
     getAllRecommendAuthor,
     cancelAttention,
     addAttention
-}
+};

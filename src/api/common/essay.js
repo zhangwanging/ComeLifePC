@@ -6,7 +6,7 @@ const url = {
     addCommentAdmire: '/addCommentAdmire',
     delCommentAdmire: '/delCommentAdmire',
     addComment: '/addComment'
-}
+};
 /**
  * 获取文章列表
  */
@@ -16,13 +16,13 @@ const getEssaysByUserId = function (data, fun) {
         url: url.getEssaysByUserId,
         data: data,
         success: function (res) {
-            fun(null, res.data)
+            fun(null, res.data);
         },
         fail: function (res) {
-            fun(res, null)
+            fun(res, null);
         }
-    })
-}
+    });
+};
 
 /*
 获取文章详情
@@ -34,19 +34,19 @@ const getEssayDetail = function (data, fun) {
         data: data,
         success: function (res) {
             if (res.data.code === 0) {
-                let comments = res.data.data.comments
+                let comments = res.data.data.comments;
                 for (let i = 0; i < comments.length; i++) {
-                    comments[i].isSendBoxShow = false
-                    comments[i].inputContent = ''
+                    comments[i].isSendBoxShow = false;
+                    comments[i].inputContent = '';
                 }
             }
-            fun(null, res.data)
+            fun(null, res.data);
         },
         fail: function (res) {
-            fun(res, null)
+            fun(res, null);
         }
-    })
-}
+    });
+};
 
 /**
  * 添加评论里的赞
@@ -57,13 +57,13 @@ const addCommentAdmire = function (data, fun) {
         url: url.addCommentAdmire,
         data: data,
         success: function (res) {
-            fun(null, res.data)
+            fun(null, res.data);
         },
         fail: function (res) {
-            fun(res, null)
+            fun(res, null);
         }
-    })
-}
+    });
+};
 
 /**
  * 删除评论里的赞
@@ -74,13 +74,13 @@ const delCommentAdmire = function (data, fun) {
         url: url.delCommentAdmire,
         data: data,
         success: function (res) {
-            fun(null, res.data)
+            fun(null, res.data);
         },
         fail: function (res) {
-            fun(res, null)
+            fun(res, null);
         }
-    })
-}
+    });
+};
 
 /**
  * 提交评论
@@ -91,15 +91,15 @@ const addComment = function (data, fun) {
         url: url.addComment,
         data: data,
         success: function (res) {
-            res.data.data.inputContent = ''
-            res.data.data.isSendBoxShow = false
-            fun(null, res.data)
+            res.data.data.inputContent = '';
+            res.data.data.isSendBoxShow = false;
+            fun(null, res.data);
         },
         fail: function (res) {
-            fun(res, null)
+            fun(res, null);
         }
-    })
-}
+    });
+};
 
 export {
     getEssaysByUserId,
@@ -107,4 +107,4 @@ export {
     addCommentAdmire,
     delCommentAdmire,
     addComment
-}
+};

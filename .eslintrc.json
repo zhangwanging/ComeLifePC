@@ -1,0 +1,17 @@
+{
+    "parser": "esprima",
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "rules": {
+        "eqeqeq": "error",
+        "no-plusplus":"warn",
+        "semi": ["error", "always"],
+        "no-unused-vars": "off"
+    }
+}

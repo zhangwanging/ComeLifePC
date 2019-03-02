@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const host='http://localhost:6000'
+const host='http://localhost:6000';
 
 //注意：这里列出url仅仅为了mock数据
 const url={
@@ -30,13 +30,13 @@ const url={
     cancelAttention:'/cancelAttention',
     addAttention:'/addAttention',
     getAllRecommendAuthor:'/getAllRecommendAuthor'
-}
+};
 
 // 创建axios实例
 const service = axios.create({
     baseURL: host,
     timeout: 5000
-})
+});
 /*
 // request拦截器
 service.interceptors.request.use(
@@ -86,7 +86,7 @@ const myAxios = function (obj) {
             console.log(error);
             obj.fail(error)
         });
-}
+};
 
 export{
     url,

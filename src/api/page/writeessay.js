@@ -8,7 +8,7 @@ const url={
     createEssay:'/createEssay',
     getEssayContent:'/getEssayContent',
     getEssayById:'/getEssayById'
-}
+};
 
 /**
  创建文集
@@ -19,13 +19,13 @@ const createNote=function (data,fun) {
         url:url.createNote,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /**
  获取文集
@@ -36,13 +36,13 @@ const getNote=function (data,fun) {
         url:url.getNote,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 
 /*
@@ -53,13 +53,13 @@ const updateNote=function (data,fun) {
         url:url.updateNote,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /*
 删除文集名
@@ -70,13 +70,13 @@ const delNote=function (data,fun) {
         url:url.delNote,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /**
  新建文章
@@ -87,13 +87,13 @@ const createEssay=function (data,fun) {
         url:url.createEssay,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /**
  获取文章内容
@@ -104,14 +104,13 @@ const getEssayContent=function (data,fun) {
         url:url.getEssayContent,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
-
+    });
+};
 /**
  * 根据各类型ID获取文章列表
  */
@@ -121,13 +120,13 @@ const getEssayById=function (data,fun) {
         url:url.getEssayById,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 export {
     createNote,
@@ -137,4 +136,4 @@ export {
     createEssay,
     getEssayContent,
     getEssayById
-}
+};

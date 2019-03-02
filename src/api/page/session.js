@@ -3,7 +3,7 @@ import {myAxios} from "../base";
 const url={
     register:'/register',
     login:'/login'
-}
+};
 
 /**
  注册
@@ -14,13 +14,13 @@ const register=function(data,fun) {
         url:url.register,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 /**
  登录
@@ -31,15 +31,15 @@ const login=function (data,fun) {
         url:url.login,
         data:data,
         success:function (res) {
-            fun(null,res.data)
+            fun(null,res.data);
         },
         fail:function (res) {
-            fun(res,null)
+            fun(res,null);
         }
-    })
-}
+    });
+};
 
 export {
     register,
     login
-}
+};

@@ -1,6 +1,6 @@
-import {url, host} from '$src/api/base'
+import {url, host} from '$src/api/base';
 
-const Mock = require('mockjs')
+const Mock = require('mockjs');
 
 /*
 获取首页轮播图
@@ -12,7 +12,7 @@ Mock.mock(host + url.getCarousel, {
         url: '@url(http)',
         src: '@dataImage()'
     }]
-})
+});
 
 /**
  * 获取部分推荐作者
@@ -28,7 +28,7 @@ Mock.mock(host + url.getPartAdviceUser, {
         avatar: '@dataImage()',
         isAttention: '@boolean()'
     }]
-})
+});
 
 /**
  * 获取文章列表
@@ -47,7 +47,7 @@ Mock.mock(host + url.getEssaysByUserId, {
         time: '@datetime',
         '_id': '@integer'
     }]
-})
+});
 
 /*
 获取用户动态数据
@@ -72,7 +72,7 @@ Mock.mock(host + url.getDynamicsByUserId, {
             }
         ]
     }
-})
+});
 
 /*
 获取用户关注列表
@@ -93,7 +93,7 @@ Mock.mock(host + url.getUserAttention, {
             isAttention: '@boolean()',
         }
     ]
-})
+});
 
 /*
 注册
@@ -107,7 +107,7 @@ Mock.mock(host + url.register, {
         name: '@ctitle()',
         avatar: '@dataImage()',
     }
-})
+});
 
 /*
 登录
@@ -121,7 +121,7 @@ Mock.mock(host + url.login, {
         name: '@ctitle()',
         avatar: '@dataImage()'
     }
-})
+});
 
 /*
 创建文集
@@ -133,7 +133,7 @@ Mock.mock(host + url.createNote, {
         id: '@integer',
         name: '@ctitle()'
     }
-})
+});
 
 /*
 获取文集
@@ -145,7 +145,7 @@ Mock.mock(host + url.getNote, {
         id: '@integer',
         name: '@ctitle()'
     }]
-})
+});
 
 /*
 根据各类型ID获取文章列表
@@ -165,7 +165,7 @@ Mock.mock(host + url.getEssayById, {
         time: '@datetime',
         _id: '@integer'
     }]
-})
+});
 
 /*
 创建文章
@@ -185,7 +185,7 @@ Mock.mock(host + url.createEssay, {
         time: '@datetime',
         _id: '@integer'
     }
-})
+});
 
 /*
 获取文章内容
@@ -197,7 +197,7 @@ Mock.mock(host + url.getEssayContent, {
         title: '@ctitle()',
         content: '@cparagraph(10,1000)'
     }
-})
+});
 
 /*
 更新文集名
@@ -208,7 +208,7 @@ Mock.mock(host + url.updateNote, {
     data: {
         name: '@ctitle()',
     }
-})
+});
 
 /*
 删除文集
@@ -217,7 +217,7 @@ Mock.mock(host + url.updateNote, {
 Mock.mock(host + url.delNote, {
     code: 0,
     data: []
-})
+});
 
 /*
 获取文章详情
@@ -257,7 +257,7 @@ Mock.mock(host + url.getEssayDetail, {
             }
         ]
     }
-})
+});
 
 /**
  * 添加评论
@@ -276,7 +276,7 @@ Mock.mock(host + url.addComment, {
             isAdmire: false
         }
     ]
-})
+});
 
 /**
  * 添加评论赞
@@ -285,7 +285,7 @@ Mock.mock(host + url.addComment, {
 Mock.mock(host + url.addCommentAdmire, {
     code: 0,
     data: {}
-})
+});
 
 /**
  * 删除评论赞
@@ -294,7 +294,7 @@ Mock.mock(host + url.addCommentAdmire, {
 Mock.mock(host + url.delCommentAdmire, {
     code: 0,
     data: {}
-})
+});
 
 /**
  * 获取优选连载
@@ -313,7 +313,7 @@ Mock.mock(host + url.getSerial, {
             viewNum: '@natural(0,1999)'
         }
     ]
-})
+});
 
 /**
  * 获取版权书籍
@@ -407,7 +407,7 @@ Mock.mock(host + url.getCopyrightBooks, {
             ]
         }
     ]
-})
+});
 
 /**
  * 获取关注用户列表
@@ -422,7 +422,7 @@ Mock.mock(host + url.getUserCareList, {
             time: '@datetime'
         }
     ]
-})
+});
 
 /**
  * 获取关注用户概括
@@ -439,7 +439,7 @@ Mock.mock(host + url.getUserCareProfile, {
             likeNum: '@natural(0,1999)'
         }
     ]
-})
+});
 
 /**
  * 获取用户基本信息
@@ -471,7 +471,7 @@ Mock.mock(host + url.getUserBasicData, {
             }
         ]
     }
-})
+});
 
 /**
  * 取消关注
@@ -481,7 +481,7 @@ Mock.mock(host + url.getUserBasicData, {
 Mock.mock(host + url.cancelAttention, {
     code: 0,
     data: {}
-})
+});
 
 /**
  * 添加关注
@@ -490,7 +490,7 @@ Mock.mock(host + url.cancelAttention, {
 Mock.mock(host + url.addAttention, {
     code: 0,
     data: {}
-})
+});
 
 /**
  * 获取所有推荐作者
@@ -505,7 +505,7 @@ Mock.mock(host + url.getAllRecommendAuthor, {
         avatar: '@dataImage()',
         isAttention: '@boolean()'
     }]
-})
+});
 
 
 

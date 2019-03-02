@@ -1,12 +1,12 @@
-import Vue from 'vue/dist/vue'
+import Vue from 'vue/dist/vue';
 
 Vue.directive('focus',{
-    bind: function (el) {},
-    inserted: function (el,binding,vnode) {
-        el.__vue__.focus()
+    bind: function () {},
+    inserted: function (el) {
+        el.__vue__.focus();
     },
-    update: function (el) {
+    update: function () {
     },
-    componentUpdated: function (el) {},
+    componentUpdated: function () {},
     unbind: function () {}
-})
+});
