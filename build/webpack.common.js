@@ -1,12 +1,12 @@
-const path = require('path')
+const path = require('path');
 
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 //vue-loader 15版本以上需要配置
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const util = require('utils')
-
-const multiPageConf = require('multiPage.conf');
+const util = require('./utils.js');
 
 module.exports = {
     entry: {
@@ -14,10 +14,15 @@ module.exports = {
     },
     output: {
         path: path.join(util.rootPath, './dist'),
-        filename: '[name].js'
+        filename:'[name].[chunkhash].js'
     },
     plugins: [
-        new htmlWebpackPlugin({
+        new CleanWebpackPlugin(['dist'],{
+            root: util.rootPath,
+            verbose:true,
+            dry:false
+        }),
+        new HtmlWebpackPlugin({
             template: path.join(util.rootPath, './src/index.html'),
             filename: 'index.html',
             chunks: ['index']
@@ -50,7 +55,8 @@ module.exports = {
                     {
                         loader:'url-loader',
                         options:{
-                            limit:10240
+                            limit:10240,
+                            name:'images/[hash:8].[name].[ext]'
                         }
                     }
                 ]
