@@ -2,7 +2,6 @@
     <div
             id="app"
             class="container-app">
-
         <transition name="fade">
             <!--首页的不同排版，index是默认排版-->
             <router-view name="index"/>

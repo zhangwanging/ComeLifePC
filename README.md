@@ -61,6 +61,10 @@ Please make sure to read the guidelines before opening an issue. Issues not conf
 
 - Issue title.
 - What problem does this feature solve?
+
+## 更多文档
+[https://app.yinxiang.com/shard/s57/nl/13661749/cc977e57-d131-4f5d-b341-6c9fe4c2fcb8](https://app.yinxiang.com/shard/s57/nl/13661749/cc977e57-d131-4f5d-b341-6c9fe4c2fcb8)
+
 ## Lisence
 <a href="https://opensource.org/licenses/MIT">MIT</a>
 

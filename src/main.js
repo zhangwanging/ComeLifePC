@@ -16,6 +16,10 @@ import storage from '$src/store/storage';
 import '$src/directive/directive.js';
 import { Popover } from 'element-ui';
 import '$src/style/element-variables.scss';
+//测试
+import WishUI from 'wish-ui';
+
+Vue.use(WishUI);
 
 Vue.use(Popover);
 

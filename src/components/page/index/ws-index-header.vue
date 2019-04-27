@@ -11,7 +11,7 @@
                 :xl="5"
                 class="title">
             <div class="title-wrapper" @click="turnToHomePage">
-                <h1 class="title-text">简书ll</h1>
+                <h1 class="title-text">简书</h1>
             </div>
         </el-col>
 

@@ -14,7 +14,7 @@ module.exports = {
     },
     output: {
         path: path.join(util.rootPath, './dist'),
-        filename:'[name].[chunkhash].js'
+        filename:'[name].[hash].js'
     },
     plugins: [
         new CleanWebpackPlugin(['dist'],{

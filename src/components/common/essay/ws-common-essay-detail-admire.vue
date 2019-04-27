@@ -6,11 +6,11 @@
         <p>小礼物走一走，来简书关注我</p>
         <el-row type="flex" justify="center">
             <el-button
-                    @click="isDialogVisible=true"
-                    size="small"
-                    type="primary"
-                    round
-                    plain>
+                @click="isDialogVisible=true"
+                size="small"
+                type="primary"
+                round
+                plain>
                 赞赏支持
             </el-button>
         </el-row>
@@ -18,27 +18,27 @@
         <!--赞赏弹出层-->
 
         <el-dialog
-                @close="closeDialog"
-                width="450px"
-                :modal="false"
-                :visible="isDialogVisible">
+            @close="closeDialog"
+            width="450px"
+            :modal="false"
+            :visible="isDialogVisible">
             <div class="container-dialog">
                 <!--头部-->
                 <el-row
-                        class="header"
-                        type="flex"
-                        justify="center"
-                        align="middle">
+                    class="header"
+                    type="flex"
+                    justify="center"
+                    align="middle">
                     <img class="avatar" src="../../../assets/star.jpg" alt="">
                     <span>给作者送糖</span>
                 </el-row>
                 <!--选择糖果数目-->
                 <el-row class="container-candy">
                     <el-radio-group
-                            @click.native="showCustomCandyNumButton"
-                            @change="chooseCandyNumChange"
-                            v-model="radioGroupCandyNum"
-                            size="small">
+                        @click.native="showCustomCandyNumButton"
+                        @change="chooseCandyNumChange"
+                        v-model="radioGroupCandyNum"
+                        size="small">
                         <el-row :gutter="15">
                             <el-col :span="8" type="primary" plain>
                                 <el-radio label="2" border>2颗</el-radio>
@@ -59,21 +59,21 @@
                             </el-col>
                             <el-col :span="8">
                                 <el-button
-                                        size="mini"
-                                        v-if="isFocusCandyButton&&!inputCandyNum"
-                                        @click.stop="customCandyNumClick">自定义
+                                    size="mini"
+                                    v-if="isFocusCandyButton&&!inputCandyNum"
+                                    @click.stop="customCandyNumClick">自定义
                                 </el-button>
                                 <el-input
-                                        @keydown.native="validateCandyNumKeydown"
-                                        class="ws-common-essay-detail-admire"
-                                        style="height:32px;"
-                                        size="mini"
-                                        @click.native.stop=""
-                                        v-else
-                                        v-model="inputCandyNum"
-                                        type="text"
-                                        v-focus
-                                        placeholder="糖果数量"/>
+                                    @keydown.native="validateCandyNumKeydown"
+                                    class="ws-common-essay-detail-admire"
+                                    style="height:32px;"
+                                    size="mini"
+                                    @click.native.stop=""
+                                    v-else
+                                    v-model="inputCandyNum"
+                                    type="text"
+                                    v-focus
+                                    placeholder="糖果数量"/>
                             </el-col>
                         </el-row>
                     </el-radio-group>
@@ -82,10 +82,10 @@
                 <el-input type="textarea" placeholder="给Ta留言"/>
                 <!--当前选中糖果数目-->
                 <el-row
-                        class="candyNum"
-                        type="flex"
-                        justify="center"
-                        align="middle">
+                    class="candyNum"
+                    type="flex"
+                    justify="center"
+                    align="middle">
                     <i class="iconfont icon-goumai"></i>
                     <span> {{currentCandyNum}}</span>
                 </el-row>
@@ -95,8 +95,8 @@
                         justify="center"
                         :gutter="15">
                     <el-radio-group
-                            size="small"
-                            v-model="radioGroupPayWay">
+                        size="small"
+                        v-model="radioGroupPayWay">
                         <el-col :span="8" type="primary" plain>
                             <el-radio :label="0" border>微信支付</el-radio>
                         </el-col>
@@ -112,10 +112,10 @@
                 <!--支付按钮-->
                 <el-row class="button-pay" type="flex" justify="center">
                     <el-button
-                            @click="payNow"
-                            type="primary"
-                            size="small"
-                            round>
+                        @click="payNow"
+                        type="primary"
+                        size="small"
+                        round>
                         立即支付
                     </el-button>
                 </el-row>
@@ -141,45 +141,45 @@
                 currentCandyNum: 2,
                 //支付方式单选组标志
                 radioGroupPayWay: 0
-            }
+            };
         },
         watch: {
             inputCandyNum: function (val, oldVal) {
-                this.currentCandyNum = val
+                this.currentCandyNum = val;
             }
         },
         methods: {
             closeDialog() {
-                this.isDialogVisible = false
+                this.isDialogVisible = false;
             },
             //选择糖果数量
             chooseCandyNumChange(label) {
-                this.currentCandyNum = label
+                this.currentCandyNum = label;
             },
             //自定义糖果数量
             customCandyNumClick() {
-                this.hideCustomCandyNumButton()
+                this.hideCustomCandyNumButton();
             },
             //显示自定义按钮
             showCustomCandyNumButton() {
-                this.isFocusCandyButton = true
-                this.inputCandyNum = ''
+                this.isFocusCandyButton = true;
+                this.inputCandyNum = '';
             },
             //隐藏自定义按钮
             hideCustomCandyNumButton() {
-                this.isFocusCandyButton = false
-                this.currentCandyNum = ''
-                this.radioGroupCandyNum = ''
+                this.isFocusCandyButton = false;
+                this.currentCandyNum = '';
+                this.radioGroupCandyNum = '';
             },
             //支付按钮事件
             payNow() {
                 if (this.isNumber(this.currentCandyNum)) {
                     if (this.radioGroupPayWay === 0) {
-                        this.payByWeixin()
+                        this.payByWeixin();
                     } else if (this.radioGroupPayWay === 1) {
-                        this.payByZhiFuBao()
+                        this.payByZhiFuBao();
                     } else if (this.radioGroupPayWay === 2) {
-                        this.payByJianShu()
+                        this.payByJianShu();
                     }
                 } else {
                     this.$message({
@@ -191,13 +191,13 @@
             },
             //三种支付方式
             payByWeixin() {
-                alert('微信支付')
+                alert('微信支付');
             },
             payByZhiFuBao() {
-                alert('支付宝支付')
+                alert('支付宝支付');
             },
             payByJianShu() {
-                alert('简书支付')
+                alert('简书支付');
             },
             isNumber(val) {
                 var regPos = /^\d+(\.\d+)?$/; //非负浮点数
@@ -209,24 +209,24 @@
             },
             //TODO:无效
             validateCandyNumKeydown(e) {
-                console.dir(e)
-                let that=this
-                if (!this.isAllowNumber(e.keyCode)){
-                  //  that.inputCandyNum=that.inputCandyNum.substring(0,that.inputCandyNum.length-1)
-                    return false
+                console.dir(e);
+                let that = this;
+                if (!this.isAllowNumber(e.keyCode)) {
+                    //  that.inputCandyNum=that.inputCandyNum.substring(0,that.inputCandyNum.length-1)
+                    return false;
                 }
             },
             isAllowNumber(keyCode) {
                 // 数字
-                if (keyCode >= 48 && keyCode <= 57) return true
+                if (keyCode >= 48 && keyCode <= 57) return true;
                 // 小数字键盘
-                if (keyCode >= 96 && keyCode <= 105) return true
+                if (keyCode >= 96 && keyCode <= 105) return true;
                 // Backspace, del, 左右方向键
-                if (keyCode == 8 || keyCode == 46 || keyCode == 37 || keyCode == 39) return true
-                return false
+                if (keyCode == 8 || keyCode == 46 || keyCode == 37 || keyCode == 39) return true;
+                return false;
             }
         }
-    }
+    };
 </script>
 
 <style scoped>
