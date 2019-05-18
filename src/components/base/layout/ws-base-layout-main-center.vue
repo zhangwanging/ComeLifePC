@@ -3,9 +3,9 @@
         <el-col
                 :xs="24"
                 :sm="20"
-                :md="14"
-                :lg="14"
-                :xl="14"
+                :md="16"
+                :lg="18"
+                :xl="18"
                 class="container-ws-base-layout-main-center">
             <slot></slot>
         </el-col>

@@ -1,35 +1,35 @@
 import axios from 'axios';
 
-const host='http://localhost:6000';
+const host = 'http://localhost:6000';
 
 //注意：这里列出url仅仅为了mock数据
-const url={
-    getPartAdviceUser:'/getAdviceUser/part',
-    getEssaysByUserId:'/getEssaysByUserId',
-    getDynamicsByUserId:'/getDynamicsByUserId',
-    getUserAttention:'/getUserAttention',
-    getCarousel:'/getCarousel',
-    register:'/register',
-    login:'/login',
-    createNote:'/createNote',
-    getNote:'/getNote',
-    getEssayById:'/getEssayById',
-    createEssay:'/createEssay',
-    getEssayContent:'/getEssayContent',
-    updateNote:'/updateNote',
-    delNote:'/delNote',
-    getEssayDetail:'/getEssayDetail',
-    addComment:'/addComment',
-    addCommentAdmire:'/addCommentAdmire',
-    delCommentAdmire:'/delCommentAdmire',
-    getSerial:'/getSerial',
-    getCopyrightBooks:'/getCopyrightBooks',
-    getUserCareList:'/getUserCareList',
-    getUserCareProfile:'/getUserCareProfile',
-    getUserBasicData:'/getUserBasicData',
-    cancelAttention:'/cancelAttention',
-    addAttention:'/addAttention',
-    getAllRecommendAuthor:'/getAllRecommendAuthor'
+const url = {
+    getPartAdviceUser: '/getAdviceUser/part',
+    getEssaysByUserId: '/getEssaysByUserId',
+    getDynamicsByUserId: '/getDynamicsByUserId',
+    getUserAttention: '/getUserAttention',
+    getCarousel: '/getCarousel',
+    register: '/register',
+    login: '/login',
+    createNote: '/createNote',
+    getNote: '/getNote',
+    getEssayById: '/getEssayById',
+    createEssay: '/createEssay',
+    getEssayContent: '/getEssayContent',
+    updateNote: '/updateNote',
+    delNote: '/delNote',
+    getEssayDetail: '/getEssayDetail',
+    addComment: '/addComment',
+    addCommentAdmire: '/addCommentAdmire',
+    delCommentAdmire: '/delCommentAdmire',
+    getSerial: '/getSerial',
+    getCopyrightBooks: '/getCopyrightBooks',
+    getUserCareList: '/getUserCareList',
+    getUserCareProfile: '/getUserCareProfile',
+    getUserBasicData: '/getUserBasicData',
+    cancelAttention: '/cancelAttention',
+    addAttention: '/addAttention',
+    getAllRecommendAuthor: '/getAllRecommendAuthor'
 };
 
 // 创建axios实例
@@ -76,20 +76,26 @@ service.interceptors.response.use(
 )*/
 
 const myAxios = function (obj) {
-    service.post(obj.url, obj.data,{
-        headers:obj.headers
-    })
-        .then(function (response) {
-            obj.success(response)
-        })
-        .catch(function (error) {
-            console.log(error);
-            obj.fail(error)
-        });
+    const {
+        url,
+        data,
+        headers,
+        success,
+        fail,
+    } = obj;
+
+    service.post(url, data, {
+        headers: headers
+    }).then(function (response) {
+        success(response);
+    }).catch(function (error) {
+        console.log(error);
+        fail(error);
+    });
 };
 
-export{
+export {
     url,
     host,
-    myAxios
-}
+    myAxios,
+};

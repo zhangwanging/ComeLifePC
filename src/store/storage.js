@@ -42,13 +42,13 @@ const myCookie={
 
 const setToken=(value)=>{
     myCookie.set(key.token,value,3);
-}
+};
 
 const getToken=()=>{
     return get(key.token);
-}
+};
 
 export default {
     setToken,
-    getToken
+    getToken,
 };

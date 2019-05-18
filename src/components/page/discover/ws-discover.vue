@@ -123,7 +123,7 @@
                 <router-link :to="{name:'subject'}">
                     <img class="menu-btn"
                          :key="5"
-                         src="../../../assets/star.jpg"
+                         :src="require(`./banner-campus.png`)"
                          alt="">
                 </router-link>
 
