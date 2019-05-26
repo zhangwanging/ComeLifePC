@@ -17,6 +17,7 @@ const router = new Router({
     }
 });
 
+// 登录判断
 router.beforeEach((to, from, next) => {
     console.log('beforeEach')
     if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -28,7 +29,7 @@ router.beforeEach((to, from, next) => {
             next();
         }
     } else {
-        next(); // 确保一定要调用 next()
+        next();
     }
 });
 

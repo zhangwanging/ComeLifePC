@@ -22,14 +22,14 @@ import walletRoutes from './home-routes/wallet-routes';
 const homeRoutes=[
     {
         name: 'index',
-        path: '/index',
+        path: '/home',
         components: {
             index: WsIndex
         },
         children: [
             {
                 name: 'mainsmall',
-                path: 'mainsmall',
+                path: '',
                 components: {
                     default: WsIndexMainSmall
                 },
@@ -47,14 +47,14 @@ const homeRoutes=[
             },
             {
                 name: 'mainlarge',
-                path: 'mainlarge',
+                path: '',
                 components: {
                     default: WsIndexMainLarge
                 }
             },
             {
                 name: 'mainmini',
-                path: 'mainmini',
+                path: '',
                 components: {
                     default: WsIndexMainMini
                 },

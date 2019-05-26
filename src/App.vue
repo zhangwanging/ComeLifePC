@@ -5,7 +5,9 @@
         <transition name="fade">
             <!--首页的不同排版，index是默认排版-->
             <router-view name="index"/>
+            <!--写文章-->
             <router-view name="writeessay"/>
+            <!--登录注册-->
             <router-view name="session"/>
             <!--优选连载-->
             <router-view name="serial"/>

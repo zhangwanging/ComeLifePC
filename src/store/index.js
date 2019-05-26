@@ -1,6 +1,5 @@
 import Vuex from 'vuex';
 import Vue from 'vue/dist/vue';
-import mutations from './mutations';
 
 Vue.use(Vuex);
 
@@ -11,13 +10,22 @@ const store=new Vuex.Store({
     },
     getters:{
         loginStatus:state=>{
-            return state.loginStatus
+            return state.loginStatus;
         },
         userData:state=>{
-            return state.userData
+            return state.userData;
         }
     },
-    mutations
+    mutations:{
+        setLoginStatus(state,loginStatus){
+            state.loginStatus=loginStatus;
+        },
+        setUserData(state,userData){
+            state.userData=userData;
+        }
+    },
+    actions:{
+    }
 });
 
 export default store;

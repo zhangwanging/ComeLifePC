@@ -45,7 +45,7 @@ const setToken=(value)=>{
 };
 
 const getToken=()=>{
-    return get(key.token);
+    return myCookie.get(key.token);
 };
 
 export default {
